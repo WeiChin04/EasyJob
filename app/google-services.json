@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "575177965714",
+    "firebase_url": "https://easyjob-79486-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "easyjob-79486",
+    "storage_bucket": "easyjob-79486.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575177965714:android:0b49e7d43a311c17be664b",
+        "android_client_info": {
+          "package_name": "com.example.easyjob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575177965714-p2u04d673bnp7r5dvn0bu504lutiaqfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-8CrFNmMbJxbe6AIeV00iknqaznwcPCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575177965714-p2u04d673bnp7r5dvn0bu504lutiaqfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
