@@ -3,6 +3,7 @@ package com.example.easyjob.user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.easyjob.databinding.ActivityUserLoginBinding
 import com.example.easyjob.employer.EmployerLogin
 import com.google.firebase.auth.FirebaseAuth
@@ -35,7 +36,18 @@ class UserLogin : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        startActivity((Intent(this, UserHome::class.java)))
+                        val verification = auth.currentUser?.isEmailVerified
+                        if(verification == true)
+                        {
+                            startActivity((Intent(this, UserHome::class.java)))
+                        }
+                        else
+                        {
+                            Toast.makeText(this,"Please verify your email",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else{
+                        Toast.makeText(this,"Sign in fail",Toast.LENGTH_SHORT).show()
                     }
                 }
             }

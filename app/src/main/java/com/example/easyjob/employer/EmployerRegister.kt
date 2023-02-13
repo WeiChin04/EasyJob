@@ -53,7 +53,14 @@ class EmployerRegister : AppCompatActivity() {
             .addOnCompleteListener(this){
                 if (it.isSuccessful){
                     storeData()
-                    startActivity(Intent(this,EmployerLogin::class.java))
+                    auth.currentUser?.sendEmailVerification()
+                        ?.addOnSuccessListener {
+                            Toast.makeText(this, "Please verify your email", Toast.LENGTH_LONG).show()
+                            startActivity(Intent(this, EmployerLogin::class.java))
+                        }
+                        ?.addOnFailureListener {
+                            Toast.makeText(this,it.toString(),Toast.LENGTH_SHORT).show()
+                        }
                 }
                 else{
                     Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()

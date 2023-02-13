@@ -3,6 +3,7 @@ package com.example.easyjob.employer
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.easyjob.databinding.ActivityEmployerLoginBinding
 import com.example.easyjob.user.UserLogin
 import com.google.firebase.auth.FirebaseAuth
@@ -34,7 +35,15 @@ class EmployerLogin : AppCompatActivity() {
             {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
-                        startActivity((Intent(this,EmployerHome::class.java)))
+                        val verification = auth.currentUser?.isEmailVerified
+                        if(verification == true)
+                        {
+                            startActivity((Intent(this, EmployerHome::class.java)))
+                        }
+                        else
+                        {
+                            Toast.makeText(this,"Please verify your email", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             }
