@@ -15,6 +15,10 @@
     </style>
 
     <style name="PageBackground">
+        <item name="android:background">#F8FAFC</item>
+    </style>
+
+    <style name="ContentPageBackground">
         <item name="android:background">#1A004932</item>
     </style>
 

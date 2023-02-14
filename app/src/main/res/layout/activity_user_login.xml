@@ -82,6 +82,7 @@
         android:id="@+id/tv_user_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:elegantTextHeight="false"
         android:minHeight="48dp"
         android:text="@string/sign_up_account"
@@ -90,14 +91,15 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_user_reset_password"
         app:layout_constraintEnd_toEndOf="@+id/tv_user_reset_password"
-        app:layout_constraintStart_toStartOf="@+id/tv_user_reset_password" />
+        app:layout_constraintStart_toStartOf="@+id/tv_user_reset_password"
+        app:layout_constraintTop_toBottomOf="@+id/btn_user_login" />
 
     <TextView
         android:id="@+id/tv_user_reset_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:elegantTextHeight="false"
         android:minHeight="48dp"
         android:text="@string/reset_password"
@@ -106,15 +108,15 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_switch_to_employer"
         app:layout_constraintEnd_toEndOf="@+id/tv_switch_to_employer"
-        app:layout_constraintStart_toStartOf="@+id/tv_switch_to_employer" />
+        app:layout_constraintStart_toStartOf="@+id/tv_switch_to_employer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_sign_up" />
 
     <TextView
         android:id="@+id/tv_switch_to_employer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="8dp"
         android:elegantTextHeight="false"
         android:minHeight="48dp"
         android:text="@string/login_as_an_employer"
@@ -123,8 +125,8 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_reset_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
