@@ -22,6 +22,13 @@
         <item name="android:background">#1A004932</item>
     </style>
 
+    <style name="Start_textview">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <style name="StartPageTitle">
         <item name="android:fontFamily">@font/nunito_bold</item>
         <item name="android:textAlignment">center</item>

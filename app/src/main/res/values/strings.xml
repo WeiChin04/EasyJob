@@ -3,8 +3,8 @@
 
     <!-- start page -->
     <string name="start_page_title">Welcome \nEasy Job</string>
-    <string name="btn_employer">Employer</string>
-    <string name="btn_user">User</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
 
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -15,17 +15,18 @@
     <string name="btnlogin">Login</string>
     <string name="sign_up_account">Not Account? <font color="#B3004932">Sign Up </font>now!</string>
     <string name="reset_password">Forger Password? Click to <font color="#B3004932">Reset</font></string>
-
+    <string name="register_as_an_employer">Register as an <font color="#B3004932">Employer</font></string>
+    <string name="register_as_an_user">Register as a <font color="#B3004932">User</font></string>
 
     <!--User-->
-    <string name="user_login">User Login</string>
     <string name="login_as_an_employer">Login as an <font color="#B3004932">Employer</font></string>
     <string name="user_sign_up">User\nSign Up</string>
 
 
     <!--Employer-->
-    <string name="employer_login">Employer Login</string>
     <string name="login_as_an_user">Login as an <font color="#B3004932">User</font></string>
     <string name="employer_sign_up">Employer\nSign Up</string>
+    <string name="login">Login</string>
+
 
 </resources>

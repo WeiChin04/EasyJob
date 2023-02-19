@@ -12,7 +12,7 @@
         style="@style/StartPageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="70dp"
         android:text="@string/user_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
         android:id="@+id/tv_user_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:elegantTextHeight="false"
         android:minHeight="48dp"
         android:text="@string/switch_login_page"
@@ -116,6 +116,17 @@
         android:textIsSelectable="true"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_register_employer"
+        app:layout_constraintStart_toStartOf="@+id/tv_register_employer"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_employer" />
+
+    <TextView
+        android:id="@+id/tv_register_employer"
+        style="@style/Start_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/register_as_an_employer"
         app:layout_constraintEnd_toEndOf="@+id/btn_user_register"
         app:layout_constraintStart_toStartOf="@+id/btn_user_register"
         app:layout_constraintTop_toBottomOf="@+id/btn_user_register" />

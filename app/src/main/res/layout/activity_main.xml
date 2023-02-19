@@ -20,25 +20,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_user"
+        android:id="@+id/btn_login"
         style="@style/ButtonGreen"
         android:layout_width="263dp"
         android:layout_height="66dp"
         android:layout_marginTop="125dp"
-        android:text="@string/btn_user"
+        android:text="@string/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_startpage_title" />
 
     <Button
-        android:id="@+id/btn_employer"
+        android:id="@+id/btn_register"
         style="@style/ButtonGreen"
         android:layout_width="263dp"
         android:layout_height="66dp"
         android:layout_marginTop="55dp"
-        android:text="@string/btn_employer"
+        android:text="@string/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_user" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import com.example.easyjob.databinding.ActivityMainBinding
 import com.example.easyjob.employer.EmployerHome
-import com.example.easyjob.employer.EmployerLogin
 import com.example.easyjob.user.UserHome
-import com.example.easyjob.user.UserLogin
+import com.example.easyjob.user.UserRegister
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -28,12 +27,12 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        binding.btnUser.setOnClickListener{
-            startActivity(Intent(this, UserLogin::class.java))
+        binding.btnLogin.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
-        binding.btnEmployer.setOnClickListener{
-            startActivity(Intent(this, EmployerLogin::class.java))
+        binding.btnRegister.setOnClickListener{
+            startActivity(Intent(this, UserRegister::class.java))
         }
     }
 

@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.easyjob.LoginActivity
 import com.example.easyjob.databinding.ActivityUserRegisterBinding
+import com.example.easyjob.employer.EmployerRegister
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -22,7 +24,7 @@ class UserRegister : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tvUserLogin.setOnClickListener {
-            startActivity(Intent(this,UserLogin::class.java))
+            startActivity(Intent(this,LoginActivity::class.java))
         }
 
         //link firebase
@@ -30,7 +32,11 @@ class UserRegister : AppCompatActivity() {
 
         //Switch to employer login
         binding.tvUserLogin.setOnClickListener {
-            onBackPressed()
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
+
+        binding.tvRegisterEmployer.setOnClickListener {
+            startActivity(Intent(this,EmployerRegister::class.java))
         }
 
 
@@ -62,7 +68,7 @@ class UserRegister : AppCompatActivity() {
                     auth.currentUser?.sendEmailVerification()
                         ?.addOnSuccessListener {
                             Toast.makeText(this, "Please verify your email",Toast.LENGTH_LONG).show()
-                            startActivity(Intent(this, UserLogin::class.java))
+                            startActivity(Intent(this, LoginActivity::class.java))
                         }
                         ?.addOnFailureListener {
                             Toast.makeText(this,it.toString(),Toast.LENGTH_SHORT).show()
