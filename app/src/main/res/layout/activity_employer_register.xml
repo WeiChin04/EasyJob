@@ -102,6 +102,7 @@
 
     <TextView
         android:id="@+id/tv_login"
+        style="@style/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -119,7 +120,7 @@
 
     <TextView
         android:id="@+id/tv_register_user"
-        style="@style/Start_textview"
+        style="@style/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

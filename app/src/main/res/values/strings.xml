@@ -28,5 +28,99 @@
     <string name="employer_sign_up">Employer\nSign Up</string>
     <string name="login">Login</string>
 
+    <!--Employer Post Job-->
+    <string name="job_title">Job Title</string>
+    <string name="job_title_hint">Enter your job title</string>
+    <string name="job_type">Job Type</string>
+    <string-array name="job_type_select">
+        <item>Internship</item>
+        <item>Part Time</item>
+        <item>Full Time</item>
+    </string-array>
+    <string name="internship">Internship</string>
+    <string name="part_time">Part Time</string>
+    <string name="full_time">Full Time</string>
+    <string name="job_type_hint">Please select a job type</string>
+    <string name="job_salary">Job Salary</string>
+    <string name="job_salary_hint">RM</string>
+    <string name="working_hour">Working Hour</string>
+    <string-array name="working_hour_start">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+    </string-array>
+    <string-array name="working_hour_end">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+    </string-array>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="to">To</string>
+    <string name="workplace">Workplace</string>
+    <string name="workplace_hint">Location</string>
+    <string name="job_requirement">Job Requirement</string>
+    <string name="job_requirement_hint">Please describe the job requirement</string>
+    <string name="responsibilities">Responsibilities</string>
+    <string name="responsibilities_hint">Please describe the job responsibilities</string>
+    <string name="job_status">Job Status</string>
+    <string name="job_status_available">Available</string>
+    <string name="job_status_unavailable">Unavailable</string>
+    <string name="btn_save_job">Save Job</string>
+    <string name="btn_post_now">Post Now</string>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </resources>

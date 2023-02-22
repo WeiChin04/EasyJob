@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".employer.PostJob">
+
+        <TextView
+            android:id="@+id/tvJobTitle"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="@string/job_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <EditText
+            android:id="@+id/etEnterJobTitle"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/job_title_hint"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@+id/tvJobTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle" />
+
+        <TextView
+            android:id="@+id/tvJobType"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/job_type"
+            app:layout_constraintStart_toStartOf="@+id/tvJobTitle"
+            app:layout_constraintTop_toBottomOf="@+id/etEnterJobTitle" />
+
+        <TextView
+            android:id="@+id/tvJobSalary"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/job_salary"
+            app:layout_constraintStart_toStartOf="@+id/tvJobType"
+            app:layout_constraintTop_toBottomOf="@+id/chkJobTypeInternship" />
+
+        <EditText
+            android:id="@+id/etJobSalary"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/job_salary_hint"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@+id/tvJobSalary"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobSalary" />
+
+        <TextView
+            android:id="@+id/tvWorkingHour"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/working_hour"
+            app:layout_constraintStart_toStartOf="@+id/tvJobSalary"
+            app:layout_constraintTop_toBottomOf="@+id/etJobSalary" />
+
+        <TextView
+            android:id="@+id/tvJobRequirement"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/job_requirement"
+            app:layout_constraintStart_toStartOf="@+id/tvWorkPlace"
+            app:layout_constraintTop_toBottomOf="@+id/etWorkplace" />
+
+        <EditText
+            android:id="@+id/etJobRequirement"
+            style="@style/input_edit_field"
+            android:layout_width="370dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/job_requirement_hint"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@+id/tvJobRequirement"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobRequirement" />
+
+        <TextView
+            android:id="@+id/tvResponsibilities"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/responsibilities"
+            app:layout_constraintStart_toStartOf="@+id/tvJobRequirement"
+            app:layout_constraintTop_toBottomOf="@+id/etJobRequirement" />
+
+        <EditText
+            android:id="@+id/etResponsibilities"
+            style="@style/input_edit_field"
+            android:layout_width="370dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/responsibilities_hint"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/tvResponsibilities"
+            app:layout_constraintTop_toBottomOf="@+id/tvResponsibilities" />
+
+        <TextView
+            android:id="@+id/tvTo"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTimePickerEnd"
+            app:layout_constraintEnd_toStartOf="@+id/btnTimePickerEnd"
+            app:layout_constraintStart_toEndOf="@+id/btnTimePickerStart"
+            app:layout_constraintTop_toTopOf="@+id/btnTimePickerEnd" />
+
+        <TextView
+            android:id="@+id/tvWorkPlace"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/workplace"
+            app:layout_constraintStart_toStartOf="@+id/tvWorkingHour"
+            app:layout_constraintTop_toBottomOf="@+id/btnTimePickerStart" />
+
+        <EditText
+            android:id="@+id/etWorkplace"
+            style="@style/input_edit_field"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/workplace_hint"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toStartOf="@+id/tvWorkPlace"
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkPlace" />
+
+        <TextView
+            android:id="@+id/tvJobStatus"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:text="@string/job_status"
+            app:layout_constraintStart_toStartOf="@+id/tvResponsibilities"
+            app:layout_constraintTop_toBottomOf="@+id/etResponsibilities" />
+
+        <Switch
+            android:id="@+id/swJobStatus"
+            style="@style/textview_heading"
+            android:layout_width="201dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:minHeight="48dp"
+            android:text="@string/job_status_available"
+            app:layout_constraintStart_toStartOf="@+id/tvJobStatus"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobStatus"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+        <Button
+            android:id="@+id/btnSaveJob"
+            style="@style/ButtonGreenStoke"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/btn_save_job"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/swJobStatus"
+            app:layout_constraintTop_toBottomOf="@+id/swJobStatus"/>
+
+        <Button
+            android:id="@+id/btnPostNow"
+            style="@style/ButtonGreen2"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/btn_post_now"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSaveJob"
+            app:layout_constraintStart_toEndOf="@+id/btnSaveJob"
+            app:layout_constraintTop_toTopOf="@+id/btnSaveJob" />
+
+        <Button
+            android:id="@+id/btnTimePickerStart"
+            style="@style/ButtonTimePicker"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/start"
+            app:layout_constraintStart_toStartOf="@+id/tvWorkingHour"
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkingHour" />
+
+        <Button
+            android:id="@+id/btnTimePickerEnd"
+            style="@style/ButtonTimePicker"
+            android:layout_width="140dp"
+            android:layout_height="48dp"
+            android:text="@string/end"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTimePickerStart"
+            app:layout_constraintEnd_toEndOf="@+id/etWorkplace"
+            app:layout_constraintTop_toTopOf="@+id/btnTimePickerStart"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <CheckBox
+            android:id="@+id/chkJobTypeInternship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/internship"
+            android:textColor="@color/green"
+            android:textColorHighlight="@color/green"
+            android:textColorLink="@color/light_green"
+            app:layout_constraintStart_toStartOf="@+id/tvJobType"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobType" />
+
+        <CheckBox
+            android:id="@+id/chkJobTypePartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/part_time"
+            android:textColor="@color/green"
+            android:textColorHighlight="@color/green"
+            android:textColorLink="@color/light_green"
+            app:layout_constraintBottom_toBottomOf="@+id/chkJobTypeInternship"
+            app:layout_constraintStart_toEndOf="@+id/chkJobTypeInternship"
+            app:layout_constraintTop_toTopOf="@+id/chkJobTypeInternship" />
+
+        <CheckBox
+            android:id="@+id/chkJobTypeFullTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="@string/full_time"
+            android:textColor="@color/green"
+            android:textColorHighlight="@color/green"
+            android:textColorLink="@color/light_green"
+            app:layout_constraintBottom_toBottomOf="@+id/chkJobTypePartTime"
+            app:layout_constraintStart_toEndOf="@+id/chkJobTypePartTime"
+            app:layout_constraintTop_toTopOf="@+id/chkJobTypePartTime" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
+

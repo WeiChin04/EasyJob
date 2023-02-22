@@ -45,5 +45,9 @@ class EmployerHome : AppCompatActivity() {
                 finish()
             }
         }
+
+        binding.btnPostJob.setOnClickListener{
+            startActivity(Intent(this,PostJob::class.java))
+        }
     }
 }
