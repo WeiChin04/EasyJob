@@ -110,17 +110,8 @@
     <string name="job_status_unavailable">Unavailable</string>
     <string name="btn_save_job">Save Job</string>
     <string name="btn_post_now">Post Now</string>
-
-
-
-
-
-
-
-
-
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

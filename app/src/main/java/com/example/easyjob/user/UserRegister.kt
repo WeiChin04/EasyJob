@@ -85,7 +85,7 @@ class UserRegister : AppCompatActivity() {
         val email  = binding.etUserEmail.text.toString()
         val profileStatus = "1"
 
-        dbref = FirebaseDatabase.getInstance().getReference("User")
+        dbref = FirebaseDatabase.getInstance().getReference("Users")
         val currentuser = FirebaseAuth.getInstance().currentUser!!.uid
         //User Data
         val userdata = UserData(

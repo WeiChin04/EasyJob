@@ -22,7 +22,7 @@ class UserHome : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-        dbref = FirebaseDatabase.getInstance().getReference("User")
+        dbref = FirebaseDatabase.getInstance().getReference("Users")
         uid = auth.currentUser?.uid.toString()
 
         dbref.child(uid).addValueEventListener(object: ValueEventListener {

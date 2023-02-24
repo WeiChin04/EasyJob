@@ -19,7 +19,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private lateinit var dburef: DatabaseReference
     private lateinit var dberef: DatabaseReference
-    private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,18 +60,14 @@ class LoginActivity : AppCompatActivity() {
     {
         db = FirebaseDatabase.getInstance()
 
-        user = auth.currentUser?.uid.toString()
-        dburef = db.getReference("User")
-        dberef = db.getReference("Employer")
-
-        Log.d("check2",user)
-
+        dburef = db.getReference("Users")
+        dberef = db.getReference("Employers")
 
         if(auth.currentUser != null)
         {
             dburef.addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot){
-                    if(snapshot.hasChild(user))
+                    if(snapshot.hasChild(auth.currentUser!!.uid))
                     {
                         startActivity(Intent(this@LoginActivity, UserHome::class.java).also {
                             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -81,14 +76,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
 
             dberef.addListenerForSingleValueEvent(object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.hasChild(user))
+                    if(snapshot.hasChild(auth.currentUser!!.uid))
                     {
                         Intent(this@LoginActivity, EmployerHome::class.java).also {
                             it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -96,15 +89,8 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 }
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
-//                Intent(this, EmployerHome::class.java).also {
-//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    startActivity(it)
-//                }
-
         }
     }
 }

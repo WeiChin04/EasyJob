@@ -80,6 +80,7 @@
 
     <CheckBox
         android:id="@+id/checkbox_tnc"
+        style="@style/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

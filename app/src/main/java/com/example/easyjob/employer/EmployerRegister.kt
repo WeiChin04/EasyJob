@@ -78,7 +78,7 @@ class EmployerRegister : AppCompatActivity() {
         val email  = binding.etEmployerEmail.text.toString()
         val profileStatus = "1"
 
-        dbref = FirebaseDatabase.getInstance().getReference("Employer")
+        dbref = FirebaseDatabase.getInstance().getReference("Employers")
         val currentuser = FirebaseAuth.getInstance().currentUser!!.uid
         //User Data
         val employerdata = EmployerData(
