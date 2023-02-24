@@ -7,33 +7,25 @@
     android:layout_height="match_parent"
     tools:context=".user.UserHome">
 
-    <TextView
-        android:id="@+id/tvt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tvhome"
-        app:layout_constraintStart_toStartOf="@+id/tvhome"
-        app:layout_constraintTop_toBottomOf="@+id/tvhome" />
 
-    <TextView
-        android:id="@+id/tvhome"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btm_nv_user"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="User Home"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/user_btm_nv" />
 
-    <Button
-        android:id="@+id/button"
-        style="@style/ButtonGreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="@+id/tvt"
-        app:layout_constraintStart_toStartOf="@+id/tvt"
-        app:layout_constraintTop_toBottomOf="@+id/tvt" />
-
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="409dp"
+        android:layout_height="673dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/btm_nv_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/user_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

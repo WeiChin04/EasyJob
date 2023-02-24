@@ -17,7 +17,11 @@
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_home.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_profile.xml" value="0.19010416666666666" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_job_view.xml" value="0.19010416666666666" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_my_job.xml" value="0.19010416666666666" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_home.xml" value="0.19882246376811594" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_profile.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/menu/emlpoyer_btm_nv.xml" value="0.20416666666666666" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/menu/user_btm_nv.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
