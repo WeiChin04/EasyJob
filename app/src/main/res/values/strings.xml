@@ -29,6 +29,7 @@
     <string name="login">Login</string>
 
     <!--Employer Post Job-->
+    <string name="post_job_page_title">Post Job</string>
     <string name="job_title">Job Title</string>
     <string name="job_title_hint">Enter your job title</string>
     <string name="job_type">Job Type</string>

@@ -2,9 +2,12 @@ package com.example.easyjob.employer
 
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.easyjob.databinding.ActivityPostJobBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -77,7 +80,25 @@ class PostJob : AppCompatActivity() {
             postJob()
         }
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                // 如果用户按下了 Toolbar 的返回键，那么关闭当前 Activity
+                finish()
+                return true
+            }
+            // 如果还有其他菜单项，可以在这里添加处理代码
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
 
     private fun postJob(){
         val jobTitle = binding.etEnterJobTitle.text.toString()

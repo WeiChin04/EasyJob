@@ -15,18 +15,36 @@
         android:layout_height="wrap_content"
         tools:context=".employer.PostJob">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/Theme.EasyJob"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorOnPrimary"
+                android:textAlignment="center"
+                app:popupTheme="@style/Theme.EasyJob"
+                app:title="@string/post_job_page_title"
+                app:titleTextColor="@color/green" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <TextView
             android:id="@+id/tvJobTitle"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/job_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <EditText
             android:id="@+id/etEnterJobTitle"

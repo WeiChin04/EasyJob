@@ -8,7 +8,7 @@
         />
     <item
         android:id="@+id/myJob"
-        android:title="JMy Job"
+        android:title="My Job"
         android:icon="@drawable/ic_work"
         />
     <item
