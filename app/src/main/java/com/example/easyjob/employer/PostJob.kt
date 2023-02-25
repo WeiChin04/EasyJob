@@ -163,6 +163,8 @@ class PostJob : AppCompatActivity() {
 
             val jobId = dbRef.push().key
             val jobCtr = 0
+            val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
+            val currentDate = sdf.format(Date())
 
             val newJob = JobData(
                 currentUser,
@@ -176,6 +178,7 @@ class PostJob : AppCompatActivity() {
                 jobResp,
                 jobstatus,
                 jobCtr,
+                currentDate,
                 jobId
             )
 

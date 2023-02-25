@@ -28,6 +28,15 @@
     <string name="employer_sign_up">Employer\nSign Up</string>
     <string name="login">Login</string>
 
+    <!--    Job View-->
+    <string name="posting_date_title">Posting Date:</string>
+    <string name="posting_date">06 Dec 2023, 16:19</string>
+    <string name="example_job_title">Example Job</string>
+    <string name="example_job_type">Full Time</string>
+    <string name="viewed">78 viewed</string>
+    <string name="job_details">Job Details</string>
+    <string name="example_job_status">Job Status Show here</string>
+
     <!--Employer Post Job-->
     <string name="post_job_page_title">Post Job</string>
     <string name="job_title">Job Title</string>
