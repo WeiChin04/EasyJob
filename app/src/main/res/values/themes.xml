@@ -111,6 +111,10 @@
         <item name="android:height">40dp</item>
     </style>
 
+    <style name="view_shadow">
+        <item name="android:background">@drawable/shadow_background</item>
+    </style>
+
     <style name="spinner">
         <item name="android:textColor">@color/green</item>
         <item name="android:textColorHint">@color/light_green</item>
