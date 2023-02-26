@@ -30,6 +30,8 @@
                 android:textAlignment="center"
                 app:popupTheme="@style/Theme.EasyJob"
                 app:title="@string/post_job_page_title"
+                app:titleMarginStart="115dp"
+                app:titleMarginEnd="150dp"
                 app:titleTextColor="@color/green" />
 
         </com.google.android.material.appbar.AppBarLayout>

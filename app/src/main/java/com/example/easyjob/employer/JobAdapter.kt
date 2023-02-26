@@ -24,8 +24,6 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
 
         val currentItem = jobList[position]
 
-
-
         holder.datePosted.text = currentItem.currentDate
         holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
@@ -39,7 +37,16 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         holder.cardView.setOnClickListener{
             val context = holder.itemView.context
             val intent = Intent(context, JobDetailActivity::class.java).apply{
+                putExtra("job_id",jobList[position].jobId)
                 putExtra("job_title",jobList[position].jobTitle)
+                putExtra("job_salary",jobList[position].jobSalary)
+                putExtra("job_location",jobList[position].workplace)
+                putExtra("job_working_hour_start",jobList[position].workingHourStart)
+                putExtra("job_working_hour_end",jobList[position].workingHourEnd)
+                putExtra("job_requirement",jobList[position].jobRequirement)
+                putExtra("job_responsibilities",jobList[position].jobResponsibilities)
+                putExtra("job_type",jobList[position].jobType.toString())
+                putExtra("job_status",jobList[position].jobStatus)
             }
             context.startActivity(intent)
         }

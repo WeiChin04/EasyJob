@@ -126,5 +126,10 @@
     <string name="setting">Setting</string>
     <string name="log_out">Log Out</string>
 
+<!--    Job Details View-->
+    <string name="job_detail_page_title">Job Details</string>
+    <string name="manage_candidate_button">Manage Candidates</string>
+    <string name="edit_button">Edit</string>
+
 
 </resources>
