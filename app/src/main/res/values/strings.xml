@@ -120,16 +120,34 @@
     <string name="job_status_unavailable">Unavailable</string>
     <string name="btn_save_job">Save Job</string>
     <string name="btn_post_now">Post Now</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_profile">My Profile</string>
     <string name="setting">Setting</string>
     <string name="log_out">Log Out</string>
+    <string name="name">Name</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="education_level">Education Level</string>
+    <string name="address">Address</string>
+    <string name="edit">Edit</string>
+    <string name="about_me">About Me</string>
+    <string name="resume">Resume</string>
+    <string name="personal_information">Personal Information</string>
+
+    <string-array name="education_level">
+        <item>SPM</item>
+        <item>STPM</item>
+        <item>Diploma</item>
+        <item>Bachelor Degree</item>
+        <item>Master</item>
+        <item>Phd</item>
+    </string-array>
 
 <!--    Job Details View-->
     <string name="job_detail_page_title">Job Details</string>
     <string name="manage_candidate_button">Manage Candidates</string>
     <string name="edit_button">Edit</string>
+    <string name="job_salary_rm">Job Salary (RM)</string>
 
 
 </resources>

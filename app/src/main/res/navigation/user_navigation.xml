@@ -19,5 +19,13 @@
         android:id="@+id/userProfile"
         android:name="com.example.easyjob.user.UserProfile"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfile_to_viewUserProfileFragment"
+            app:destination="@id/viewUserProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewUserProfileFragment"
+        android:name="com.example.easyjob.user.ViewUserProfileFragment"
+        android:label="Personal Information" />
 </navigation>

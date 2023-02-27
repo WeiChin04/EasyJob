@@ -4,8 +4,10 @@ data class UserData(
     var name: String? = null,
     var email: String? = null,
     var contact: String? = null,
-    var jobspecializations: String? = null,
+    var jobsalary: String? = null,
     var address: String? = null,
     var education_level: String? = null,
+    var about_me: String? = null,
+    var resume: String? = null,
     val profile_status: String? = null,
 )

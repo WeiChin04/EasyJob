@@ -117,8 +117,11 @@
     </style>
 
     <style name="spinner">
+        <item name="android:padding">12dp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/green</item>
-        <item name="android:textColorHint">@color/light_green</item>
     </style>
 
 

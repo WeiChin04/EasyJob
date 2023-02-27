@@ -59,7 +59,8 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/tvJobType"
@@ -92,7 +93,8 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobSalary"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobSalary" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobSalary"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/tvWorkingHour"
@@ -125,7 +127,8 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobRequirement"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobRequirement" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobRequirement"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/tvResponsibilities"
@@ -147,7 +150,8 @@
             android:hint="@string/responsibilities_hint"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="@+id/tvResponsibilities"
-            app:layout_constraintTop_toBottomOf="@+id/tvResponsibilities" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResponsibilities"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/tvTo"
@@ -181,7 +185,8 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvWorkPlace"
-            app:layout_constraintTop_toBottomOf="@+id/tvWorkPlace" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkPlace"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/tvJobStatus"

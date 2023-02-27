@@ -89,7 +89,7 @@ class UserRegister : AppCompatActivity() {
         val currentuser = FirebaseAuth.getInstance().currentUser!!.uid
         //User Data
         val userdata = UserData(
-            "",email,"","","","",profileStatus
+            "",email,"","","","","","",profileStatus
         )
         dbref.child(currentuser).setValue(userdata)
     }
