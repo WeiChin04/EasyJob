@@ -127,12 +127,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_education_title" />
 
             <TextView
-                android:id="@+id/tv_user_job_salary_title"
+                android:id="@+id/tv_user_expectation_salary_title"
                 style="@style/textview_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/job_salary_rm"
+                android:text="@string/expectation_salary_rm"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_education_level" />
 
@@ -143,8 +143,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
-                app:layout_constraintStart_toStartOf="@+id/tv_user_job_salary_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_user_job_salary_title" />
+                app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_expectation_salary_title" />
 
             <TextView
                 android:id="@+id/tv_user_address_title"
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/address"
-                app:layout_constraintStart_toStartOf="@+id/tv_user_job_salary_title"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_job_salary" />
 
             <TextView
@@ -225,7 +225,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
                 android:layout_marginBottom="32dp"
-                android:text="@string/btn_save_job"
+                android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />

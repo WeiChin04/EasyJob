@@ -135,19 +135,27 @@
     <string name="personal_information">Personal Information</string>
 
     <string-array name="education_level">
-        <item>SPM</item>
-        <item>STPM</item>
+        <item>Click To Select Education Level</item>
+        <item>Secondary School</item>
+        <item>Pre-University</item>
         <item>Diploma</item>
         <item>Bachelor Degree</item>
-        <item>Master</item>
-        <item>Phd</item>
+        <item>Master Degree</item>
+        <item>PhD</item>
     </string-array>
 
-<!--    Job Details View-->
+    <!--    Job Details View-->
     <string name="job_detail_page_title">Job Details</string>
     <string name="manage_candidate_button">Manage Candidates</string>
     <string name="edit_button">Edit</string>
-    <string name="job_salary_rm">Job Salary (RM)</string>
+    <string name="enter_full_name">Enter Full Name</string>
+    <string name="enter_your_contact_number">Enter Your Contact Number</string>
+    <string name="enter_your_desired_salary">Enter Your expectat Salary</string>
+    <string name="enter_your_home_address">Enter Your Home Address</string>
+    <string name="introduce_yourself">Introduce Yourself</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="expectation_salary_rm">Expectation Salary (RM)</string>
 
 
 </resources>

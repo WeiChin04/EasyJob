@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".user.EditUserProfileFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/Theme.EasyJob">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorOnPrimary"
+                android:textAlignment="center"
+                app:popupTheme="@style/Theme.EasyJob"
+                app:title="Edit Personal Information"
+                app:titleTextColor="@color/green" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_profile_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_profile_sample"
+            app:civ_border_color="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <TextView
+            android:id="@+id/tv_user_fullname_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_profile_img" />
+
+        <EditText
+            android:id="@+id/et_user_fullname"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/enter_full_name"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_title"
+            android:importantForAutofill="no" />
+
+        <TextView
+            android:id="@+id/tv_user_email_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/email"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_fullname" />
+
+        <EditText
+            android:id="@+id/et_user_email"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_email_title"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/tv_user_contact_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/contact_number"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_email" />
+
+
+        <EditText
+            android:id="@+id/et_user_contact"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/enter_your_contact_number"
+            android:importantForAutofill="no"
+            android:inputType="number|text"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_contact_title" />
+
+        <TextView
+            android:id="@+id/tv_user_education_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/education_level"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_contact" />
+
+        <Spinner
+            android:id="@+id/sp_education_level"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:entries="@array/education_level"
+            android:minWidth="300dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_education_title" />
+
+        <TextView
+            android:id="@+id/tv_user_expectation_salary_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/expectation_salary_rm"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
+            app:layout_constraintTop_toBottomOf="@+id/sp_education_level" />
+
+        <EditText
+            android:id="@+id/et_user_expectation_salary"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/enter_your_desired_salary"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_expectation_salary_title" />
+
+        <TextView
+            android:id="@+id/tv_user_address_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/address"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_expectation_salary" />
+
+        <EditText
+            android:id="@+id/et_user_address"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/enter_your_home_address"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_address_title" />
+
+        <TextView
+            android:id="@+id/tv_user_about_me_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/about_me"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_address" />
+
+        <EditText
+            android:id="@+id/et_user_about_me"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/introduce_yourself"
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me_title"
+            android:importantForAutofill="no" />
+
+
+        <!-- resume-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_user_resume_title"-->
+        <!--                style="@style/textview_heading"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="20dp"-->
+        <!--                android:text="@string/resume"-->
+        <!--                app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />-->
+
+        <!--            <WebView-->
+        <!--                android:id="@+id/wv_resume_file"-->
+        <!--                style="@style/input_edit_field"-->
+        <!--                android:layout_width="300dp"-->
+        <!--                android:layout_height="0dp"-->
+        <!--                android:layout_marginTop="10dp"-->
+        <!--                app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />-->
+
+        <!--            <ProgressBar-->
+        <!--                android:id="@+id/progressBar"-->
+        <!--                style="?android:attr/progressBarStyleHorizontal"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="12dp"-->
+        <!--                android:visibility=""-->
+        <!--                app:layout_constraintBottom_toBottomOf="@+id/wv_resume_file"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/wv_resume_file"-->
+        <!--                app:layout_constraintTop_toTopOf="@+id/wv_resume_file" />-->
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ButtonGreenStoke"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_about_me" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_update_profile"
+            style="@style/ButtonGreen2"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:text="@string/update"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

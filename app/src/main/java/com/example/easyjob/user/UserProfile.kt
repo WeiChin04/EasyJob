@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.easyjob.MainActivity
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentUserProfileBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -23,47 +25,39 @@ class UserProfile : Fragment() {
     private lateinit var uid: String
     private lateinit var user: UserData
     private lateinit var navController: NavController
+    private lateinit var userDataViewModel: UserDataViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
-    override fun onResume() {
-        super.onResume()
         auth = FirebaseAuth.getInstance()
-        dbref = FirebaseDatabase.getInstance().getReference("Users")
-        uid = auth.currentUser?.uid.toString()
 
-        dbref.child(uid).addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot){
-                user = snapshot.getValue(UserData::class.java)!!
-                binding.tvUserName.text = user.name
-                binding.tvUserEmail.text = user.email
-            }
+        //show bottom navigation bar
+        (activity as UserHome).showBottomNavigationView()
 
-            override fun onCancelled(error: DatabaseError) {}
-        })
+        //get user data form view model
+        userDataViewModel = ViewModelProvider(requireActivity())[UserDataViewModel::class.java]
 
+        userDataViewModel.getData(auth.currentUser!!.uid)
+        userDataViewModel.userData.observe(viewLifecycleOwner) { userData ->
+            binding.tvUserName.text = userData.name
+            binding.tvUserEmail.text = userData.email
+        }
+
+        //to view user personal information
         binding.tvProfile.setOnClickListener {
             navController = Navigation.findNavController(binding.tvProfile)
             navController.navigate(R.id.action_userProfile_to_viewUserProfileFragment)
         }
 
-
-
-        Logout()
+        logOut()
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun Logout()
+    private fun logOut()
     {
         binding.viewLogout.setOnClickListener {
             auth.signOut()
@@ -83,5 +77,10 @@ class UserProfile : Fragment() {
                 it.startActivity(intent)
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

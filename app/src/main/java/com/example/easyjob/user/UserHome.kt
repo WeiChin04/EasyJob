@@ -3,6 +3,7 @@ package com.example.easyjob.user
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.navigation.NavController
@@ -37,5 +38,15 @@ class UserHome : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    fun showBottomNavigationView() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(binding.btmNvUser.id)
+        bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigationView() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(binding.btmNvUser.id)
+        bottomNavigationView.visibility = View.GONE
     }
 }
