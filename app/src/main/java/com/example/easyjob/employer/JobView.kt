@@ -7,11 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easyjob.R
-import com.example.easyjob.databinding.FragmentEmployerHomeBinding
 import com.example.easyjob.databinding.FragmentJobViewBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.*
 
 
@@ -26,10 +23,9 @@ class JobView : Fragment() {
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<JobData>
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as EmployerHome).showBottomNavigationView()
         jobRecyclerView = binding.myJobList
         jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         jobRecyclerView.setHasFixedSize(true)

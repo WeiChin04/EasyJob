@@ -6,15 +6,15 @@
     android:id="@+id/svJobDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/background_color"
+    android:fillViewport="true"
     tools:layout_editor_absoluteX="1dp"
     tools:layout_editor_absoluteY="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".employer.JobDetailActivity">
+        tools:context=".employer.JobDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -41,10 +41,10 @@
             android:id="@+id/clTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            android:background="@color/white"
             android:layout_marginTop="10dp"
-            android:paddingBottom="15dp">
+            android:background="@color/white"
+            android:paddingBottom="15dp"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgJob"
@@ -113,9 +113,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailTitle"
-                app:drawableStartCompat="@drawable/ic_baseline_attach_money_24"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailTitle" />
 
             <TextView
                 android:id="@+id/iconWorkPlace"
@@ -123,9 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailSalary"
-                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailSalary" />
 
             <TextView
                 android:id="@+id/iconJob"
@@ -133,10 +133,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsWorkPlace"
                 app:drawableStartCompat="@drawable/ic_work"
-                app:drawableTint="@color/green" />
+                app:drawableTint="@color/green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsWorkPlace" />
 
             <TextView
                 android:id="@+id/iconClock"
@@ -145,9 +145,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/green"
+                app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsJobType"
-                app:drawableStartCompat="@drawable/ic_baseline_access_time_filled_24"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvJobDetailsJobType" />
 
             <TextView
                 android:id="@+id/tvJobDetailTo"
@@ -183,14 +183,14 @@
 
             <TextView
                 android:id="@+id/tvJobDetailRequirement"
+                style="@style/textview_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/job_requirement"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/textview_heading"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvJobDetailRequirementContent"
@@ -214,12 +214,12 @@
 
             <TextView
                 android:id="@+id/tvJobDetailResp"
+                style="@style/textview_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/responsibilities"
-                style="@style/textview_heading"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -258,11 +258,11 @@
 
             <Button
                 android:id="@+id/btnEditJob"
+                style="@style/ButtonGreen2"
                 android:layout_width="115dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/edit_button"
-                style="@style/ButtonGreen2"
                 app:layout_constraintBottom_toBottomOf="@+id/btnManageCandidate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btnManageCandidate" />

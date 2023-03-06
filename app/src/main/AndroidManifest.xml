@@ -14,9 +14,6 @@
         android:theme="@style/Theme.EasyJob"
         tools:targetApi="31">
         <activity
-            android:name=".employer.JobDetailActivity"
-            android:exported="false" />
-        <activity
             android:name=".employer.PostJob"
             android:exported="false" />
         <activity

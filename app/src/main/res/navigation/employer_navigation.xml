@@ -14,10 +14,26 @@
         android:id="@+id/jobView"
         android:name="com.example.easyjob.employer.JobView"
         android:label="fragment_job_view"
-        tools:layout="@layout/fragment_job_view" />
+        tools:layout="@layout/fragment_job_view" >
+        <action
+            android:id="@+id/action_jobView_to_jobDetailFragment"
+            app:destination="@id/jobDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/employerProfile"
         android:name="com.example.easyjob.employer.EmployerProfile"
         android:label="fragment_employer_profile"
         tools:layout="@layout/fragment_employer_profile" />
+    <fragment
+        android:id="@+id/jobDetailFragment"
+        android:name="com.example.easyjob.employer.JobDetailFragment"
+        android:label="@string/job_detail_page_title" >
+        <action
+            android:id="@+id/action_jobDetailFragment_to_jobEditFragment"
+            app:destination="@id/jobEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jobEditFragment"
+        android:name="com.example.easyjob.employer.JobEditFragment"
+        android:label="@string/job_edit_form_title" />
 </navigation>

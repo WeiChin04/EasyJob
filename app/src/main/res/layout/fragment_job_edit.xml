@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svEditJob"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="1dp"
@@ -13,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".employer.PostJob">
+        tools:context=".employer.JobEditFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -29,7 +30,7 @@
                 android:background="?attr/colorOnPrimary"
                 android:textAlignment="center"
                 app:popupTheme="@style/Theme.EasyJob"
-                app:title="@string/post_job_page_title"
+                app:title="@string/job_edit_form_title"
                 app:titleMarginStart="115dp"
                 app:titleTextColor="@color/green" />
 
@@ -58,8 +59,7 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle" />
 
         <TextView
             android:id="@+id/tvJobType"
@@ -92,8 +92,7 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobSalary"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobSalary"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobSalary" />
 
         <TextView
             android:id="@+id/tvWorkingHour"
@@ -126,8 +125,7 @@
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobRequirement"
-            app:layout_constraintTop_toBottomOf="@+id/tvJobRequirement"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tvJobRequirement" />
 
         <TextView
             android:id="@+id/tvResponsibilities"
@@ -149,8 +147,7 @@
             android:hint="@string/responsibilities_hint"
             android:inputType="textMultiLine"
             app:layout_constraintStart_toStartOf="@+id/tvResponsibilities"
-            app:layout_constraintTop_toBottomOf="@+id/tvResponsibilities"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResponsibilities" />
 
         <TextView
             android:id="@+id/tvTo"
@@ -184,8 +181,7 @@
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvWorkPlace"
-            app:layout_constraintTop_toBottomOf="@+id/tvWorkPlace"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWorkPlace" />
 
         <TextView
             android:id="@+id/tvJobStatus"
@@ -212,27 +208,27 @@
 
 
         <Button
-            android:id="@+id/btnSaveJob"
+            android:id="@+id/btnCancel"
             style="@style/ButtonGreenStoke"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/btn_save_job"
+            android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/swJobStatus"
             app:layout_constraintTop_toBottomOf="@+id/swJobStatus"/>
 
         <Button
-            android:id="@+id/btnPostNow"
+            android:id="@+id/btnUpdateJob"
             style="@style/ButtonGreen2"
             android:layout_width="163dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="@string/btn_post_now"
-            app:layout_constraintBottom_toBottomOf="@+id/btnSaveJob"
-            app:layout_constraintStart_toEndOf="@+id/btnSaveJob"
-            app:layout_constraintTop_toTopOf="@+id/btnSaveJob" />
+            android:text="@string/update"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
 
         <Button
             android:id="@+id/btnTimePickerStart"

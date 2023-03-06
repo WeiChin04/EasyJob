@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.R
 
@@ -23,7 +25,6 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: JobViewHolder, position: Int) {
 
         val currentItem = jobList[position]
-
         holder.datePosted.text = currentItem.currentDate
         holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
@@ -35,20 +36,19 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         }
 
         holder.cardView.setOnClickListener{
-            val context = holder.itemView.context
-            val intent = Intent(context, JobDetailActivity::class.java).apply{
-                putExtra("job_id",jobList[position].jobId)
-                putExtra("job_title",jobList[position].jobTitle)
-                putExtra("job_salary",jobList[position].jobSalary)
-                putExtra("job_location",jobList[position].workplace)
-                putExtra("job_working_hour_start",jobList[position].workingHourStart)
-                putExtra("job_working_hour_end",jobList[position].workingHourEnd)
-                putExtra("job_requirement",jobList[position].jobRequirement)
-                putExtra("job_responsibilities",jobList[position].jobResponsibilities)
-                putExtra("job_type",jobList[position].jobType.toString())
-                putExtra("job_status",jobList[position].jobStatus)
-            }
-            context.startActivity(intent)
+            val bundle = bundleOf(
+                "job_id" to jobList[position].jobId,
+                "job_title" to jobList[position].jobTitle,
+                "job_salary" to jobList[position].jobSalary,
+                "job_location" to jobList[position].workplace,
+                "job_working_hour_start" to jobList[position].workingHourStart,
+                "job_working_hour_end" to jobList[position].workingHourEnd,
+                "job_requirement" to jobList[position].jobRequirement,
+                "job_responsibilities" to jobList[position].jobResponsibilities,
+                "job_type" to jobList[position].jobType.toString(),
+                "job_status" to jobList[position].jobStatus
+            )
+            it.findNavController().navigate(R.id.action_jobView_to_jobDetailFragment, bundle)
         }
 
 
