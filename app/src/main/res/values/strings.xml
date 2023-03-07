@@ -167,6 +167,8 @@
     <string name="cancel">Cancel</string>
     <string name="update">Update</string>
     <string name="expectation_salary_rm">Expectation Salary (RM)</string>
+    <string name="save">Save</string>
+    <string name="upload">Upload</string>
 
 
 </resources>

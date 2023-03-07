@@ -39,12 +39,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="25dp"
-            android:src="@drawable/ic_profile_sample"
-            app:civ_border_color="@color/black"
+            android:src="@drawable/ic_camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/tv_user_fullname_title"
@@ -207,37 +207,52 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me_title"
             android:importantForAutofill="no" />
 
+        <!--resume-->
+        <TextView
+            android:id="@+id/tv_user_resume_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/resume"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_about_me" />
 
-        <!-- resume-->
-        <!--            <TextView-->
-        <!--                android:id="@+id/tv_user_resume_title"-->
-        <!--                style="@style/textview_heading"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginTop="20dp"-->
-        <!--                android:text="@string/resume"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title">
 
-        <!--            <WebView-->
-        <!--                android:id="@+id/wv_resume_file"-->
-        <!--                style="@style/input_edit_field"-->
-        <!--                android:layout_width="300dp"-->
-        <!--                android:layout_height="0dp"-->
-        <!--                android:layout_marginTop="10dp"-->
-        <!--                app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />-->
+            <TextView
+                android:id="@+id/tv_resume_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/nunito_semibold"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <!--            <ProgressBar-->
-        <!--                android:id="@+id/progressBar"-->
-        <!--                style="?android:attr/progressBarStyleHorizontal"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginStart="12dp"-->
-        <!--                android:visibility=""-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/wv_resume_file"-->
-        <!--                app:layout_constraintStart_toEndOf="@+id/wv_resume_file"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/wv_resume_file" />-->
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                android:background="@android:color/darker_gray" />
+
+            <Button
+                android:id="@+id/btn_upload_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#901B5E20"
+                android:text="@string/upload"
+                android:textAllCaps="false"
+                app:cornerRadius="20dp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnCancel"
@@ -248,8 +263,8 @@
             android:layout_marginBottom="32dp"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_about_me" />
+            app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"
@@ -257,11 +272,13 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:text="@string/update"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnCancel"
             app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

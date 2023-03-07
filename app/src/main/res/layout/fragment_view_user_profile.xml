@@ -188,35 +188,25 @@
 
 
             <!-- resume-->
-<!--            <TextView-->
-<!--                android:id="@+id/tv_user_resume_title"-->
-<!--                style="@style/textview_heading"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:text="@string/resume"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />-->
+            <TextView
+                android:id="@+id/tv_user_resume_title"
+                style="@style/textview_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/resume"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />
 
-<!--            <WebView-->
-<!--                android:id="@+id/wv_resume_file"-->
-<!--                style="@style/input_edit_field"-->
-<!--                android:layout_width="300dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />-->
-
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progressBar"-->
-<!--                style="?android:attr/progressBarStyleHorizontal"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="12dp"-->
-<!--                android:visibility=""-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/wv_resume_file"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/wv_resume_file"-->
-<!--                app:layout_constraintTop_toTopOf="@+id/wv_resume_file" />-->
+            <TextView
+                android:id="@+id/tv_user_resume"
+                style="@style/input_edit_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />
 
             <Button
                 android:id="@+id/btnCancel"
@@ -227,8 +217,8 @@
                 android:layout_marginBottom="32dp"
                 android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me" />
+                app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_resume" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_user_edit_profile"

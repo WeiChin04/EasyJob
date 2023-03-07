@@ -9,12 +9,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.example.easyjob.MainActivity
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentUserProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 
 class UserProfile : Fragment() {
 
@@ -37,6 +39,19 @@ class UserProfile : Fragment() {
 
         //show bottom navigation bar
         (activity as UserHome).showBottomNavigationView()
+
+        //get profile image
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = "ProfileImages/"+ auth.currentUser!!.uid
+        val imageRef = storageRef.child(filePathAndName)
+
+        if(imageRef!=null) {
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(this)
+                    .load(uri)
+                    .into(binding.ivUserProfile)
+            }.addOnFailureListener {}
+        }
 
         //get user data form view model
         userDataViewModel = ViewModelProvider(requireActivity())[UserDataViewModel::class.java]

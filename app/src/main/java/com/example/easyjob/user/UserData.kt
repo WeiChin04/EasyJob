@@ -9,5 +9,7 @@ data class UserData(
     var education_level: String? = null,
     var about_me: String? = null,
     var resume: String? = null,
+    var profile_image: String? =null,
     val profile_status: String? = null,
+
 )

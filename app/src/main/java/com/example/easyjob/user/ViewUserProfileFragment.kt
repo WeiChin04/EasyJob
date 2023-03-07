@@ -1,20 +1,29 @@
 package com.example.easyjob.user
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentViewUserProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 
 class ViewUserProfileFragment : Fragment() {
@@ -26,6 +35,11 @@ class ViewUserProfileFragment : Fragment() {
     private lateinit var user: UserData
     private lateinit var navController: NavController
     private lateinit var userDataViewModel: UserDataViewModel
+
+
+    companion object {
+        private const val REQUEST_CODE_STORAGE_PERMISSION = 100
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +61,28 @@ class ViewUserProfileFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        //get profile image
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = "ProfileImages/"+ auth.currentUser!!.uid
+        val imageRef = storageRef.child(filePathAndName)
+
+        if(imageRef!=null) {
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(this)
+                    .load(uri)
+                    .into(binding.userProfileImg)
+            }.addOnFailureListener {}
+        }
+
+        //get resume file
+        val pdfChillName = "PDFFiles/${auth.currentUser!!.uid}.pdf"
+        val pdfRef = storageRef.child(pdfChillName)
+
+        pdfRef.downloadUrl.addOnSuccessListener { uri->
+            binding.tvUserResume.text = "Resume.pdf"
+        }.addOnFailureListener {}
+
+
         //get user data from view model
         userDataViewModel = ViewModelProvider(requireActivity())[UserDataViewModel::class.java]
 
@@ -59,6 +95,27 @@ class ViewUserProfileFragment : Fragment() {
             binding.tvUserAddress.text = userData.address
             binding.tvEducationLevel.text = userData.education_level
             binding.tvUserAboutMe.text = userData.about_me
+        }
+
+        val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val file = File(downloadsFolder, "Resume.pdf")
+        val downloadTask = pdfRef.getFile(file)
+        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        binding.tvUserResume.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(requireActivity(), permissions, REQUEST_CODE_STORAGE_PERMISSION)
+            } else {
+                // 权限已授权，执行需要权限的操作
+                downloadTask.addOnSuccessListener {
+                    Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
+                    Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener { exception ->
+                    Log.e("DOWNLOAD", "Download failed: $exception")
+                    Toast.makeText(requireContext(),"Download Failed",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         //back to forward page
