@@ -1,6 +1,5 @@
 package com.example.easyjob.employer
 
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View

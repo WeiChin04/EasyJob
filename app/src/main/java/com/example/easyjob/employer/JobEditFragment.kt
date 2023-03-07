@@ -3,13 +3,15 @@ package com.example.easyjob.employer
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -48,6 +50,9 @@ class JobEditFragment : Fragment() {
         val jobId = arguments?.getString("jobId")
         if(!jobId.isNullOrEmpty()){
             fillData()
+        }else{
+            Toast.makeText(requireContext(), "Fail to get job details data", Toast.LENGTH_SHORT).show()
+            requireActivity().onBackPressed()
         }
 
         binding.btnUpdateJob.setOnClickListener{
@@ -55,10 +60,33 @@ class JobEditFragment : Fragment() {
         }
 
         binding.btnCancel.setOnClickListener{
-            requireActivity().onBackPressed()
+            showConfirmationDialog()
         }
 
         return binding.root
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                showConfirmationDialog()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Confirm")
+        alertDialog.setMessage("Do you want to exit without saving changes?")
+        alertDialog.setPositiveButton("Yes") { _, _ ->
+            requireActivity().onBackPressed()
+        }
+        alertDialog.setNegativeButton("No") { dialog, _ ->
+            dialog.cancel()
+        }
+        alertDialog.show()
     }
 
     private fun fillData() {
@@ -196,5 +224,7 @@ class JobEditFragment : Fragment() {
             })
         }
     }
+
+
 
 }

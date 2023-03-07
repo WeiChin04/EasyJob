@@ -1,10 +1,14 @@
 package com.example.easyjob.employer
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.databinding.FragmentJobViewBinding
@@ -25,6 +29,7 @@ class JobView : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as EmployerHome).showBottomNavigationView()
         jobRecyclerView = binding.myJobList
         jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -35,25 +40,26 @@ class JobView : Fragment() {
 
     private fun getJobData() {
 
+        val currentUserID = FirebaseAuth.getInstance().currentUser?.uid
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
 
-        dbRef.addValueEventListener(object : ValueEventListener{
-
+        dbRef.orderByChild("employerId").equalTo(currentUserID).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 if(snapshot.exists()){
-
                     for(jobSnapshot in snapshot.children){
                         val job = jobSnapshot.getValue(JobData::class.java)
                         jobArrayList.add(job!!)
                     }
-
                     jobRecyclerView.adapter = JobAdapter(jobArrayList)
+                }else{
+                    binding.etNoJobShow.visibility = View.VISIBLE
+                    binding.myJobList.visibility = View.GONE
                 }
-
             }
+
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
             }
         })
 
