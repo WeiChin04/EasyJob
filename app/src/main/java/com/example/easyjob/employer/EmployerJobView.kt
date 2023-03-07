@@ -8,17 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easyjob.databinding.FragmentJobViewBinding
+import com.example.easyjob.databinding.FragmentEmployerJobViewBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
-class JobView : Fragment() {
+class EmployerJobView : Fragment() {
 
-    private  var _binding: FragmentJobViewBinding? =null
+    private  var _binding: FragmentEmployerJobViewBinding? =null
     private val binding get() = _binding!!
     private lateinit var dbRef : DatabaseReference
     private lateinit var database: FirebaseDatabase
@@ -69,7 +68,7 @@ class JobView : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentJobViewBinding.inflate(inflater,container,false)
+        _binding = FragmentEmployerJobViewBinding.inflate(inflater,container,false)
         return binding.root
     }
 

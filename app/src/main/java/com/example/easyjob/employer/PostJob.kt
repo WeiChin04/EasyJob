@@ -82,6 +82,7 @@ class PostJob : AppCompatActivity() {
 
 /*      return Arrow*/
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 

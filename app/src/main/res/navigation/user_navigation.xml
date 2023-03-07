@@ -8,17 +8,14 @@
     <fragment
         android:id="@+id/userHomeFragment"
         android:name="com.example.easyjob.user.UserHomeFragment"
-        android:label="fragment_user_home"
         tools:layout="@layout/fragment_user_home" />
     <fragment
         android:id="@+id/myJob"
         android:name="com.example.easyjob.user.MyJob"
-        android:label="fragment_my_job"
         tools:layout="@layout/fragment_my_job" />
     <fragment
         android:id="@+id/userProfile"
         android:name="com.example.easyjob.user.UserProfile"
-        android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action
             android:id="@+id/action_userProfile_to_viewUserProfileFragment"
@@ -35,6 +32,5 @@
     <fragment
         android:id="@+id/editUserProfileFragment"
         android:name="com.example.easyjob.user.EditUserProfileFragment"
-        android:label="Edit Personal Information"
         tools:layout="@layout/fragment_edit_user_profile" />
 </navigation>

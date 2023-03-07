@@ -31,9 +31,16 @@
                 android:background="?attr/colorOnPrimary"
                 android:textAlignment="center"
                 app:popupTheme="@style/Theme.EasyJob"
-                app:title="@string/job_edit_form_title"
-                app:titleMarginStart="115dp"
-                app:titleTextColor="@color/green" />
+                app:titleTextColor="@color/green">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/job_edit_form_title"
+                    android:layout_gravity="center"
+                    style="@style/toolbar_Title" />
+
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 

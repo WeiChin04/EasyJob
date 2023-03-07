@@ -42,6 +42,7 @@ class JobEditFragment : Fragment() {
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         val actionBar = (activity as? AppCompatActivity)?.supportActionBar
+        actionBar?.setDisplayShowTitleEnabled(false)
         actionBar?.setDisplayHomeAsUpEnabled(true)
         val navController = findNavController()
         val appBarConfiguration = AppBarConfiguration(navController.graph)

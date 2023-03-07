@@ -170,6 +170,7 @@
     <string name="no_work_display">You haven\'t posted any jobs yet</string>
     <string name="save">Save</string>
     <string name="upload">Upload</string>
+    <string name="my_job_page_title">My Job</string>
 
 
 </resources>
