@@ -171,6 +171,12 @@
     <string name="save">Save</string>
     <string name="upload">Upload</string>
     <string name="my_job_page_title">My Job</string>
+    <string name="home">Home</string>
+    <string name="welcome_to_Easy_Job">Welcome to Easy Job</string>
+    <string name="view_company_info">About Company</string>
+    <string name="apply_job_button">Apply Job</string>
+    <string name="AppliedJob">My Applied Job</string>
+    <string name="FavouriteJob">My Favourite Job</string>
 
 
 </resources>

@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".user.UserHomeFragment">
 
-    <TextView
-        android:id="@+id/tvt"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tvhome"
-        app:layout_constraintStart_toStartOf="@+id/tvhome"
-        app:layout_constraintTop_toBottomOf="@+id/tvhome" />
+        app:popupTheme="@style/Theme.EasyJob"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvhome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="User Home"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorOnPrimary"
+            android:textAlignment="center"
+            app:popupTheme="@style/Theme.EasyJob"
+            app:titleMarginStart="115dp"
+            app:titleTextColor="@color/green">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                android:layout_gravity="center"
+                style="@style/toolbar_Title" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myJobList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:listitem="@layout/job_item_user" />
 
-    <Button
-        android:id="@+id/button"
-        style="@style/ButtonGreen"
+    <TextView
+        android:id="@+id/etShowWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="@+id/tvt"
-        app:layout_constraintStart_toStartOf="@+id/tvt"
-        app:layout_constraintTop_toBottomOf="@+id/tvt" />
+        android:text="@string/welcome_to_Easy_Job"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/myJobList"
+        app:layout_constraintEnd_toEndOf="@+id/myJobList"
+        app:layout_constraintStart_toStartOf="@+id/myJobList"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

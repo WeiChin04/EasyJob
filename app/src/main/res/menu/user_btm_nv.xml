@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_home"
         />
     <item
-        android:id="@+id/myJob"
+        android:id="@+id/userMyJob"
         android:title="My Job"
         android:icon="@drawable/ic_work"
         />

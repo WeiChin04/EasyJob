@@ -30,6 +30,15 @@
                 android:layout_gravity="center"
                 style="@style/toolbar_Title" />
 
+            <TextView
+                android:id="@+id/btn_add_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/ic_baseline_add_24"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15dp"/>
+
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

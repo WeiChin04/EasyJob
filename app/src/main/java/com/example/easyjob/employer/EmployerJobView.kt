@@ -1,12 +1,11 @@
 package com.example.easyjob.employer
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,6 @@ class EmployerJobView : Fragment() {
     private lateinit var jobArrayList: ArrayList<JobData>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         (activity as EmployerHome).showBottomNavigationView()
         jobRecyclerView = binding.myJobList
@@ -35,6 +33,8 @@ class EmployerJobView : Fragment() {
         jobRecyclerView.setHasFixedSize(true)
         jobArrayList = arrayListOf<JobData>()
         getJobData()
+
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun getJobData() {
@@ -69,6 +69,14 @@ class EmployerJobView : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEmployerJobViewBinding.inflate(inflater,container,false)
+
+        binding.btnAddJob.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, PostJob::class.java)
+                it.startActivity(intent)
+            }
+        }
+
         return binding.root
     }
 

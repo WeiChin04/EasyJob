@@ -5,18 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.CheckBox
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.example.easyjob.R
-import com.example.easyjob.databinding.FragmentJobDetailBinding
 import com.example.easyjob.databinding.FragmentJobEditBinding
 import com.google.firebase.database.*
 import java.util.ArrayList
@@ -31,11 +25,9 @@ class JobEditFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentJobEditBinding.inflate(inflater,container,false)
-
-        //hide nav bar
 
         //action bar
         val toolbar = binding.toolbar
@@ -67,6 +59,7 @@ class JobEditFragment : Fragment() {
         return binding.root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -140,14 +133,14 @@ class JobEditFragment : Fragment() {
     private fun validateJobData() {
 
         val selectedJobTypes = ArrayList<String>()
-        if (binding.chkJobTypeInternship?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypeInternship?.text.toString())
+        if (binding.chkJobTypeInternship.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypeInternship.text.toString())
         }
-        if (binding.chkJobTypePartTime?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypePartTime?.text.toString())
+        if (binding.chkJobTypePartTime.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypePartTime.text.toString())
         }
-        if (binding.chkJobTypeFullTime?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypeFullTime?.text.toString())
+        if (binding.chkJobTypeFullTime.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
         }
 
         val jobstatus = if(binding.swJobStatus.isChecked)"Available" else "Unavailable"
@@ -164,13 +157,13 @@ class JobEditFragment : Fragment() {
         {
             binding.etJobSalary.error = "Salary can't be empty"
         }
-        else if(binding.btnTimePickerStart?.text.toString() =="START")
+        else if(binding.btnTimePickerStart.text.toString() =="START")
         {
-            binding.btnTimePickerStart?.error = "Please choose the starting time"
+            binding.btnTimePickerStart.error = "Please choose the starting time"
         }
-        else if(binding.btnTimePickerEnd?.text.toString() =="END")
+        else if(binding.btnTimePickerEnd.text.toString() =="END")
         {
-            binding.btnTimePickerEnd?.error = "Please select an off duty time"
+            binding.btnTimePickerEnd.error = "Please select an off duty time"
         }
         else if(binding.etWorkplace.text.toString().isEmpty())
         {

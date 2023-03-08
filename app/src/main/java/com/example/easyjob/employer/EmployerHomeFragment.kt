@@ -54,12 +54,6 @@ class EmployerHomeFragment : Fragment() {
             }
         }
 
-        binding.btnPostJob.setOnClickListener{
-            activity?.let{
-                val intent = Intent (it, PostJob::class.java)
-                it.startActivity(intent)
-            }
-        }
     }
 
     override fun onDestroyView() {

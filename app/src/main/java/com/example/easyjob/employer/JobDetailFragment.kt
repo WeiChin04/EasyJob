@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentJobDetailBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class JobDetailFragment : Fragment() {
 
@@ -23,7 +21,7 @@ class JobDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         _binding = FragmentJobDetailBinding.inflate(inflater,container,false)
@@ -41,8 +39,6 @@ class JobDetailFragment : Fragment() {
         val navController = findNavController()
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
-
-
 
 
         val jobId = arguments?.getString("job_id")

@@ -2,12 +2,10 @@ package com.example.easyjob.employer
 
 import android.app.TimePickerDialog
 import android.content.Intent
-import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.example.easyjob.databinding.ActivityPostJobBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -49,13 +47,13 @@ class PostJob : AppCompatActivity() {
                 calendarStart.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendarStart.set(Calendar.MINUTE, minute)
                 val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
-                binding.btnTimePickerStart!!.text = timeFormat.format(calendarStart.time)
+                binding.btnTimePickerStart.text = timeFormat.format(calendarStart.time)
             },
             calendarStart.get(Calendar.HOUR_OF_DAY),
             calendarStart.get(Calendar.MINUTE),
             false
         )
-        binding.btnTimePickerStart!!.setOnClickListener{
+        binding.btnTimePickerStart.setOnClickListener{
             timePickerDialogStart.show()
         }
 
@@ -66,13 +64,13 @@ class PostJob : AppCompatActivity() {
                 calendarEnd.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calendarEnd.set(Calendar.MINUTE, minute)
                 val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
-                binding.btnTimePickerEnd!!.text = timeFormat.format(calendarEnd.time)
+                binding.btnTimePickerEnd.text = timeFormat.format(calendarEnd.time)
             },
             calendarEnd.get(Calendar.HOUR_OF_DAY),
             calendarEnd.get(Calendar.MINUTE),
             false
         )
-        binding.btnTimePickerEnd!!.setOnClickListener{
+        binding.btnTimePickerEnd.setOnClickListener{
             timePickerDialogEnd.show()
         }
 
@@ -90,14 +88,12 @@ class PostJob : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
-                // 如果用户按下了 Toolbar 的返回键，那么关闭当前 Activity
                 finish()
-                return true
+                true
             }
-            // 如果还有其他菜单项，可以在这里添加处理代码
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -106,19 +102,19 @@ class PostJob : AppCompatActivity() {
         val jobTitle = binding.etEnterJobTitle.text.toString()
 
         val selectedJobTypes = ArrayList<String>()
-        if (binding.chkJobTypeInternship?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypeInternship?.text.toString())
+        if (binding.chkJobTypeInternship.isChecked == true) {
+            selectedJobTypes.add(binding.chkJobTypeInternship.text.toString())
         }
-        if (binding.chkJobTypePartTime?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypePartTime?.text.toString())
+        if (binding.chkJobTypePartTime.isChecked == true) {
+            selectedJobTypes.add(binding.chkJobTypePartTime.text.toString())
         }
-        if (binding.chkJobTypeFullTime?.isChecked == true) {
-            selectedJobTypes.add(binding.chkJobTypeFullTime?.text.toString())
+        if (binding.chkJobTypeFullTime.isChecked == true) {
+            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
         }
 
         val jobSalary = binding.etJobSalary.text.toString()
-        val jobStart = binding.btnTimePickerStart?.text.toString()
-        val jobEnd = binding.btnTimePickerEnd?.text.toString()
+        val jobStart = binding.btnTimePickerStart.text.toString()
+        val jobEnd = binding.btnTimePickerEnd.text.toString()
         val workplace = binding.etWorkplace.text.toString()
         val jobReq = binding.etJobRequirement.text.toString()
         val jobResp = binding.etResponsibilities.text.toString()
@@ -137,13 +133,13 @@ class PostJob : AppCompatActivity() {
         {
             binding.etJobSalary.error = "Salary can't be empty"
         }
-        else if(binding.btnTimePickerStart?.text.toString() =="START")
+        else if(binding.btnTimePickerStart.text.toString() =="START")
         {
-            binding.btnTimePickerStart?.error = "Please choose the starting time"
+            binding.btnTimePickerStart.error = "Please choose the starting time"
         }
-        else if(binding.btnTimePickerEnd?.text.toString() =="END")
+        else if(binding.btnTimePickerEnd.text.toString() =="END")
         {
-            binding.btnTimePickerEnd?.error = "Please select an off duty time"
+            binding.btnTimePickerEnd.error = "Please select an off duty time"
         }
         else if(binding.etWorkplace.text.toString().isEmpty())
         {
