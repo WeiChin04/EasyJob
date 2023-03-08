@@ -17,10 +17,8 @@
             android:id="@+id/action_jobView_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/employerProfile"
-        android:name="com.example.easyjob.employer.EmployerProfile"
-        tools:layout="@layout/fragment_employer_profile" />
+
+    <!--Job-->
     <fragment
         android:id="@+id/jobDetailFragment"
         android:name="com.example.easyjob.employer.JobDetailFragment">
@@ -28,7 +26,29 @@
             android:id="@+id/action_jobDetailFragment_to_jobEditFragment"
             app:destination="@id/jobEditFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/jobEditFragment"
         android:name="com.example.easyjob.employer.JobEditFragment" />
+    <!--Profile-->
+    <fragment
+        android:id="@+id/employerProfile"
+        android:name="com.example.easyjob.employer.EmployerProfile"
+        tools:layout="@layout/fragment_employer_profile" >
+        <action
+            android:id="@+id/action_employerProfile_to_employerInformation"
+            app:destination="@id/employerInformation" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerInformation"
+        android:name="com.example.easyjob.employer.EmployerInformation"
+        tools:layout="@layout/fragment_employer_information" >
+        <action
+            android:id="@+id/action_employerInformation_to_editEmployerProfile"
+            app:destination="@id/editEmployerProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/editEmployerProfile"
+        android:name="com.example.easyjob.employer.EditEmployerProfile"
+        tools:layout="@layout/fragment_edit_employer_profile" />
 </navigation>

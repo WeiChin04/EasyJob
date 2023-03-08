@@ -63,13 +63,20 @@ class UserProfile : Fragment() {
         }
 
         //to view user personal information
-        binding.tvProfile.setOnClickListener {
-            navController = Navigation.findNavController(binding.tvProfile)
-            navController.navigate(R.id.action_userProfile_to_viewUserProfileFragment)
-        }
-
+        information()
         logOut()
         return binding.root
+    }
+
+    private fun information(){
+        binding.tvProfile.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvProfile)
+            navController.navigate(R.id.action_userProfile_to_userInformationFragment)
+        }
+        binding.tvProfileArrow.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvProfile)
+            navController.navigate(R.id.action_userProfile_to_userInformationFragment)
+        }
     }
 
     private fun logOut()

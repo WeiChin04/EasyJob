@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".employer.EmployerInformation">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/Theme.EasyJob">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorOnPrimary"
+                android:textAlignment="center"
+                app:popupTheme="@style/Theme.EasyJob"
+                app:title="Employer Information"
+                app:titleTextColor="@color/green" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_employer_profile_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_profile_sample"
+            app:civ_border_color="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+        <TextView
+            android:id="@+id/tv_employer_fullname_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/employer_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_employer_profile_img" />
+
+        <TextView
+            android:id="@+id/tv_employer_fullname"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_fullname_title" />
+
+        <TextView
+            android:id="@+id/tv_employer_email_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/employer_email"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_fullname" />
+
+        <TextView
+            android:id="@+id/tv_employer_email"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_email_title" />
+
+        <TextView
+            android:id="@+id/tv_employer_contact_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/employer_contact"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_email" />
+
+        <TextView
+            android:id="@+id/tv_employer_contact"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_contact_title" />
+
+        <TextView
+            android:id="@+id/tv_company_fullname_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_contact" />
+
+        <TextView
+            android:id="@+id/tv_company_fullname"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname_title" />
+
+        <TextView
+            android:id="@+id/tv_company_email_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_email"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname" />
+
+        <TextView
+            android:id="@+id/tv_company_email"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_email_title" />
+
+        <TextView
+            android:id="@+id/tv_company_address_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_address"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_email" />
+
+        <TextView
+            android:id="@+id/tv_company_address"
+            style="@style/textview_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_address_title" />
+
+        <TextView
+            android:id="@+id/tv_company_industry_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_industry"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_address" />
+
+        <TextView
+            android:id="@+id/tv_company_industry"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_industry_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_industry_title" />
+
+        <TextView
+            android:id="@+id/tv_company_overview_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_overview"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_industry_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_industry" />
+
+        <TextView
+            android:id="@+id/tv_company_overview"
+            style="@style/textview_border"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview_title" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ButtonGreenStoke"
+            android:layout_width="163dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_employer_edit_profile"
+            style="@style/ButtonGreen2"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:text="@string/edit"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnCancel"
+            app:layout_constraintTop_toTopOf="@+id/btnCancel" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -5,6 +5,7 @@ data class EmployerData(
     var email : String? = null,
     var contact : String? = null,
     var companyName : String? = null,
+    var companyEmail : String? = null,
     var companyAddress : String? = null,
     var companyIndustry : String? = null,
     var companyOverview : String? = null,

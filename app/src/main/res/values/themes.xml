@@ -107,6 +107,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="textview_border">
+        <item name="android:background">@drawable/textview_border</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/light_green</item>
+        <item name="android:textColorHint">@color/hint_green</item>
+    </style>
+
     <style name="input_edit_field">
         <item name="android:background">@drawable/shadow_background</item>
         <item name="android:padding">12dp</item>

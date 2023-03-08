@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.easyjob.MainActivity
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentEmployerHomeBinding
@@ -20,29 +21,42 @@ class EmployerHomeFragment : Fragment() {
     private lateinit var dbref: DatabaseReference
     private lateinit var uid: String
     private lateinit var employer: EmployerData
+    private lateinit var employerDataViewModel: EmployerDataViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEmployerHomeBinding.inflate(inflater,container,false)
+
+        auth = FirebaseAuth.getInstance()
+
+        //get user data from view model
+        employerDataViewModel = ViewModelProvider(requireActivity())[EmployerDataViewModel::class.java]
+
+        employerDataViewModel.getData(auth.currentUser!!.uid)
+        employerDataViewModel.employerData.observe(viewLifecycleOwner) { employerData ->
+            binding.tvtest.text = employerData.email
+        }
+
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        auth = FirebaseAuth.getInstance()
-        dbref = FirebaseDatabase.getInstance().getReference("Employers")
-        uid = auth.currentUser?.uid.toString()
-
-        dbref.child(uid).addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot){
-                employer = snapshot.getValue(EmployerData::class.java)!!
-                binding.tvtest.text = employer.email
-            }
-
-            override fun onCancelled(error: DatabaseError) {}
-        })
+//        auth = FirebaseAuth.getInstance()
+//        dbref = FirebaseDatabase.getInstance().getReference("Employers")
+//        uid = auth.currentUser?.uid.toString()
+//
+//        dbref.child(uid).addValueEventListener(object: ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot){
+//                employer = snapshot.getValue(EmployerData::class.java)!!
+//                binding.tvtest.text = employer.email
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {}
+//        })
 
         binding.button2.setOnClickListener {
             auth.signOut()

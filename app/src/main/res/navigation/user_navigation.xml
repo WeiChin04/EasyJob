@@ -22,15 +22,14 @@
         android:name="com.example.easyjob.user.UserProfile"
         tools:layout="@layout/fragment_user_profile" >
         <action
-            android:id="@+id/action_userProfile_to_viewUserProfileFragment"
-            app:destination="@id/viewUserProfileFragment" />
+            android:id="@+id/action_userProfile_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/viewUserProfileFragment"
-        android:name="com.example.easyjob.user.ViewUserProfileFragment"
-        android:label="Personal Information" >
+        android:id="@+id/userInformationFragment"
+        android:name="com.example.easyjob.user.UserInformationFragment">
         <action
-            android:id="@+id/action_viewUserProfileFragment_to_editUserProfileFragment"
+            android:id="@+id/action_userInformationFragment_to_editUserProfileFragment"
             app:destination="@id/editUserProfileFragment" />
     </fragment>
     <fragment

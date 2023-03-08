@@ -11,7 +11,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".user.ViewUserProfileFragment">
+            tools:context=".user.UserInformationFragment">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -27,8 +27,15 @@
                     android:background="?attr/colorOnPrimary"
                     android:textAlignment="center"
                     app:popupTheme="@style/Theme.EasyJob"
-                    app:title="@string/personal_information"
-                    app:titleTextColor="@color/green" />
+                    app:titleTextColor="@color/green">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/personal_information"
+                        android:layout_gravity="center"
+                        style="@style/toolbar_Title" />
+                </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -61,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_title" />
 
@@ -81,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_email_title" />
 
@@ -95,14 +102,13 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_email" />
 
-
             <TextView
                 android:id="@+id/tv_user_contact"
                 style="@style/input_edit_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_contact_title" />
 
@@ -122,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_education_title" />
 
@@ -142,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_expectation_salary_title" />
 
@@ -158,11 +164,11 @@
 
             <TextView
                 android:id="@+id/tv_user_address"
-                style="@style/input_edit_field"
+                style="@style/textview_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_address_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_address_title" />
 
@@ -178,14 +184,13 @@
 
             <TextView
                 android:id="@+id/tv_user_about_me"
-                style="@style/input_edit_field"
+                style="@style/textview_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me_title" />
-
 
             <!-- resume-->
             <TextView
@@ -200,11 +205,11 @@
 
             <TextView
                 android:id="@+id/tv_user_resume"
-                style="@style/input_edit_field"
+                style="@style/textview_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:ems="10"
+                android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />
 

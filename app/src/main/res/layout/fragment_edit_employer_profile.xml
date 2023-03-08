@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
     tools:layout_editor_absoluteX="1dp"
-    tools:layout_editor_absoluteY="1dp"
-    android:fillViewport="true">
+    tools:layout_editor_absoluteY="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".user.EditUserProfileFragment">
+        tools:context=".employer.EditEmployerProfile">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -29,21 +28,13 @@
                 android:background="?attr/colorOnPrimary"
                 android:textAlignment="center"
                 app:popupTheme="@style/Theme.EasyJob"
-                app:titleTextColor="@color/green">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Personal Information"
-                    android:layout_gravity="center"
-                    style="@style/toolbar_Title" />
-
-            </androidx.appcompat.widget.Toolbar>
+                app:title="Edit Personal Information"
+                app:titleTextColor="@color/green" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_profile_img"
+            android:id="@+id/iv_employer_profile_img"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="25dp"
@@ -55,41 +46,41 @@
             tools:ignore="ImageContrastCheck" />
 
         <TextView
-            android:id="@+id/tv_user_fullname_title"
+            android:id="@+id/tv_employer_fullname_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
-            android:text="@string/name"
+            android:text="@string/employer_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_profile_img" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_employer_profile_img" />
 
         <EditText
-            android:id="@+id/et_user_fullname"
+            android:id="@+id/et_employer_fullname"
             style="@style/input_edit_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:minEms="10"
             android:hint="@string/enter_full_name"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_title"
-            android:importantForAutofill="no" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_fullname_title" />
 
         <TextView
-            android:id="@+id/tv_user_email_title"
+            android:id="@+id/tv_employer_email_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/email"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_fullname" />
+            android:minEms="10"
+            android:text="@string/employer_email"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_employer_fullname" />
 
         <EditText
-            android:id="@+id/et_user_email"
+            android:id="@+id/et_employer_email"
             style="@style/input_edit_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,23 +88,22 @@
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:minWidth="48dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_email_title"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_email_title"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/tv_user_contact_title"
+            android:id="@+id/tv_employer_contact_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/contact_number"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_email" />
-
+            android:text="@string/employer_contact"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_employer_email" />
 
         <EditText
-            android:id="@+id/et_user_contact"
+            android:id="@+id/et_employer_contact"
             style="@style/input_edit_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,143 +112,123 @@
             android:hint="@string/enter_your_contact_number"
             android:importantForAutofill="no"
             android:inputType="number|text"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_contact_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_contact_title" />
 
         <TextView
-            android:id="@+id/tv_user_education_title"
+            android:id="@+id/tv_company_fullname_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/education_level"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_contact" />
-
-        <Spinner
-            android:id="@+id/sp_education_level"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:entries="@array/education_level"
-            android:minWidth="300dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_education_title" />
-
-        <TextView
-            android:id="@+id/tv_user_expectation_salary_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/expectation_salary_rm"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_education_title"
-            app:layout_constraintTop_toBottomOf="@+id/sp_education_level" />
+            android:text="@string/company_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_employer_contact" />
 
         <EditText
-            android:id="@+id/et_user_expectation_salary"
+            android:id="@+id/et_company_fullname"
             style="@style/input_edit_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:minEms="10"
-            android:hint="@string/enter_your_desired_salary"
+            android:hint="@string/enter_your_company_name"
             android:importantForAutofill="no"
-            android:inputType="number"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_expectation_salary_title" />
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname_title" />
 
         <TextView
-            android:id="@+id/tv_user_address_title"
+            android:id="@+id/tv_company_email_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/address"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_expectation_salary_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_expectation_salary" />
+            android:text="@string/company_email"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_fullname" />
 
         <EditText
-            android:id="@+id/et_user_address"
+            android:id="@+id/et_company_email"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            android:hint="@string/enter_your_company_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_email_title" />
+
+        <TextView
+            android:id="@+id/tv_company_address_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_address"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_email" />
+
+        <EditText
+            android:id="@+id/et_company_address"
             style="@style/input_edit_field"
             android:layout_width="370dp"
             android:layout_height="140dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/enter_your_home_address"
+            android:minEms="10"
+            android:hint="@string/enter_your_company_address"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_address_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_address_title" />
 
         <TextView
-            android:id="@+id/tv_user_about_me_title"
+            android:id="@+id/tv_company_industry_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/about_me"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_address" />
+            android:text="@string/company_industry"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_address" />
 
         <EditText
-            android:id="@+id/et_user_about_me"
+            android:id="@+id/et_company_industry"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:minEms="10"
+            android:hint="@string/enter_your_company_industry"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_industry_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_industry_title" />
+
+        <TextView
+            android:id="@+id/tv_company_overview_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/company_overview"
+            app:layout_constraintStart_toStartOf="@+id/tv_company_industry_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_industry" />
+
+        <EditText
+            android:id="@+id/et_company_overview"
             style="@style/input_edit_field"
             android:layout_width="370dp"
             android:layout_height="140dp"
             android:layout_marginTop="10dp"
-            android:hint="@string/introduce_yourself"
+            android:minEms="10"
+            android:hint="@string/introduce_your_company"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me_title" />
-
-        <!--resume-->
-        <TextView
-            android:id="@+id/tv_user_resume_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/resume"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_about_me" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title">
-
-            <TextView
-                android:id="@+id/tv_resume_file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:fontFamily="@font/nunito_semibold"
-                android:textColor="@color/green"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="15dp"
-                android:background="@android:color/darker_gray" />
-
-            <Button
-                android:id="@+id/btn_upload_file"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#901B5E20"
-                android:text="@string/upload"
-                android:textAllCaps="false"
-                app:cornerRadius="20dp" />
-        </LinearLayout>
+            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview_title" />
 
         <Button
             android:id="@+id/btnCancel"
@@ -269,8 +239,8 @@
             android:layout_marginBottom="32dp"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_company_overview" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"
@@ -283,8 +253,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnCancel"
             app:layout_constraintTop_toTopOf="@+id/btnCancel" />
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

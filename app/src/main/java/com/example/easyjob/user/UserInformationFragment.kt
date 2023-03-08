@@ -19,15 +19,15 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
-import com.example.easyjob.databinding.FragmentViewUserProfileBinding
+import com.example.easyjob.databinding.FragmentUserInformationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
 
-class ViewUserProfileFragment : Fragment() {
-    private var _binding: FragmentViewUserProfileBinding? = null
+class UserInformationFragment : Fragment() {
+    private var _binding: FragmentUserInformationBinding? = null
     private val binding get()  = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var dbref: DatabaseReference
@@ -45,7 +45,7 @@ class ViewUserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentViewUserProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentUserInformationBinding.inflate(inflater, container, false)
         //action bar
         val toolbar = binding.toolbar
         setHasOptionsMenu(true)
@@ -150,7 +150,7 @@ class ViewUserProfileFragment : Fragment() {
 
         binding.btnUserEditProfile.setOnClickListener {
             navController = findNavController(binding.btnUserEditProfile)
-            navController.navigate(R.id.action_viewUserProfileFragment_to_editUserProfileFragment)
+            navController.navigate(R.id.action_userInformationFragment_to_editUserProfileFragment)
         }
     }
 
