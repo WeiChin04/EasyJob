@@ -34,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Edit Personal Information"
+                    android:text="@string/edit_personal_information"
                     android:layout_gravity="center"
                     style="@style/toolbar_Title" />
 
@@ -47,7 +47,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="25dp"
-            android:src="@drawable/ic_camera"
+            android:src="@mipmap/ic_click_to_upload_profile_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

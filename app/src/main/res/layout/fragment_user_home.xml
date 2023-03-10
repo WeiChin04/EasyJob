@@ -6,53 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".user.UserHomeFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <TextView
+        android:id="@+id/tv_home_title"
+        style="@style/StartPageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/easy_job"
+        android:textColor="@color/green"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:popupTheme="@style/Theme.EasyJob"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorOnPrimary"
-            android:textAlignment="center"
-            app:popupTheme="@style/Theme.EasyJob"
-            app:titleMarginStart="115dp"
-            app:titleTextColor="@color/green">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home"
-                android:layout_gravity="center"
-                style="@style/toolbar_Title" />
-
-
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/search_bar"
+        android:closeIcon="@drawable/ic_x"
+        android:focusable="false"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search..."
+        android:searchHintIcon="@null"
+        android:searchIcon="@drawable/ic_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_title"
+        tools:targetApi="lollipop_mr1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myJobList"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@id/search_view"
         tools:listitem="@layout/job_item_user" />
-
-    <TextView
-        android:id="@+id/etShowWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_to_Easy_Job"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/myJobList"
-        app:layout_constraintEnd_toEndOf="@+id/myJobList"
-        app:layout_constraintStart_toStartOf="@+id/myJobList"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

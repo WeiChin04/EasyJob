@@ -15,6 +15,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -97,7 +98,7 @@ class EditEmployerProfile : Fragment() {
 
         //back to forward page
         binding.btnCancel.setOnClickListener {
-            navController.navigateUp()
+            showConfirmationDialog()
         }
 
         return binding.root
@@ -108,18 +109,7 @@ class EditEmployerProfile : Fragment() {
 
         binding.btnUpdateProfile.setOnClickListener {
 
-            val name = binding.etEmployerFullname.text.toString()
-            val email = binding.etEmployerEmail.text.toString()
-            val contact = binding.etEmployerContact.text.toString()
-            val companyName = binding.etCompanyFullname.text.toString()
-            val companyEmail = binding.etCompanyEmail.text.toString()
-            val companyAddress = binding.etCompanyAddress.text.toString()
-            val companyIndustry = binding.etCompanyIndustry.text.toString()
-            val companyOverview = binding.etCompanyOverview.text.toString()
-            val profileStatus = "1"
-
-            updateData(name,email,contact,companyName,
-                companyEmail,companyAddress,companyIndustry,companyOverview,profileStatus)
+            validateInput()
         }
     }
 
@@ -180,7 +170,7 @@ class EditEmployerProfile : Fragment() {
         }
     }
 
-    private fun updateData(name: String, email: String,contact: String,companyName: String,
+    private fun updateData(name: String, contact: String,companyName: String,
                            companyEmail: String,companyAddress: String,companyIndustry: String,
                            companyOverview: String,profileStatus: String) {
         val navController = findNavController()
@@ -189,7 +179,6 @@ class EditEmployerProfile : Fragment() {
 
         val employerMap = mapOf(
             "name" to name,
-            "email" to email,
             "contact" to contact,
             "companyName" to companyName,
             "companyEmail" to companyEmail,
@@ -211,14 +200,54 @@ class EditEmployerProfile : Fragment() {
         }
     }
 
+    private fun validateInput(){
+        val name = binding.etEmployerFullname.text.toString()
+        val contact = binding.etEmployerContact.text.toString()
+        val companyName = binding.etCompanyFullname.text.toString()
+        val companyEmail = binding.etCompanyEmail.text.toString()
+        val companyAddress = binding.etCompanyAddress.text.toString()
+        val companyIndustry = binding.etCompanyIndustry.text.toString()
+        val companyOverview = binding.etCompanyOverview.text.toString()
+        val profileStatus = "1"
+
+        if(name.isEmpty()) {
+            binding.etEmployerFullname.error = "Please Enter Name"
+        }
+        if(contact.isEmpty()) {
+            binding.etEmployerContact.error = "Please Enter Contact Number"
+        }
+        if(name.isEmpty()||contact.isEmpty()){
+            Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
+        }else {
+            updateData(name,contact,companyName,
+                companyEmail,companyAddress,companyIndustry,companyOverview,profileStatus)
+        }
+
+
+    }
+
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                requireActivity().onBackPressed()
+                showConfirmationDialog()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Confirm")
+        alertDialog.setMessage("Do you want to exit without saving changes?")
+        alertDialog.setPositiveButton("Yes") { _, _ ->
+            requireActivity().onBackPressed()
+        }
+        alertDialog.setNegativeButton("No") { dialog, _ ->
+            dialog.cancel()
+        }
+        alertDialog.show()
     }
 
     override fun onDestroyView() {

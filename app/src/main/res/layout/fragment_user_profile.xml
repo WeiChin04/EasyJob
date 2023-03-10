@@ -22,7 +22,7 @@
         android:id="@+id/iv_user_profile"
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:src="@drawable/ic_profile_sample"
+        android:src="@drawable/ic_person"
         app:layout_constraintBottom_toBottomOf="@+id/view_detail"
         app:layout_constraintEnd_toEndOf="@+id/view_detail"
         app:layout_constraintStart_toStartOf="@+id/view_detail"

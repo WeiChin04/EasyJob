@@ -190,6 +190,8 @@
     <string name="apply_job_button">Apply Job</string>
     <string name="AppliedJob">My Applied Job</string>
     <string name="FavouriteJob">My Favourite Job</string>
+    <string name="edit_personal_information">Edit Personal Information</string>
+    <string name="easy_job">Easy Job</string>
 
 
 </resources>

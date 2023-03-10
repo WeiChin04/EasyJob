@@ -1,5 +1,6 @@
 package com.example.easyjob.user
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +18,8 @@ import com.example.easyjob.employer.EmployerHome
 import com.example.easyjob.employer.JobAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class UserHomeFragment : Fragment() {
 
@@ -28,6 +32,8 @@ class UserHomeFragment : Fragment() {
     private lateinit var userDataViewModel: UserDataViewModel
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<UserJobData>
+    private lateinit var userJobAdapter: UserJobAdapter
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -37,6 +43,31 @@ class UserHomeFragment : Fragment() {
         jobRecyclerView.setHasFixedSize(true)
         jobArrayList = arrayListOf<UserJobData>()
         getJobData()
+
+        dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
+
+        userJobAdapter = UserJobAdapter(jobArrayList)
+        jobRecyclerView.adapter = userJobAdapter
+
+//        searchJob()
+
+        binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                if (filterList(newText)!=null)
+                {
+                    Log.d("SearchJob",filterList(newText).toString())
+                }else{
+                    Log.d("SearchJob","Fail to Get Data!!")
+                }
+                return true
+            }
+
+        })
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -53,6 +84,8 @@ class UserHomeFragment : Fragment() {
         userDataViewModel = ViewModelProvider(requireActivity())[UserDataViewModel::class.java]
 
         userDataViewModel.getData(auth.currentUser!!.uid)
+
+
         return binding.root
     }
 
@@ -71,17 +104,75 @@ class UserHomeFragment : Fragment() {
                     }
                     jobRecyclerView.adapter = UserJobAdapter(jobArrayList)
                 }else{
-                    binding.etShowWelcome.visibility = View.VISIBLE
                     binding.myJobList.visibility = View.GONE
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
                 Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
             }
         })
+    }
 
+//    private fun searchJob(){
+//        dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
+//
+//        val status = "Available"
+//        dbRef.orderByChild("jobStatus").equalTo(status).addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                if(snapshot.exists()){
+//                    val jobArrayList = mutableListOf<UserJobData>()
+//                    for(jobSnapshot in snapshot.children){
+//                        val job = jobSnapshot.getValue(UserJobData::class.java)
+//                        job?.let { jobArrayList.add(it) }
+//                    }
+//                    val userJobAdapter = UserJobAdapter(jobArrayList as ArrayList<UserJobData>)
+//                    jobRecyclerView.adapter = userJobAdapter
+//
+//                    // Set up search view filter
+//                    val searchView = binding.searchView
+//                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//                        override fun onQueryTextSubmit(query: String?): Boolean {
+//                            return false
+//                        }
+//                        override fun onQueryTextChange(newText: String?): Boolean {
+//                            userJobAdapter.filter.filter(newText)
+//                            if (userJobAdapter.filter.filter(newText)!=null)
+//                            {
+//                                Log.d("SearchJob",userJobAdapter.filter.filter(newText).toString())
+//                            }else{
+//                                Log.d("SearchJob","Fail to Get Data!!")
+//                            }
+//                            return true
+//                        }
+//                    })
+//                } else {
+//                    binding.myJobList.visibility = View.GONE
+//                }
+//            }
+//            override fun onCancelled(error: DatabaseError) {
+//                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+//                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//    }
+
+    private fun filterList(query: String?) {
+        if (query != null) {
+            val filteredList = ArrayList<UserJobData>()
+            for (i in jobArrayList) {
+                if (i.jobTitle!!.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList.add(i)
+                }
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(requireContext(), "No Job Found", Toast.LENGTH_SHORT).show()
+            } else {
+                userJobAdapter.setFilteredList(filteredList)
+                jobRecyclerView.adapter = userJobAdapter
+            }
+        }
     }
 
     override fun onDestroyView() {

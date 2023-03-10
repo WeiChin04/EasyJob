@@ -1,22 +1,30 @@
 package com.example.easyjob.user
 
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.R
+import java.util.*
+import kotlin.collections.ArrayList
 
-class UserJobAdapter(private val jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>() {
+class UserJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserJobViewHolder {
 
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.job_item_user,
-            parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.job_item_user,
+            parent, false
+        )
         return UserJobViewHolder(itemView)
 
     }
@@ -30,11 +38,11 @@ class UserJobAdapter(private val jobList: ArrayList<UserJobData>) : RecyclerView
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus
 
-        if(holder.jobStatus.text == "Unavailable"){
+        if (holder.jobStatus.text == "Unavailable") {
             holder.jobStatus.setBackgroundColor(Color.GRAY)
         }
 
-        holder.userCardView.setOnClickListener{
+        holder.userCardView.setOnClickListener {
             val bundle = bundleOf(
                 "job_id" to jobList[position].jobId,
                 "job_title" to jobList[position].jobTitle,
@@ -47,26 +55,55 @@ class UserJobAdapter(private val jobList: ArrayList<UserJobData>) : RecyclerView
                 "job_type" to jobList[position].jobType.toString(),
                 "job_status" to jobList[position].jobStatus
             )
-            it.findNavController().navigate(R.id.action_userHomeFragment_to_userJobDetailFragment, bundle)
+            it.findNavController()
+                .navigate(R.id.action_userHomeFragment_to_userJobDetailFragment, bundle)
         }
-
-
     }
 
     override fun getItemCount(): Int {
-
         return jobList.size
     }
 
-    class UserJobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(filteredList: ArrayList<UserJobData>){
+        this.jobList = filteredList
+        notifyDataSetChanged()
+    }
 
-        val datePosted : TextView = itemView.findViewById(R.id.tvPostingDate)
-        val jobCTR : TextView = itemView.findViewById(R.id.tvShowViewed)
-        val jobTitle : TextView = itemView.findViewById(R.id.tvShowJobTitle)
-        val jobType : TextView = itemView.findViewById(R.id.tvShowJobType)
-        val jobStatus : TextView = itemView.findViewById(R.id.tvShowAvailable)
+    class UserJobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val datePosted: TextView = itemView.findViewById(R.id.tvPostingDate)
+        val jobCTR: TextView = itemView.findViewById(R.id.tvShowViewed)
+        val jobTitle: TextView = itemView.findViewById(R.id.tvShowJobTitle)
+        val jobType: TextView = itemView.findViewById(R.id.tvShowJobType)
+        val jobStatus: TextView = itemView.findViewById(R.id.tvShowAvailable)
         val userCardView: CardView = itemView.findViewById(R.id.userJobCardView)
 
     }
 
+//    private var filteredList = jobList.toMutableList()
+
+//    override fun getFilter(): Filter {
+//        return object : Filter() {
+//            override fun performFiltering(constraint: CharSequence?): FilterResults {
+//                val queryString = constraint?.toString()?.toLowerCase(Locale.ROOT)
+//                val filteredData = if (queryString.isNullOrBlank()) {
+//                    jobList.toMutableList()
+//                } else {
+//                    jobList.filter { it.jobTitle!!.toLowerCase(Locale.ROOT).contains(queryString) }
+//                }
+//                val filterResults = FilterResults()
+//                filterResults.values = filteredData
+//                return filterResults
+//            }
+//
+//            @SuppressLint("NotifyDataSetChanged")
+//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+//                filteredList.clear()
+//                filteredList.addAll(results?.values as ArrayList<UserJobData>)
+//                Log.d("filtered results",filteredList.addAll(results?.values as ArrayList<UserJobData>).toString())
+//                notifyDataSetChanged()
+//            }
+//        }
+//    }
 }

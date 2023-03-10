@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -130,7 +131,7 @@ class EditUserProfileFragment : Fragment() {
 
         //back to forward page
         binding.btnCancel.setOnClickListener {
-            navController.navigateUp()
+            showConfirmationDialog()
         }
 
         return binding.root
@@ -140,17 +141,7 @@ class EditUserProfileFragment : Fragment() {
         super.onResume()
 
         binding.btnUpdateProfile.setOnClickListener {
-
-            val name = binding.etUserFullname.text.toString()
-            val email = binding.etUserEmail.text.toString()
-            val contact = binding.etUserContact.text.toString()
-            val jobsalary = binding.etUserExpectationSalary.text.toString()
-            val address = binding.etUserAddress.text.toString()
-            val education_level = binding.spEducationLevel.selectedItem.toString()
-            val about_me = binding.etUserAboutMe.text.toString()
-            val profile_status = "1"
-
-            updateData(name,email,contact,jobsalary,address,education_level,about_me,profile_status)
+            validateInput()
         }
     }
 
@@ -276,14 +267,13 @@ class EditUserProfileFragment : Fragment() {
         }
     }
 
-    private fun updateData(name: String, email: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String) {
+    private fun updateData(name: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String) {
         val navController = findNavController()
 
         dbref = FirebaseDatabase.getInstance().getReference("Users")
 
         val userMap = mapOf(
             "name" to name,
-            "email" to email,
             "contact" to contact,
             "jobsalary" to jobsalary,
             "address" to address,
@@ -307,14 +297,65 @@ class EditUserProfileFragment : Fragment() {
         }
     }
 
+    private fun validateInput()
+    {
+        val name = binding.etUserFullname.text.toString()
+        val contact = binding.etUserContact.text.toString()
+        val jobsalary = binding.etUserExpectationSalary.text.toString()
+        val address = binding.etUserAddress.text.toString()
+        val education_level = binding.spEducationLevel.selectedItem.toString()
+        val about_me = binding.etUserAboutMe.text.toString()
+        val profile_status = "1"
+
+        if(name.isEmpty()) {
+            binding.etUserFullname.error = "Please Enter Name"
+        }
+        if(contact.isEmpty()) {
+            binding.etUserContact.error = "Please Enter Contact Number"
+        }
+        if(jobsalary.isEmpty()) {
+            binding.etUserExpectationSalary.error = "Please Enter Expectation Salary"
+        }
+        if(address.isEmpty()) {
+            binding.etUserAddress.error = "Please Enter Your Address"
+        }
+        if(binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level") {
+            Toast.makeText(context, "Please Select Your Education Level", Toast.LENGTH_SHORT).show()
+        }
+        if(about_me.isEmpty()){
+            binding.etUserAboutMe.error = "Please Introduce about Yourself"
+        }
+        if(name.isEmpty()||contact.isEmpty()||jobsalary.isEmpty()||address.isEmpty()||
+           binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level"||about_me.isEmpty()){
+            Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
+        }else {
+           updateData(name,contact,jobsalary,address,education_level,about_me,profile_status)
+       }
+
+    }
+
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                requireActivity().onBackPressed()
+                showConfirmationDialog()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Confirm")
+        alertDialog.setMessage("Do you want to exit without saving changes?")
+        alertDialog.setPositiveButton("Yes") { _, _ ->
+            requireActivity().onBackPressed()
+        }
+        alertDialog.setNegativeButton("No") { dialog, _ ->
+            dialog.cancel()
+        }
+        alertDialog.show()
     }
 
     override fun onDestroyView() {
