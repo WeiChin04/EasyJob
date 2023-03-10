@@ -49,6 +49,14 @@ class JobDetailFragment : Fragment() {
             }
             it.findNavController().navigate(R.id.action_jobDetailFragment_to_jobEditFragment, bundle)
         }
+
+        binding.btnManageCandidate.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("jobId", jobId)
+            }
+            it.findNavController().navigate(R.id.action_jobDetailFragment_to_applicantManagementFragment, bundle)
+        }
+
         return binding.root
     }
 

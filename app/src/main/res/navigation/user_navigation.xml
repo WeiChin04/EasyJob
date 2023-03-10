@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/userMyJob"
-        android:name="com.example.easyjob.user.UserMyJob"
+        android:name="com.example.easyjob.user.UserMyJobFragment"
         tools:layout="@layout/fragment_user_my_job" />
     <fragment
         android:id="@+id/userProfile"

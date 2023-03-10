@@ -75,7 +75,7 @@ class UserHomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserHomeBinding.inflate(inflater, container, false)
 
         auth = FirebaseAuth.getInstance()
@@ -95,67 +95,27 @@ class UserHomeFragment : Fragment() {
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
 
         val status = "Available"
-        dbRef.orderByChild("jobStatus").equalTo(status).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(jobSnapshot in snapshot.children){
-                        val job = jobSnapshot.getValue(UserJobData::class.java)
-                        jobArrayList.add(job!!)
+        dbRef.orderByChild("jobStatus").equalTo(status)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (jobSnapshot in snapshot.children) {
+                            val job = jobSnapshot.getValue(UserJobData::class.java)
+                            jobArrayList.add(job!!)
+                        }
+                        jobRecyclerView.adapter = UserJobAdapter(jobArrayList)
+                    } else {
+                        binding.myJobList.visibility = View.GONE
                     }
-                    jobRecyclerView.adapter = UserJobAdapter(jobArrayList)
-                }else{
-                    binding.myJobList.visibility = View.GONE
                 }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
-                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
-//    private fun searchJob(){
-//        dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
-//
-//        val status = "Available"
-//        dbRef.orderByChild("jobStatus").equalTo(status).addValueEventListener(object : ValueEventListener{
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.exists()){
-//                    val jobArrayList = mutableListOf<UserJobData>()
-//                    for(jobSnapshot in snapshot.children){
-//                        val job = jobSnapshot.getValue(UserJobData::class.java)
-//                        job?.let { jobArrayList.add(it) }
-//                    }
-//                    val userJobAdapter = UserJobAdapter(jobArrayList as ArrayList<UserJobData>)
-//                    jobRecyclerView.adapter = userJobAdapter
-//
-//                    // Set up search view filter
-//                    val searchView = binding.searchView
-//                    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//                        override fun onQueryTextSubmit(query: String?): Boolean {
-//                            return false
-//                        }
-//                        override fun onQueryTextChange(newText: String?): Boolean {
-//                            userJobAdapter.filter.filter(newText)
-//                            if (userJobAdapter.filter.filter(newText)!=null)
-//                            {
-//                                Log.d("SearchJob",userJobAdapter.filter.filter(newText).toString())
-//                            }else{
-//                                Log.d("SearchJob","Fail to Get Data!!")
-//                            }
-//                            return true
-//                        }
-//                    })
-//                } else {
-//                    binding.myJobList.visibility = View.GONE
-//                }
-//            }
-//            override fun onCancelled(error: DatabaseError) {
-//                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
-//                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+    }
 
     private fun filterList(query: String?) {
         if (query != null) {
@@ -179,4 +139,5 @@ class UserHomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

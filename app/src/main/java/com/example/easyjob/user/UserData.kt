@@ -11,5 +11,6 @@ data class UserData(
     var resume: String? = null,
     var profile_image: String? =null,
     val profile_status: String? = null,
+    val userId: String? = null,
 
 )

@@ -263,7 +263,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:shadowColor="@color/green"
-                android:text="@string/manage_candidate_button"
+                android:text="@string/manage_applicant_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

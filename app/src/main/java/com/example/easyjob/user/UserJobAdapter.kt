@@ -19,7 +19,10 @@ import kotlin.collections.ArrayList
 
 class UserJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserJobViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): UserJobViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.job_item_user,

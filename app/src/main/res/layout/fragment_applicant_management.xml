@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.UserMyJobFragment">
+    tools:context=".employer.ApplicantManagementFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -27,31 +26,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_job_page_title"
+                android:text="@string/manage_applicant_button"
                 android:layout_gravity="center"
                 style="@style/toolbar_Title" />
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myJobAppliedList"
+        android:id="@+id/ManageApplicantList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:listitem="@layout/job_item_user_applied" />
+        tools:listitem="@layout/applicant_item" />
 
     <TextView
-        android:id="@+id/etNoAppliedJobShow"
+        android:id="@+id/etNoApplicantShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_apply_job_show"
+        android:text="@string/no_applicant_now"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/myJobAppliedList"
-        app:layout_constraintEnd_toEndOf="@+id/myJobAppliedList"
-        app:layout_constraintStart_toStartOf="@+id/myJobAppliedList"
+        app:layout_constraintBottom_toBottomOf="@+id/ManageApplicantList"
+        app:layout_constraintEnd_toEndOf="@+id/ManageApplicantList"
+        app:layout_constraintStart_toStartOf="@+id/ManageApplicantList"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

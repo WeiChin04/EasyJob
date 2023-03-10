@@ -146,7 +146,7 @@
 
     <!--    Job Details View-->
     <string name="job_detail_page_title">Job Details</string>
-    <string name="manage_candidate_button">Manage Candidates</string>
+    <string name="manage_applicant_button">Manage Applicant</string>
     <string name="edit_button">Edit</string>
     <string name="title_activity_job_edit_form">JobEditForm</string>
     <!-- Strings used for fragments for navigation -->
@@ -190,8 +190,22 @@
     <string name="apply_job_button">Apply Job</string>
     <string name="AppliedJob">My Applied Job</string>
     <string name="FavouriteJob">My Favourite Job</string>
+    <string name="applied_date_title">Applied Date:</string>
+    <string name="example_job_applied_status">Show job applied here</string>
+    <string name="no_apply_job_show">You Haven\'t Apply Any Job</string>
+
+
+    <!--    applicant item-->
+    <string name="apply_date_title">Apply Date : </string>
+    <string name="example_applicant_name">Michelle</string>
+    <string name="example_contact">012-7123453</string>
+    <string name="example_email">michelle@gmail.com</string>
+    <string name="example_apply_status">Pending</string>
+    <string name="applicant_image">Applicant Image</string>
+    <string name="no_applicant_now">There are currently no applicants</string>
     <string name="edit_personal_information">Edit Personal Information</string>
-    <string name="easy_job">Easy Job</string>
+    <string name="easy_job">EasyJob</string>
+    <string name="show_welcome">Welcome to EasyJob</string>
 
 
 </resources>
