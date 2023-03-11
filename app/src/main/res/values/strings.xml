@@ -206,6 +206,8 @@
     <string name="edit_personal_information">Edit Personal Information</string>
     <string name="easy_job">EasyJob</string>
     <string name="show_welcome">Welcome to EasyJob</string>
+    <string name="password_rest">Password Rest</string>
+    <string name="send">Send</string>
 
 
 </resources>

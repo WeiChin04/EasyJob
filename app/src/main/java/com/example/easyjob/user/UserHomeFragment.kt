@@ -1,25 +1,22 @@
 package com.example.easyjob.user
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.databinding.FragmentUserHomeBinding
-import com.example.easyjob.employer.EmployerHome
-import com.example.easyjob.employer.JobAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class UserHomeFragment : Fragment() {
 
@@ -33,7 +30,6 @@ class UserHomeFragment : Fragment() {
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<UserJobData>
     private lateinit var userJobAdapter: UserJobAdapter
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -50,25 +46,18 @@ class UserHomeFragment : Fragment() {
         jobRecyclerView.adapter = userJobAdapter
 
 //        searchJob()
-
         binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                filterList(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 filterList(newText)
-                if (filterList(newText)!=null)
-                {
-                    Log.d("SearchJob",filterList(newText).toString())
-                }else{
-                    Log.d("SearchJob","Fail to Get Data!!")
-                }
                 return true
             }
 
         })
-
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -88,7 +77,6 @@ class UserHomeFragment : Fragment() {
 
         return binding.root
     }
-
 
     private fun getJobData() {
 
@@ -126,12 +114,8 @@ class UserHomeFragment : Fragment() {
                 }
             }
 
-            if (filteredList.isEmpty()) {
-                Toast.makeText(requireContext(), "No Job Found", Toast.LENGTH_SHORT).show()
-            } else {
-                userJobAdapter.setFilteredList(filteredList)
-                jobRecyclerView.adapter = userJobAdapter
-            }
+            userJobAdapter.setFilteredList(filteredList)
+            jobRecyclerView.adapter = userJobAdapter
         }
     }
 

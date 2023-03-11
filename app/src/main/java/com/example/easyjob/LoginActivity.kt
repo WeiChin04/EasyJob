@@ -54,6 +54,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.tvUserResetPassword.setOnClickListener{
+            startActivity(Intent(this, ResetPasswordActivity::class.java))
+        }
     }
 
     private fun checkUser()
