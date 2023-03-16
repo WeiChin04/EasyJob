@@ -38,7 +38,7 @@ class UserInformationFragment : Fragment() {
 
 
     companion object {
-        private const val REQUEST_CODE_STORAGE_PERMISSION = 100
+        internal const val REQUEST_CODE_STORAGE_PERMISSION = 100
     }
 
     override fun onCreateView(
@@ -79,8 +79,8 @@ class UserInformationFragment : Fragment() {
         val pdfChillName = "PDFFiles/${auth.currentUser!!.uid}.pdf"
         val pdfRef = storageRef.child(pdfChillName)
 
-        pdfRef.downloadUrl.addOnSuccessListener { uri->
-            binding.tvUserResume.text = "Resume.pdf"
+        pdfRef.downloadUrl.addOnSuccessListener {
+            binding.tvUserResume.text = getString(R.string.pdf_name)
         }.addOnFailureListener {}
 
 

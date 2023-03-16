@@ -4,16 +4,23 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.user.UserApplicationData
 import com.example.easyjob.user.UserData
+import com.google.firebase.storage.FirebaseStorage
 
-class ApplicantAdapter(private val appliedDataList: ArrayList<UserApplicationData>, private val applicantList: ArrayList<UserData>) : RecyclerView.Adapter<ApplicantAdapter.ApplicantViewHolder>() {
+class ApplicantAdapter(private val childId: String,
+                       private val appliedDataList: ArrayList<UserApplicationData>,
+                       private val applicantList: ArrayList<UserData>
+                       ) : RecyclerView.Adapter<ApplicantAdapter.ApplicantViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ApplicantViewHolder {
 
@@ -31,18 +38,48 @@ class ApplicantAdapter(private val appliedDataList: ArrayList<UserApplicationDat
         val appliedDataList = appliedDataList[appliedDataListPosition]
         val applicantList = applicantList[applicantListPosition]
 
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = "ProfileImages/"+applicantList.userId
+        val imageRef = storageRef.child(filePathAndName)
+
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(holder.itemView.context)
+                .load(uri)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .into(holder.applicantImage)
+        }.addOnFailureListener {}
+
         holder.applyDate.text = appliedDataList.appliedAt
         holder.applicantName.text = applicantList.name
         holder.applicantContract.text = applicantList.contact
         holder.applicantEmail.text = applicantList.email
+        holder.applyJobStatus.text = appliedDataList.status
 
-        if(holder.applyJobStatus.text == "Pending"){
-            holder.applyJobStatus.setBackgroundColor(Color.GRAY)
+        when (holder.applyJobStatus.text) {
+            "Pending" -> {
+                holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.yellow))
+            }
+            "Approved" -> {
+                holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
+            }
+            else -> {
+                holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
+            }
         }
 
         holder.cardView.setOnClickListener{
             val bundle = bundleOf(
-
+                "application_id" to childId,
+                "deviceToken" to applicantList.deviceToken,
+                "applicant_id" to applicantList.userId,
+                "name" to applicantList.name,
+                "contact" to applicantList.contact,
+                "email" to applicantList.email,
+                "education_level" to applicantList.education_level,
+                "expected_salary" to applicantList.jobsalary,
+                "address" to applicantList.address,
+                "about_me" to applicantList.about_me
             )
             it.findNavController().navigate(R.id.action_applicantManagementFragment_to_applicantDetailsFragment, bundle)
         }
@@ -67,6 +104,7 @@ class ApplicantAdapter(private val appliedDataList: ArrayList<UserApplicationDat
         val applicantContract : TextView = itemView.findViewById(R.id.tvShowApplicantContact)
         val applicantEmail : TextView = itemView.findViewById(R.id.tvShowApplicantEmail)
         val applyJobStatus : TextView = itemView.findViewById(R.id.tvShowStatus)
+        val applicantImage : ImageView = itemView.findViewById(R.id.imgApplicant)
         val cardView: CardView = itemView.findViewById(R.id.applicantCardView)
 
     }

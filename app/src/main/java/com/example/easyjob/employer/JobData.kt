@@ -17,4 +17,5 @@ data class JobData(
     var ctr: Int? = null,
     var currentDate: String? =null,
     var jobId: String? =null,
+    val imgPath: String? =null,
 )

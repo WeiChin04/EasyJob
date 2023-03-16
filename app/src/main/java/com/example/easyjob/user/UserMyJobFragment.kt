@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.databinding.FragmentUserMyJobBinding
+import com.example.easyjob.employer.JobData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -21,7 +22,7 @@ class UserMyJobFragment : Fragment() {
     private lateinit var dbRef : DatabaseReference
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<UserApplicationData>
-    private lateinit var jobDataArrayList: ArrayList<UserJobData>
+    private lateinit var jobDataArrayList: ArrayList<JobData>
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class UserMyJobFragment : Fragment() {
         jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         jobRecyclerView.setHasFixedSize(true)
         jobArrayList = arrayListOf<UserApplicationData>()
-        jobDataArrayList = arrayListOf<UserJobData>()
+        jobDataArrayList = arrayListOf<JobData>()
         checkAppliedJobExist()
         super.onViewCreated(view, savedInstanceState)
     }
@@ -64,13 +65,16 @@ class UserMyJobFragment : Fragment() {
                     jobDataArrayList.clear() // clear jobDataList
                     val jobsRef = FirebaseDatabase.getInstance().getReference("Jobs")
                     for (jobId in jobIds) {
+                        val employerIds = mutableListOf<String>()
                         val jobQuery = jobsRef.orderByKey().equalTo(jobId)
                         jobQuery.addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 if (snapshot.exists()) {
                                     for(jobSnapshot in snapshot.children){
-                                        val jobData = jobSnapshot.getValue(UserJobData::class.java)
+                                        val jobData = jobSnapshot.getValue(JobData::class.java)
                                         jobDataArrayList.add(jobData!!)
+                                        val employerId = jobData.employerId
+                                        employerId?.let {employerIds.add(it)}
                                     }
                                 }
                                 jobRecyclerView.adapter = UserJobAppliedAdapter(jobArrayList,jobDataArrayList)
@@ -95,6 +99,7 @@ class UserMyJobFragment : Fragment() {
         })
 
     }
+
 
 
 }

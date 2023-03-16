@@ -201,7 +201,7 @@
     <!--    applicant item-->
     <string name="apply_date_title">Apply Date : </string>
     <string name="example_applicant_name">Michelle</string>
-    <string name="example_contact">012-7123453</string>
+    <string name="example_contact">012–7123453</string>
     <string name="example_email">michelle@gmail.com</string>
     <string name="example_apply_status">Pending</string>
     <string name="applicant_image">Applicant Image</string>
@@ -220,6 +220,12 @@
         <item>Highest Salary</item>
         <item>Latest Post Job</item>
     </string-array>
+    <string name="applicant_details_title">Applicant Details</string>
+    <string name="pdf_name">Resume.pdf</string>
+    <string name="empty_resume">Applicant did not upload any resume or CV</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
+    <string name="cancel_application">Cancel</string>
 
     <string-array name="jobType">
         <item>Internship</item>

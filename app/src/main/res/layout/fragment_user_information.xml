@@ -228,7 +228,7 @@
                 style="@style/textview_border"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_resume_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_resume_title" />

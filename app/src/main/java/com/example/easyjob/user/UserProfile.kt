@@ -32,7 +32,7 @@ class UserProfile : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
 
         auth = FirebaseAuth.getInstance()
@@ -45,13 +45,13 @@ class UserProfile : Fragment() {
         val filePathAndName = "ProfileImages/"+ auth.currentUser!!.uid
         val imageRef = storageRef.child(filePathAndName)
 
-        if(imageRef!=null) {
-            imageRef.downloadUrl.addOnSuccessListener { uri ->
-                Glide.with(this)
-                    .load(uri)
-                    .into(binding.ivUserProfile)
-            }.addOnFailureListener {}
-        }
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this)
+                .load(uri)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .into(binding.ivUserProfile)
+        }.addOnFailureListener {}
 
         //get user data form view model
         userDataViewModel = ViewModelProvider(requireActivity())[UserDataViewModel::class.java]

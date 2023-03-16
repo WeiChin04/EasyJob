@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_jobView_to_jobDetailFragment"
             app:destination="@id/jobDetailFragment" />
+        <action
+            android:id="@+id/action_jobView_to_employerJobForm"
+            app:destination="@id/employerJobForm" />
     </fragment>
 
     <!--Job-->
@@ -23,16 +26,13 @@
         android:id="@+id/jobDetailFragment"
         android:name="com.example.easyjob.employer.JobDetailFragment">
         <action
-            android:id="@+id/action_jobDetailFragment_to_jobEditFragment"
-            app:destination="@id/jobEditFragment" />
-        <action
             android:id="@+id/action_jobDetailFragment_to_applicantManagementFragment"
             app:destination="@id/applicantManagementFragment" />
+        <action
+            android:id="@+id/action_jobDetailFragment_to_employerJobForm"
+            app:destination="@id/employerJobForm" />
     </fragment>
 
-    <fragment
-        android:id="@+id/jobEditFragment"
-        android:name="com.example.easyjob.employer.JobEditFragment" />
     <!--Profile-->
     <fragment
         android:id="@+id/employerProfile"
@@ -67,4 +67,8 @@
         android:name="com.example.easyjob.employer.ApplicantDetailsFragment"
         android:label="fragment_applicant_details"
         tools:layout="@layout/fragment_applicant_details" />
+    <fragment
+        android:id="@+id/employerJobForm"
+        android:name="com.example.easyjob.employer.EmployerJobForm"
+        android:label="EmployerJobForm" />
 </navigation>

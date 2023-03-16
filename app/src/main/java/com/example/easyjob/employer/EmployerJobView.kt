@@ -7,8 +7,11 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentEmployerJobViewBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -16,9 +19,9 @@ import com.google.firebase.database.*
 
 class EmployerJobView : Fragment() {
 
-    private  var _binding: FragmentEmployerJobViewBinding? =null
+    private var _binding: FragmentEmployerJobViewBinding? = null
     private val binding get() = _binding!!
-    private lateinit var dbRef : DatabaseReference
+    private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var uid: String
     private lateinit var auth: FirebaseAuth
@@ -42,43 +45,45 @@ class EmployerJobView : Fragment() {
         val currentUserID = FirebaseAuth.getInstance().currentUser?.uid
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
 
-        dbRef.orderByChild("employerId").equalTo(currentUserID).addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(jobSnapshot in snapshot.children){
-                        val job = jobSnapshot.getValue(JobData::class.java)
-                        jobArrayList.add(job!!)
+        dbRef.orderByChild("employerId").equalTo(currentUserID)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (jobSnapshot in snapshot.children) {
+                            val job = jobSnapshot.getValue(JobData::class.java)
+                            jobArrayList.add(job!!)
+                        }
+                        jobRecyclerView.adapter = JobAdapter(jobArrayList)
+                    } else {
+                        binding.etNoJobShow.visibility = View.VISIBLE
+                        binding.myJobList.visibility = View.GONE
                     }
-                    jobRecyclerView.adapter = JobAdapter(jobArrayList)
-                }else{
-                    binding.etNoJobShow.visibility = View.VISIBLE
-                    binding.myJobList.visibility = View.GONE
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
-                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
 
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentEmployerJobViewBinding.inflate(inflater,container,false)
-
+    ): View {
+        _binding = FragmentEmployerJobViewBinding.inflate(inflater, container, false)
+        val postJobAction = "actionPostJob"
         binding.btnAddJob.setOnClickListener {
-            activity?.let{
-                val intent = Intent (it, PostJob::class.java)
-                it.startActivity(intent)
+            val bundle = Bundle().apply {
+                putString("actionPostJob", postJobAction)
             }
+            it.findNavController()
+                .navigate(R.id.action_jobView_to_employerJobForm, bundle)
         }
-
         return binding.root
+
+
     }
-
-
 }

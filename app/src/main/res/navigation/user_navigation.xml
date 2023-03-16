@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/userMyJob"
         android:name="com.example.easyjob.user.UserMyJobFragment"
-        tools:layout="@layout/fragment_user_my_job" />
+        tools:layout="@layout/fragment_user_my_job" >
+        <action
+            android:id="@+id/action_userMyJob_to_userJobDetailFragment"
+            app:destination="@id/userJobDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userProfile"
         android:name="com.example.easyjob.user.UserProfile"

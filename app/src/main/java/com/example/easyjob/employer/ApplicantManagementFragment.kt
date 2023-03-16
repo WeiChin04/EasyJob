@@ -67,6 +67,7 @@ class ApplicantManagementFragment : Fragment() {
 
         val applicantIds = mutableListOf<String>()
         val jobId = arguments?.getString("jobId")
+        var childId = ""
         val pending = "Pending"
         val approved = "Approved"
         dbRef = FirebaseDatabase.getInstance().getReference("Applications")
@@ -75,6 +76,7 @@ class ApplicantManagementFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (applicantSnapshot in snapshot.children) {
+                        childId = applicantSnapshot.key.toString()
                         val applyDetail = applicantSnapshot.getValue(UserApplicationData::class.java)
                         appliedDataList.add(applyDetail!!)
                         val applicantId = applyDetail.applicantId
@@ -92,7 +94,7 @@ class ApplicantManagementFragment : Fragment() {
                                         applicantArrayList.add(applicantData!!)
                                     }
                                 }
-                                applicantRecyclerView.adapter = ApplicantAdapter(appliedDataList,applicantArrayList)
+                                applicantRecyclerView.adapter = ApplicantAdapter(childId,appliedDataList,applicantArrayList)
                             }
                             override fun onCancelled(error: DatabaseError) {
                                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())

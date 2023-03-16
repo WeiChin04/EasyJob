@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/cnUserJobDetails"
         tools:context=".user.UserJobDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -92,6 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/workplace_hint"
+                android:autoLink="map"
                 app:layout_constraintBottom_toBottomOf="@+id/iconWorkPlace"
                 app:layout_constraintStart_toEndOf="@+id/iconWorkPlace"
                 app:layout_constraintTop_toTopOf="@+id/iconWorkPlace" />
@@ -274,11 +276,29 @@
                 style="@style/ButtonGreen2"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/apply_job_button"
-                app:layout_constraintBottom_toBottomOf="@+id/btnViewCompanyInfo"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnViewCompanyInfo" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnCancelJob"
+                style="@style/ButtonGreenStoke2"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                android:text="@string/cancel_application"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnViewCompanyInfo"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

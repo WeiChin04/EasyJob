@@ -43,11 +43,10 @@ class JobDetailFragment : Fragment() {
 
         val jobId = arguments?.getString("job_id")
         binding.btnEditJob.setOnClickListener{
-
             val bundle = Bundle().apply {
                 putString("jobId", jobId)
             }
-            it.findNavController().navigate(R.id.action_jobDetailFragment_to_jobEditFragment, bundle)
+            it.findNavController().navigate(R.id.action_jobDetailFragment_to_employerJobForm, bundle)
         }
 
         binding.btnManageCandidate.setOnClickListener {

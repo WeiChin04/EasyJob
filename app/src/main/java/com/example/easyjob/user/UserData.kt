@@ -13,5 +13,6 @@ data class UserData(
     var profile_image: String? =null,
     val profile_status: String? = null,
     val userId: String? = null,
+    val deviceToken: String? =null
 
 )

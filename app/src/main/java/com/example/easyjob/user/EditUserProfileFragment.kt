@@ -88,8 +88,8 @@ class EditUserProfileFragment : Fragment() {
         val pdfChillName = "PDFFiles/${auth.currentUser!!.uid}.pdf"
         val pdfRef = storageRef.child(pdfChillName)
 
-        pdfRef.downloadUrl.addOnSuccessListener { uri->
-            binding.tvResumeFile.text = "Resume.pdf"
+        pdfRef.downloadUrl.addOnSuccessListener {
+            binding.tvResumeFile.text = getString(R.string.pdf_name)
         }.addOnFailureListener {}
 
         //get User Data
@@ -196,6 +196,7 @@ class EditUserProfileFragment : Fragment() {
         getSpinner()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 100 && resultCode == RESULT_OK){
@@ -204,7 +205,7 @@ class EditUserProfileFragment : Fragment() {
         }
         else if(requestCode == 200 && resultCode == RESULT_OK){
             pdfUri = data?.data!!
-            val selectedFile = File(pdfUri?.path)
+            val selectedFile = File(pdfUri?.path!!)
             binding.tvResumeFile.text = selectedFile.name
         }
     }
@@ -268,7 +269,7 @@ class EditUserProfileFragment : Fragment() {
         }
     }
 
-    private fun updateData(name: String,gender: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String) {
+    private fun updateData(name: String,gender: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String, deviceToken: String) {
         val navController = findNavController()
 
         dbref = FirebaseDatabase.getInstance().getReference("Users")
@@ -281,7 +282,8 @@ class EditUserProfileFragment : Fragment() {
             "address" to address,
             "education_level" to education_level,
             "about_me" to about_me,
-            "profile_status" to profile_status
+            "profile_status" to profile_status,
+            "deviceToken" to deviceToken
         )
 
         val update = dbref.child(auth.currentUser!!.uid).updateChildren(userMap)
@@ -335,7 +337,7 @@ class EditUserProfileFragment : Fragment() {
            binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level"||about_me.isEmpty()){
             Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
         }else {
-           updateData(name,gender,contact,jobsalary,address,education_level,about_me,profile_status)
+           updateData(name,gender,contact,jobsalary,address,education_level,about_me,profile_status, "")
        }
 
     }

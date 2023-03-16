@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -50,9 +51,15 @@ class UserJobDetailFragment : Fragment() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
 
+        if(arguments?.getString("fromAppliedJob") == "yes"){
+            binding.btnApplyJob.visibility = View.GONE
+            binding.btnCancelJob.visibility = View.VISIBLE
+        }
+
         binding.btnApplyJob.setOnClickListener{
             checkApplication()
         }
+
 
         return binding.root
     }
@@ -111,6 +118,7 @@ class UserJobDetailFragment : Fragment() {
         binding.tvJobDetailsWorkingHourEnd.text = jobWorkingHourEnd
         binding.tvJobDetailRequirementContent.text = requirement
         binding.tvJobDetailResContent.text = responsibilities
+
     }
 
     override fun onDestroyView() {
