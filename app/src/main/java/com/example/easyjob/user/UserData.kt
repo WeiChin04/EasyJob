@@ -2,6 +2,7 @@ package com.example.easyjob.user
 
 data class UserData(
     var name: String? = null,
+    var gender: String? = null,
     var email: String? = null,
     var contact: String? = null,
     var jobsalary: String? = null,

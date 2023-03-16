@@ -90,6 +90,7 @@ class UserInformationFragment : Fragment() {
         userDataViewModel.getData(auth.currentUser!!.uid)
         userDataViewModel.userData.observe(viewLifecycleOwner) { userData ->
             binding.tvUserFullname.text = userData.name
+            binding.tvUserGender.text = userData.gender
             binding.tvUserEmail.text = userData.email
             binding.tvUserContact.text = userData.contact
             binding.tvUserJobSalary.text = userData.jobsalary

@@ -2,37 +2,31 @@ package com.example.easyjob.user
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.R
-import java.util.*
-import kotlin.collections.ArrayList
 
-class UserJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
+class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): UserJobViewHolder {
+    ): UserJobAdapter.UserJobViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.job_item_user,
             parent, false
         )
-        return UserJobViewHolder(itemView)
-
+        return UserJobAdapter.UserJobViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: UserJobViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserJobAdapter.UserJobViewHolder, position: Int) {
 
         val currentItem = jobList[position]
         holder.datePosted.text = currentItem.currentDate
@@ -59,7 +53,7 @@ class UserJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView
                 "job_status" to jobList[position].jobStatus
             )
             it.findNavController()
-                .navigate(R.id.action_userHomeFragment_to_userJobDetailFragment, bundle)
+                .navigate(R.id.action_userSearchResult_to_userJobDetailFragment, bundle)
         }
     }
 

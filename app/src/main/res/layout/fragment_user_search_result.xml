@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:elevation="8dp"
+    tools:context=".user.UserSearchResult">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_back_arrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
+                android:rotation="180"
+                app:drawableStartCompat="@drawable/ic_arrow_right" />
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/search_bar"
+                android:closeIcon="@drawable/ic_x"
+                android:focusable="false"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search..."
+                android:searchHintIcon="@null"
+                android:searchIcon="@drawable/ic_search"
+                tools:targetApi="lollipop_mr1" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/view_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/tv_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/sort"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sp_sort"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/sort"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_sort"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sort" />
+
+            <TextView
+                android:id="@+id/tv_job_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:text="@string/job_type"
+                app:layout_constraintStart_toEndOf="@+id/tv_sort"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sp_job_type"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_job_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_job_type"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_salaary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="90dp"
+                android:text="@string/job_salary"
+                app:layout_constraintStart_toEndOf="@+id/tv_job_type"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sp_salary"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/Salary"
+                android:minHeight="48dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_salaary"
+                app:layout_constraintTop_toBottomOf="@+id/tv_salaary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myJobList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:listitem="@layout/job_item_user" />
+
+    <TextView
+        android:id="@+id/tvNoAppliedJobShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_job_found"
+        app:layout_constraintBottom_toBottomOf="@+id/myJobList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

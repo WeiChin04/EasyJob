@@ -11,8 +11,11 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentUserHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -30,6 +33,7 @@ class UserHomeFragment : Fragment() {
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<UserJobData>
     private lateinit var userJobAdapter: UserJobAdapter
+    private lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -49,12 +53,13 @@ class UserHomeFragment : Fragment() {
         binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 filterList(query)
+                navController = Navigation.findNavController(binding.searchView)
+                navController.navigate(R.id.action_userHomeFragment_to_userSearchResult)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return true
+                return false
             }
 
         })
@@ -107,15 +112,16 @@ class UserHomeFragment : Fragment() {
 
     private fun filterList(query: String?) {
         if (query != null) {
-            val filteredList = ArrayList<UserJobData>()
-            for (i in jobArrayList) {
-                if (i.jobTitle!!.lowercase(Locale.ROOT).contains(query)) {
-                    filteredList.add(i)
-                }
-            }
-
-            userJobAdapter.setFilteredList(filteredList)
-            jobRecyclerView.adapter = userJobAdapter
+//            val filteredList = ArrayList<UserJobData>()
+//            for (i in jobArrayList) {
+//                if (i.jobTitle!!.lowercase(Locale.ROOT).contains(query)) {
+//                    filteredList.add(i)
+//                }
+//            }
+            val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.putString("search_result", query)
+            editor.apply()
         }
     }
 

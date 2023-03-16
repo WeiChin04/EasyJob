@@ -73,14 +73,34 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_title" />
 
             <TextView
+                android:id="@+id/tv_user_gender_title"
+                style="@style/textview_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/gender"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname" />
+
+            <TextView
+                android:id="@+id/tv_user_gender"
+                style="@style/input_edit_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minEms="10"
+                app:layout_constraintStart_toStartOf="@+id/tv_user_gender_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_gender_title" />
+
+            <TextView
                 android:id="@+id/tv_user_email_title"
                 style="@style/textview_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/email"
-                app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname" />
+                app:layout_constraintStart_toStartOf="@+id/tv_user_gender_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_gender" />
 
             <TextView
                 android:id="@+id/tv_user_email"

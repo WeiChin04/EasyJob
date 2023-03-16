@@ -71,12 +71,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:minEms="10"
             android:hint="@string/enter_full_name"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
+            android:minEms="10"
             app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_fullname_title"
-            android:importantForAutofill="no" />
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/tv_user_gender_title"
+            style="@style/textview_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/gender"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_fullname" />
+
+        <EditText
+            android:id="@+id/et_user_gender"
+            style="@style/input_edit_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/enter_your_gender"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minEms="10"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_gender_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_gender_title"
+            tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/tv_user_email_title"
@@ -85,8 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/email"
-            app:layout_constraintStart_toStartOf="@+id/tv_user_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_user_fullname" />
+            app:layout_constraintStart_toStartOf="@+id/tv_user_gender_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_user_gender" />
 
         <EditText
             android:id="@+id/et_user_email"
@@ -94,6 +119,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:backgroundTint="#DCDCDC"
+            android:editable="false"
+            android:enabled="false"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:minWidth="48dp"
@@ -118,12 +146,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:minEms="10"
             android:hint="@string/enter_your_contact_number"
             android:importantForAutofill="no"
             android:inputType="number|text"
+            android:minEms="10"
             app:layout_constraintStart_toStartOf="@+id/tv_user_contact_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_contact_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_contact_title"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/tv_user_education_title"

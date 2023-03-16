@@ -15,7 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/easy_job"
         android:textColor="@color/green"
-        android:textSize="35sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

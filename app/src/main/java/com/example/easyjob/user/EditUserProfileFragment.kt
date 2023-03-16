@@ -186,6 +186,7 @@ class EditUserProfileFragment : Fragment() {
         userDataViewModel.getData(auth.currentUser!!.uid)
         userDataViewModel.userData.observe(viewLifecycleOwner) { userData ->
             binding.etUserFullname.setText(userData.name)
+            binding.etUserGender.setText(userData.gender)
             binding.etUserEmail.setText(userData.email)
             binding.etUserContact.setText(userData.contact)
             binding.etUserExpectationSalary.setText(userData.jobsalary)
@@ -267,13 +268,14 @@ class EditUserProfileFragment : Fragment() {
         }
     }
 
-    private fun updateData(name: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String) {
+    private fun updateData(name: String,gender: String,contact: String,jobsalary: String, address: String, education_level: String, about_me: String, profile_status: String) {
         val navController = findNavController()
 
         dbref = FirebaseDatabase.getInstance().getReference("Users")
 
         val userMap = mapOf(
             "name" to name,
+            "gender" to gender,
             "contact" to contact,
             "jobsalary" to jobsalary,
             "address" to address,
@@ -300,6 +302,7 @@ class EditUserProfileFragment : Fragment() {
     private fun validateInput()
     {
         val name = binding.etUserFullname.text.toString()
+        val gender = binding.etUserGender.text.toString()
         val contact = binding.etUserContact.text.toString()
         val jobsalary = binding.etUserExpectationSalary.text.toString()
         val address = binding.etUserAddress.text.toString()
@@ -309,6 +312,9 @@ class EditUserProfileFragment : Fragment() {
 
         if(name.isEmpty()) {
             binding.etUserFullname.error = "Please Enter Name"
+        }
+        if(gender.isEmpty()){
+            binding.etUserGender.error = "Please Enter Your Gender"
         }
         if(contact.isEmpty()) {
             binding.etUserContact.error = "Please Enter Contact Number"
@@ -329,7 +335,7 @@ class EditUserProfileFragment : Fragment() {
            binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level"||about_me.isEmpty()){
             Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
         }else {
-           updateData(name,contact,jobsalary,address,education_level,about_me,profile_status)
+           updateData(name,gender,contact,jobsalary,address,education_level,about_me,profile_status)
        }
 
     }

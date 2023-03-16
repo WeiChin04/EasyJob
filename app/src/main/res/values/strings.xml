@@ -21,7 +21,8 @@
     <!--User-->
     <string name="login_as_an_employer">Login as an <font color="#B3004932">Employer</font></string>
     <string name="user_sign_up">User\nSign Up</string>
-
+    <string name="password_rest">Password Rest</string>
+    <string name="send">Send</string>
 
     <!--Employer-->
     <string name="login_as_an_user">Login as an <font color="#B3004932">User</font></string>
@@ -182,6 +183,8 @@
     <string name="enter_your_company_email">Enter Your Company Email</string>
     <string name="enter_your_company_address">Enter Your Company Address</string>
     <string name="enter_your_company_industry">Enter Your Company Industry</string>
+    <string name="gender">Gender</string>
+    <string name="enter_your_gender">Enter Your Gender</string>
     <string name="introduce_your_company">Introduce Your Company</string>
     <string name="my_job_page_title">My Job</string>
     <string name="home">Home</string>
@@ -204,10 +207,33 @@
     <string name="applicant_image">Applicant Image</string>
     <string name="no_applicant_now">There are currently no applicants</string>
     <string name="edit_personal_information">Edit Personal Information</string>
+
+    <!--home page-->
     <string name="easy_job">EasyJob</string>
     <string name="show_welcome">Welcome to EasyJob</string>
-    <string name="password_rest">Password Rest</string>
-    <string name="send">Send</string>
+    <string name="sort">Sort</string>
+    <string name="no_job_found">No Job Found</string>
 
+    <string-array name="sort">
+        <item>Relevance</item>
+        <item>Most View</item>
+        <item>Highest Salary</item>
+        <item>Latest Post Job</item>
+    </string-array>
+
+    <string-array name="jobType">
+        <item>Internship</item>
+        <item>Part Time</item>
+        <item>Full Time</item>
+    </string-array>
+
+    <string-array name="Salary">
+        <item>RM</item>
+        <item>1000 &amp; above</item>
+        <item>3000 &amp; above</item>
+        <item>5000 &amp; above</item>
+        <item>7000 &amp; above</item>
+        <item>10000 &amp; above</item>
+    </string-array>
 
 </resources>
