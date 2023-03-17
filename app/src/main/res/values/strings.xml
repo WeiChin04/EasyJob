@@ -38,6 +38,7 @@
     <string name="job_details">Job Details</string>
     <string name="example_job_status">Job Status Show here</string>
 
+
     <!--Employer Post Job-->
     <string name="post_job_page_title">Post Job</string>
     <string name="job_title">Job Title</string>
@@ -135,6 +136,7 @@
     <string name="resume">Resume</string>
     <string name="personal_information">Personal Information</string>
 
+
     <string-array name="education_level">
         <item>Click To Select Education Level</item>
         <item>Secondary School</item>
@@ -150,6 +152,7 @@
     <string name="manage_applicant_button">Manage Applicant</string>
     <string name="edit_button">Edit</string>
     <string name="title_activity_job_edit_form">JobEditForm</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -196,6 +199,15 @@
     <string name="applied_date_title">Applied Date:</string>
     <string name="example_job_applied_status">Show job applied here</string>
     <string name="no_apply_job_show">You Haven\'t Apply Any Job</string>
+    <string name="show_cancel_application_confirm_message">Do you want to cancel your application for this job?</string>
+    <string name="show_applied_success_message">Applied Successfully!!</string>
+    <string name="show_repeat_applied_job_message">You have applied this job before</string>
+
+
+    <!--    messageDialog   -->
+    <string name="messageDialog_yes">Yes</string>
+    <string name="messageDialog_confirm">Confirm</string>
+    <string name="messageDialog_no">no</string>
 
 
     <!--    applicant item-->
@@ -226,6 +238,9 @@
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
     <string name="cancel_application">Cancel</string>
+    <string name="show_rejected_message">You have rejected the applicant.</string>
+    <string name="cancel_successful_application">Application cancelled</string>
+    <string name="cancel_fail_application">Failed to cancel application</string>
 
     <string-array name="jobType">
         <item>Internship</item>

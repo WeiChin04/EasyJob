@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.easyjob.R
 
 class UserJobDetailFragment : Fragment() {
 
@@ -60,8 +61,49 @@ class UserJobDetailFragment : Fragment() {
             checkApplication()
         }
 
+        binding.btnCancelJob.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(requireContext())
+            alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+            alertDialog.setMessage(requireContext().getString(R.string.show_cancel_application_confirm_message))
+            alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
+                cancelApplication()
+            }
+            alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
+                dialog.cancel()
+            }
+            alertDialog.show()
+        }
+
 
         return binding.root
+    }
+
+    private fun cancelApplication() {
+
+        dbRef = FirebaseDatabase.getInstance().reference
+        val appliedJobId = arguments?.getString("application_id")
+        val applicationRef = dbRef.child("Applications").child(appliedJobId.toString())
+
+        applicationRef.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot.exists()){
+                    applicationRef.removeValue().addOnSuccessListener {
+                        Toast.makeText(requireContext(), getString(R.string.cancel_successful_application), Toast.LENGTH_SHORT).show()
+                        requireActivity().onBackPressed()
+                    }.addOnFailureListener{
+                        Toast.makeText(requireContext(), getString(R.string.cancel_fail_application), Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Database error: ${error.message}", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
     }
 
     private fun checkApplication(){
@@ -75,19 +117,23 @@ class UserJobDetailFragment : Fragment() {
         val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
         val appliedAt = sdf.format(Date())
 
+
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    Toast.makeText(requireContext(), "You have applied this job before", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.show_repeat_applied_job_message), Toast.LENGTH_SHORT).show()
                 } else {
                     val newApplication = UserApplicationData(
                         jobId,
                         currentUser,
                         status,
-                        appliedAt
+                        appliedAt,
+                        "",
+                        "",
+                        appliedJobId
                     )
                     dbRef.child(appliedJobId).setValue(newApplication)
-                    Toast.makeText(requireContext(), "Applied Successfully!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.show_applied_success_message), Toast.LENGTH_SHORT).show()
                 }
             }
 

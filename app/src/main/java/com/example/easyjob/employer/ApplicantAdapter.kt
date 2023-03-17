@@ -79,7 +79,8 @@ class ApplicantAdapter(private val childId: String,
                 "education_level" to applicantList.education_level,
                 "expected_salary" to applicantList.jobsalary,
                 "address" to applicantList.address,
-                "about_me" to applicantList.about_me
+                "about_me" to applicantList.about_me,
+                "apply_status" to appliedDataList.status
             )
             it.findNavController().navigate(R.id.action_applicantManagementFragment_to_applicantDetailsFragment, bundle)
         }

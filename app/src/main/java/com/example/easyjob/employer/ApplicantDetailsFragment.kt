@@ -6,8 +6,6 @@ import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Environment
-import android.os.Message
-import android.telecom.PhoneAccount.builder
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +15,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,8 +24,6 @@ import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentApplicantDetailsBinding
 import com.example.easyjob.user.UserApplicationData
 import com.example.easyjob.user.UserInformationFragment
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.SchedulerConfig.ConfigValue.builder
-import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions.builder
 import com.google.firebase.database.*
 import com.google.firebase.installations.InstallationTokenResult.builder
 import com.google.firebase.messaging.FirebaseMessaging
@@ -120,7 +115,12 @@ class ApplicantDetailsFragment : Fragment() {
             }
         }
 
-        binding.btnReject.setOnClickListener {
+        if(arguments?.getString("apply_status") == "Rejected"){
+            binding.btnApprove.visibility = View.GONE
+            binding.btnReject.visibility = View.GONE
+            binding.tvShowRejected.visibility = View.VISIBLE
+        }else{
+            binding.btnReject.setOnClickListener {
                 val alertDialog = AlertDialog.Builder(requireContext())
                 alertDialog.setTitle("Confirm")
                 alertDialog.setMessage("Do you want to reject "+arguments?.getString("name")+" ?")
@@ -131,21 +131,24 @@ class ApplicantDetailsFragment : Fragment() {
                     dialog.cancel()
                 }
                 alertDialog.show()
+            }
+
+            binding.btnApprove.setOnClickListener {
+
+                val alertDialog = AlertDialog.Builder(requireContext())
+                alertDialog.setTitle("Confirm")
+                alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
+                alertDialog.setPositiveButton("Yes") { _, _ ->
+                    approveApplicant()
+                }
+                alertDialog.setNegativeButton("No") { dialog, _ ->
+                    dialog.cancel()
+                }
+                alertDialog.show()
+            }
         }
 
-        binding.btnApprove.setOnClickListener {
 
-            val alertDialog = AlertDialog.Builder(requireContext())
-            alertDialog.setTitle("Confirm")
-            alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
-            alertDialog.setPositiveButton("Yes") { _, _ ->
-                approveApplicant()
-            }
-            alertDialog.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
-            }
-            alertDialog.show()
-        }
 
         return binding.root
     }
@@ -163,7 +166,7 @@ class ApplicantDetailsFragment : Fragment() {
 
                 application?.apply {
                     status = "Approved"
-                    rejectAt = currentTimeInSeconds.toString()
+                    approvedAt = currentTimeInSeconds.toString()
                 }
 
                 applicationRef.setValue(application).addOnCompleteListener {

@@ -68,6 +68,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
 
         holder.userCardView.setOnClickListener{
             val bundle = bundleOf(
+                "application_id" to jobList[position].applicationId,
                 "job_id" to jobList[position].jobId,
                 "job_title" to jobData[position].jobTitle,
                 "job_salary" to jobData[position].jobSalary,
