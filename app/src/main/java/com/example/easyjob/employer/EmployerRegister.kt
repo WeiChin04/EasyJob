@@ -76,12 +76,17 @@ class EmployerRegister : AppCompatActivity() {
             binding.etEmployerConfirmPassword.error = "Confirm Password cannot be empty"
         }
 
-        if(email.isNotEmpty()||password.length>8||binding.checkboxTnc.isChecked){
-            Toast.makeText(this@EmployerRegister,"Please agree T&C",Toast.LENGTH_SHORT).show()
-            if (cpassword != password) {
-                Toast.makeText(this@EmployerRegister,"Password and Confirm Password No Match",Toast.LENGTH_SHORT).show()
-            }else {
+        if(email.isEmpty()||password.length<8){
+            Toast.makeText(this@EmployerRegister,"Please ensure that the information entered is correct!! ",Toast.LENGTH_SHORT).show()
+        }else {
+            if(binding.checkboxTnc.isChecked && cpassword == password) {
                 registerEmployer(email, password)
+            }else{
+                if(cpassword != password) {
+                    binding.etEmployerConfirmPassword.error = "Password and Confirm Password No Match"
+                }else {
+                    Toast.makeText(this@EmployerRegister,"Please Agree T&C to Continue", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

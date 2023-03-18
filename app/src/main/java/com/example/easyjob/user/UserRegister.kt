@@ -83,11 +83,17 @@ class UserRegister : AppCompatActivity() {
             binding.etUserConfirmPassword.error = "Confirm Password cannot be empty"
         }
 
-        if(email.isNotEmpty()){
-            if (cpassword != password) {
-                Toast.makeText(this@UserRegister,"Password and Confirm Password No Match",Toast.LENGTH_SHORT).show()
-            } else {
+        if(email.isEmpty()||password.length<8){
+            Toast.makeText(this@UserRegister,"Please ensure that the information entered is correct!! ",Toast.LENGTH_SHORT).show()
+        }else {
+            if(binding.checkboxTnc.isChecked && cpassword == password) {
                 registerUser(email, password)
+            }else{
+                if(cpassword != password) {
+                    binding.etUserConfirmPassword.error = "Password and Confirm Password No Match"
+                }else {
+                    Toast.makeText(this@UserRegister,"Please Agree T&C to Continue", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
