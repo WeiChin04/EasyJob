@@ -103,7 +103,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@LoginActivity,"Sign in fail", Toast.LENGTH_SHORT).show()
+                }
             })
 
             employerRef.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -138,7 +140,9 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 }
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@LoginActivity,"Sign in fail", Toast.LENGTH_SHORT).show()
+                }
             })
         }
     }

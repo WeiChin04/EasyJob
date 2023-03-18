@@ -41,20 +41,7 @@ class UserRegister : AppCompatActivity() {
 
 
         binding.btnUserRegister.setOnClickListener {
-            val email = binding.etUserEmail.text.toString().trim()
-            val password = binding.etUserPassword.text.toString().trim()
-            val cpassword = binding.etUserConfirmPassword.text.toString().trim()
-            if(email.isNotEmpty()&& password.isNotEmpty() && cpassword.isNotEmpty()){
-                if(cpassword==password) {
-                    registerUser(email, password)
-                }
-                else{
-                    Toast.makeText(this,"Password not match", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else{
-                Toast.makeText(this,"Empty Field is not allowed", Toast.LENGTH_SHORT).show()
-            }
+            validation()
         }
     }
 
@@ -75,9 +62,34 @@ class UserRegister : AppCompatActivity() {
                         }
                 }
                 else{
-                    Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Email Has Been Registered", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun validation(){
+        val email = binding.etUserEmail.text.toString().trim()
+        val password = binding.etUserPassword.text.toString().trim()
+        val cpassword = binding.etUserConfirmPassword.text.toString().trim()
+        if(email.isEmpty()){
+            binding.etUserEmail.error = "Email cannot be empty"
+        }
+
+        if (password.length < 8){
+            binding.etUserPassword.error = "Password must be at least 8"
+        }
+
+        if(cpassword.isEmpty()){
+            binding.etUserConfirmPassword.error = "Confirm Password cannot be empty"
+        }
+
+        if(email.isNotEmpty()){
+            if (cpassword != password) {
+                Toast.makeText(this@UserRegister,"Password and Confirm Password No Match",Toast.LENGTH_SHORT).show()
+            } else {
+                registerUser(email, password)
+            }
+        }
     }
 
     private fun storeData()

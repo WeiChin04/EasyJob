@@ -107,64 +107,24 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_employer_contact_title" />
 
         <TextView
-            android:id="@+id/tv_company_fullname_title"
+            android:id="@+id/tv_employer_address_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/company_name"
+            android:text="@string/employer_address"
             app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_employer_contact" />
 
         <TextView
-            android:id="@+id/tv_company_fullname"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname_title" />
-
-        <TextView
-            android:id="@+id/tv_company_email_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/company_email"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname" />
-
-        <TextView
-            android:id="@+id/tv_company_email"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_email_title" />
-
-        <TextView
-            android:id="@+id/tv_company_address_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/company_address"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_email" />
-
-        <TextView
-            android:id="@+id/tv_company_address"
+            android:id="@+id/tv_employer_address"
             style="@style/textview_border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_address_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_address_title" />
 
         <TextView
             android:id="@+id/tv_company_industry_title"
@@ -172,9 +132,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/company_industry"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_address" />
+            android:text="@string/company_industry_view"
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_address" />
 
         <TextView
             android:id="@+id/tv_company_industry"
@@ -187,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_company_industry_title" />
 
         <TextView
-            android:id="@+id/tv_company_overview_title"
+            android:id="@+id/tv_employer_overview_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -197,14 +157,14 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_company_industry" />
 
         <TextView
-            android:id="@+id/tv_company_overview"
+            android:id="@+id/tv_employer_overview"
             style="@style/textview_border"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_overview_title" />
 
         <Button
             android:id="@+id/btnCancel"
@@ -215,8 +175,8 @@
             android:layout_marginBottom="32dp"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_overview" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_employer_edit_profile"

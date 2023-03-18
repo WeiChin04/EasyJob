@@ -124,11 +124,9 @@ class EditEmployerProfile : Fragment() {
             binding.etEmployerFullname.setText(employerData.name)
             binding.etEmployerEmail.setText(employerData.email)
             binding.etEmployerContact.setText(employerData.contact)
-            binding.etCompanyFullname.setText(employerData.companyName)
-            binding.etCompanyEmail.setText(employerData.companyEmail)
-            binding.etCompanyAddress.setText(employerData.companyAddress)
+            binding.etEmployerAddress.setText(employerData.address)
             binding.etCompanyIndustry.setText(employerData.companyIndustry)
-            binding.etCompanyOverview.setText(employerData.companyOverview)
+            binding.etEmployerOverview.setText(employerData.overview)
         }
     }
 
@@ -170,9 +168,8 @@ class EditEmployerProfile : Fragment() {
         }
     }
 
-    private fun updateData(name: String, contact: String,companyName: String,
-                           companyEmail: String,companyAddress: String,companyIndustry: String,
-                           companyOverview: String,profileStatus: String) {
+    private fun updateData(name: String, contact: String,address: String,companyIndustry: String,
+                           overview: String,profileStatus: String) {
         val navController = findNavController()
 
         dbref = FirebaseDatabase.getInstance().getReference("Employers")
@@ -180,11 +177,9 @@ class EditEmployerProfile : Fragment() {
         val employerMap = mapOf(
             "name" to name,
             "contact" to contact,
-            "companyName" to companyName,
-            "companyEmail" to companyEmail,
-            "companyAddress" to companyAddress,
+            "address" to address,
             "companyIndustry" to companyIndustry,
-            "companyOverview" to companyOverview,
+            "overview" to overview,
             "profileStatus" to profileStatus
         )
 
@@ -203,12 +198,10 @@ class EditEmployerProfile : Fragment() {
     private fun validateInput(){
         val name = binding.etEmployerFullname.text.toString()
         val contact = binding.etEmployerContact.text.toString()
-        val companyName = binding.etCompanyFullname.text.toString()
-        val companyEmail = binding.etCompanyEmail.text.toString()
-        val companyAddress = binding.etCompanyAddress.text.toString()
+        val address = binding.etEmployerAddress.text.toString()
         val companyIndustry = binding.etCompanyIndustry.text.toString()
-        val companyOverview = binding.etCompanyOverview.text.toString()
-        val profileStatus = "1"
+        val overview = binding.etEmployerOverview.text.toString()
+        var profileStatus = ""
 
         if(name.isEmpty()) {
             binding.etEmployerFullname.error = "Please Enter Name"
@@ -216,11 +209,17 @@ class EditEmployerProfile : Fragment() {
         if(contact.isEmpty()) {
             binding.etEmployerContact.error = "Please Enter Contact Number"
         }
+
+        profileStatus = if(address.isEmpty()||overview.isEmpty()){
+            "0"
+        }else{
+            "1"
+        }
+
         if(name.isEmpty()||contact.isEmpty()){
             Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
         }else {
-            updateData(name,contact,companyName,
-                companyEmail,companyAddress,companyIndustry,companyOverview,profileStatus)
+            updateData(name,contact,address,companyIndustry,overview,profileStatus)
         }
 
 

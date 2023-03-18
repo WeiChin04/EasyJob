@@ -9,18 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentUserSearchResultBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.text.FieldPosition
 import java.util.*
 
 
@@ -36,28 +31,17 @@ class UserSearchResult : Fragment() {
     private lateinit var customSpinner: CustomSpinner
     private var sortSpinnerPosition = 0
     private var salarySpinnerPosition = 0
+    private var checkboxSpinnerPosition = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentUserSearchResultBinding.inflate(inflater,container,false)
-        (activity as UserHome).hideBottomNavigationView()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         jobRecyclerView = binding.myJobList
         jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         jobRecyclerView.setHasFixedSize(true)
         jobArrayList = arrayListOf<UserJobData>()
         userJobAdapter = UserSearchJobAdapter(jobArrayList)
         jobRecyclerView.adapter = userJobAdapter
-
-        val spinner = binding.spJobType
-        customSpinner = CustomSpinner(requireContext(), listOf("All","Internship", "Part Time", "Full Time"))
-        spinner.adapter = customSpinner
-
-        // 获取选中的位置
-        val selectedPositions = customSpinner.getSelectedPositions()
-
-        println("Selected positions: $selectedPositions")
 
         val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val savedSearchResult = sharedPref.getString("search_result", "")
@@ -88,6 +72,10 @@ class UserSearchResult : Fragment() {
             }
         }
 
+        val spinner = binding.spJobType
+        customSpinner = CustomSpinner(requireContext(), listOf("All","Internship", "Part Time", "Full Time"))
+        spinner.adapter = customSpinner
+
         binding.spSalary.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 filterSalary(position)
@@ -97,6 +85,14 @@ class UserSearchResult : Fragment() {
                 // Do nothing
             }
         }
+
+    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentUserSearchResultBinding.inflate(inflater,container,false)
+        (activity as UserHome).hideBottomNavigationView()
 
         binding.tvBackArrow.setOnClickListener {
             requireActivity().onBackPressed()
@@ -125,7 +121,7 @@ class UserSearchResult : Fragment() {
                                 }
                             }
                         }
-                        val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
+//                        val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
                         val editor = sharedPref.edit()
                         editor.putString("search_result", query)
                         editor.apply()
@@ -162,18 +158,26 @@ class UserSearchResult : Fragment() {
         salarySpinnerPosition =position
     }
 
+    private fun spCheckBox(position:Int){
+        checkboxSpinnerPosition = position
+    }
+
     private fun updateRecyclerViewAdapter() {
         val filteredList = ArrayList<UserJobData>(jobArrayList)
-        val defaultList = jobArrayList.toList()
         // 根据选定的 Spinner 选项筛选列表...
-        if(sortSpinnerPosition == 0){
-            filteredList.sortBy{it.currentDate}
-        } else if (sortSpinnerPosition == 1) {
-            filteredList.sortBy { it.ctr }
-        } else if (sortSpinnerPosition == 2) {
-            filteredList.sortByDescending { it.jobSalary }
-        } else if (sortSpinnerPosition == 3) {
-            filteredList.sortByDescending { it.currentDate }
+        when (sortSpinnerPosition) {
+            0 -> {
+                filteredList.sortBy{it.currentDate}
+            }
+            1 -> {
+                filteredList.sortBy { it.ctr }
+            }
+            2 -> {
+                filteredList.sortByDescending { it.jobSalary?.toDoubleOrNull() ?: Double.POSITIVE_INFINITY }
+            }
+            3 -> {
+                filteredList.sortByDescending { it.currentDate }
+            }
         }
         if (salarySpinnerPosition > 0) {
             filteredList.retainAll {

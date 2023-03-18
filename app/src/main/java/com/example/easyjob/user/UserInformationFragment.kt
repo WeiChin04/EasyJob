@@ -64,7 +64,7 @@ class UserInformationFragment : Fragment() {
 
         //get profile image
         val storageRef = FirebaseStorage.getInstance().reference
-        val filePathAndName = "ProfileImages/"+ auth.currentUser!!.uid
+        val filePathAndName = "UsersProfileImages/"+ auth.currentUser!!.uid
         val imageRef = storageRef.child(filePathAndName)
 
         if(imageRef!=null) {

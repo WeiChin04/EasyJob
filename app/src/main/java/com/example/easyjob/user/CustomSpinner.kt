@@ -1,6 +1,7 @@
 package com.example.easyjob.user
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,17 +28,24 @@ class CustomSpinner(context: Context, private val itemList: List<String>) :
         val checkBox = view.findViewById<CheckBox>(R.id.cb_item)
         checkBox.text = itemList[position]
         checkBox.isChecked = selectedPositions.contains(position)
+
+        Log.d("checkbox adapter",checkBox.isChecked.toString())
+        checkBox.setOnCheckedChangeListener(null)
         checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 selectedPositions.add(position)
             } else {
                 selectedPositions.remove(position)
             }
+            Log.d("checkbox adapter", "position=$position, isChecked=$isChecked")
+            Log.d("checkbox adapter", "before selectedPositions=$selectedPositions")
+            notifyDataSetChanged()
         }
         return view
     }
 
     fun getSelectedPositions(): Set<Int> {
+        Log.d("checkbox selected",selectedPositions.toString())
         return selectedPositions
     }
 }

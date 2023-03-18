@@ -34,20 +34,7 @@ class EmployerRegister : AppCompatActivity() {
 
 
         binding.btnEmployerRegister.setOnClickListener {
-            val email = binding.etEmployerEmail.text.toString().trim()
-            val password = binding.etEmployerPassword.text.toString().trim()
-            val cpassword = binding.etEmployerConfirmPassword.text.toString().trim()
-            if(email.isNotEmpty()&& password.isNotEmpty() && cpassword.isNotEmpty()){
-                if(cpassword==password) {
-                    registerEmployer(email, password)
-                }
-                else{
-                    Toast.makeText(this,"Password not match", Toast.LENGTH_SHORT).show()
-                }
-            }
-            else{
-                Toast.makeText(this,"Empty Field is not allowed", Toast.LENGTH_SHORT).show()
-            }
+            validation()
         }
     }
 
@@ -68,9 +55,35 @@ class EmployerRegister : AppCompatActivity() {
                         }
                 }
                 else{
-                    Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Email Has Been Registered", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun validation(){
+        val email = binding.etEmployerEmail.text.toString().trim()
+        val password = binding.etEmployerPassword.text.toString().trim()
+        val cpassword = binding.etEmployerConfirmPassword.text.toString().trim()
+        if(email.isEmpty()){
+            binding.etEmployerEmail.error = "Email cannot be empty"
+        }
+
+        if (password.length < 8){
+            binding.etEmployerPassword.error = "Password must be at least 8"
+        }
+
+        if(cpassword.isEmpty()){
+            binding.etEmployerConfirmPassword.error = "Confirm Password cannot be empty"
+        }
+
+        if(email.isEmpty()||password.length<8||binding.checkboxTnc.isChecked){
+            Toast.makeText(this@EmployerRegister,"Please agree T&C",Toast.LENGTH_SHORT).show()
+            if (cpassword != password) {
+                Toast.makeText(this@EmployerRegister,"Password and Confirm Password No Match",Toast.LENGTH_SHORT).show()
+            }else {
+                registerEmployer(email, password)
+            }
+        }
     }
 
     private fun storeData()
@@ -79,10 +92,10 @@ class EmployerRegister : AppCompatActivity() {
         val profileStatus = "0"
 
         dbref = FirebaseDatabase.getInstance().getReference("Employers")
-        val currentuser = FirebaseAuth.getInstance().currentUser!!.uid
+        val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
         //User Data
-        val employerdata = EmployerData(
-            "", email, "", "", "", "", "", "", profileStatus)
-        dbref.child(currentuser).setValue(employerdata)
+        val employerData = EmployerData(
+            "", email, "", "", "", "", profileStatus)
+        dbref.child(currentUser).setValue(employerData)
     }
 }

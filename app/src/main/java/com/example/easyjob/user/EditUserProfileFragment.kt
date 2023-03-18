@@ -75,7 +75,7 @@ class EditUserProfileFragment : Fragment() {
         //Get Profile Image
         auth = FirebaseAuth.getInstance()
         val storageRef = FirebaseStorage.getInstance().reference
-        val imageChillName = "ProfileImages/"+ auth.currentUser!!.uid
+        val imageChillName = "UsersProfileImages/"+ auth.currentUser!!.uid
         val imageRef = storageRef.child(imageChillName)
 
         imageRef.downloadUrl.addOnSuccessListener { uri ->
@@ -219,7 +219,7 @@ class EditUserProfileFragment : Fragment() {
         progressDialog.setCancelable(true)
         progressDialog.show()
 
-        val filePathAndName = "ProfileImages/"+ auth.currentUser!!.uid
+        val filePathAndName = "UsersProfileImages/"+ auth.currentUser!!.uid
         val reference = FirebaseStorage.getInstance().getReference(filePathAndName)
 
         val uploadTask = reference.putFile(imageUri!!)

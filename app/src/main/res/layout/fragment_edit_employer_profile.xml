@@ -121,65 +121,17 @@
             tools:ignore="TextContrastCheck" />
 
         <TextView
-            android:id="@+id/tv_company_fullname_title"
+            android:id="@+id/tv_employer_address_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/company_name"
+            android:text="@string/employer_address"
             app:layout_constraintStart_toStartOf="@+id/tv_employer_contact_title"
             app:layout_constraintTop_toBottomOf="@+id/et_employer_contact" />
 
         <EditText
-            android:id="@+id/et_company_fullname"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/enter_your_company_name"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_fullname_title"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tv_company_email_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/company_email"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_fullname_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_fullname" />
-
-        <EditText
-            android:id="@+id/et_company_email"
-            style="@style/input_edit_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="@string/enter_your_company_email"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:minEms="10"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_email_title"
-            tools:ignore="TextContrastCheck" />
-
-        <TextView
-            android:id="@+id/tv_company_address_title"
-            style="@style/textview_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/company_address"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_email_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_email" />
-
-        <EditText
-            android:id="@+id/et_company_address"
+            android:id="@+id/et_employer_address"
             style="@style/input_edit_field"
             android:layout_width="370dp"
             android:layout_height="140dp"
@@ -188,8 +140,8 @@
             android:hint="@string/enter_your_company_address"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_address_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_address_title" />
 
         <TextView
             android:id="@+id/tv_company_industry_title"
@@ -198,8 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/company_industry"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_address_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_address" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_address_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_employer_address" />
 
         <EditText
             android:id="@+id/et_company_industry"
@@ -215,7 +167,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_company_industry_title" />
 
         <TextView
-            android:id="@+id/tv_company_overview_title"
+            android:id="@+id/tv_employer_overview_title"
             style="@style/textview_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -225,7 +177,7 @@
             app:layout_constraintTop_toBottomOf="@+id/et_company_industry" />
 
         <EditText
-            android:id="@+id/et_company_overview"
+            android:id="@+id/et_employer_overview"
             style="@style/input_edit_field"
             android:layout_width="370dp"
             android:layout_height="140dp"
@@ -234,8 +186,8 @@
             android:hint="@string/introduce_your_company"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_company_overview_title" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employer_overview_title" />
 
         <Button
             android:id="@+id/btnCancel"
@@ -246,8 +198,8 @@
             android:layout_marginBottom="32dp"
             android:text="@string/cancel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_company_overview_title"
-            app:layout_constraintTop_toBottomOf="@+id/et_company_overview" />
+            app:layout_constraintStart_toStartOf="@+id/tv_employer_overview_title"
+            app:layout_constraintTop_toBottomOf="@+id/et_employer_overview" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_update_profile"

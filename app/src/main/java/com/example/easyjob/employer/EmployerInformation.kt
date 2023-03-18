@@ -35,9 +35,6 @@ class EmployerInformation : Fragment() {
     private var _binding: FragmentEmployerInformationBinding? = null
     private val binding get()  = _binding!!
     private lateinit var auth: FirebaseAuth
-    private lateinit var dbref: DatabaseReference
-    private lateinit var uid: String
-    private lateinit var employer: EmployerData
     private lateinit var navController: NavController
     private lateinit var employerDataViewModel: EmployerDataViewModel
 
@@ -82,11 +79,9 @@ class EmployerInformation : Fragment() {
             binding.tvEmployerFullname.text = employerData.name
             binding.tvEmployerEmail.text = employerData.email
             binding.tvEmployerContact.text = employerData.contact
-            binding.tvCompanyFullname.text = employerData.companyName
-            binding.tvCompanyEmail.text = employerData.companyEmail
-            binding.tvCompanyAddress.text = employerData.companyAddress
+            binding.tvEmployerAddress.text = employerData.address
             binding.tvCompanyIndustry.text = employerData.companyIndustry
-            binding.tvCompanyOverview.text = employerData.companyOverview
+            binding.tvEmployerOverview.text = employerData.overview
         }
 
         //back to forward page
