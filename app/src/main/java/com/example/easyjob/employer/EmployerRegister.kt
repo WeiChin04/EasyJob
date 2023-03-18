@@ -76,7 +76,7 @@ class EmployerRegister : AppCompatActivity() {
             binding.etEmployerConfirmPassword.error = "Confirm Password cannot be empty"
         }
 
-        if(email.isEmpty()||password.length<8||binding.checkboxTnc.isChecked){
+        if(email.isNotEmpty()||password.length>8||binding.checkboxTnc.isChecked){
             Toast.makeText(this@EmployerRegister,"Please agree T&C",Toast.LENGTH_SHORT).show()
             if (cpassword != password) {
                 Toast.makeText(this@EmployerRegister,"Password and Confirm Password No Match",Toast.LENGTH_SHORT).show()
