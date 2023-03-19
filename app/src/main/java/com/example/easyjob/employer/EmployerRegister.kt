@@ -94,13 +94,13 @@ class EmployerRegister : AppCompatActivity() {
     private fun storeData()
     {
         val email  = binding.etEmployerEmail.text.toString()
-        val profileStatus = "0"
+        val profileStatus = "Incomplete"
 
         dbref = FirebaseDatabase.getInstance().getReference("Employers")
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
         //User Data
         val employerData = EmployerData(
-            "", email, "", "", "", "", profileStatus)
+            currentUser,"", email, "", "", "", "", profileStatus)
         dbref.child(currentUser).setValue(employerData)
     }
 }

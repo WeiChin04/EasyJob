@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentUserHomeBinding
+import com.example.easyjob.employer.JobData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
@@ -31,7 +32,7 @@ class UserHomeFragment : Fragment() {
     private lateinit var user: UserData
     private lateinit var userDataViewModel: UserDataViewModel
     private lateinit var jobRecyclerView: RecyclerView
-    private lateinit var jobArrayList: ArrayList<UserJobData>
+    private lateinit var jobArrayList: ArrayList<JobData>
     private lateinit var userJobAdapter: UserJobAdapter
     private lateinit var navController: NavController
 
@@ -41,7 +42,7 @@ class UserHomeFragment : Fragment() {
         jobRecyclerView = binding.myJobList
         jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         jobRecyclerView.setHasFixedSize(true)
-        jobArrayList = arrayListOf<UserJobData>()
+        jobArrayList = arrayListOf<JobData>()
         getJobData()
 
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
@@ -93,7 +94,7 @@ class UserHomeFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         for (jobSnapshot in snapshot.children) {
-                            val job = jobSnapshot.getValue(UserJobData::class.java)
+                            val job = jobSnapshot.getValue(JobData::class.java)
                             jobArrayList.add(job!!)
                         }
                         jobRecyclerView.adapter = UserJobAdapter(jobArrayList)

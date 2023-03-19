@@ -211,9 +211,9 @@ class EditEmployerProfile : Fragment() {
         }
 
         profileStatus = if(address.isEmpty()||overview.isEmpty()){
-            "0"
+            "Incomplete"
         }else{
-            "1"
+            "Completed"
         }
 
         if(name.isEmpty()||contact.isEmpty()){

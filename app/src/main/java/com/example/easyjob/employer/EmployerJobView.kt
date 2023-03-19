@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -75,12 +76,50 @@ class EmployerJobView : Fragment() {
     ): View {
         _binding = FragmentEmployerJobViewBinding.inflate(inflater, container, false)
         val postJobAction = "actionPostJob"
+        auth = FirebaseAuth.getInstance()
+        val currentUserID = auth.currentUser!!.uid
+        Log.d("currentUserID", "current user Id: $currentUserID")
         binding.btnAddJob.setOnClickListener {
-            val bundle = Bundle().apply {
-                putString("actionPostJob", postJobAction)
-            }
-            it.findNavController()
-                .navigate(R.id.action_jobView_to_employerJobForm, bundle)
+
+            dbRef = FirebaseDatabase.getInstance().getReference("Employers")
+            dbRef.child(currentUserID)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        val employer = snapshot.getValue(EmployerData::class.java)
+                        val employerStatus = employer!!.profileStatus
+
+                        if(employerStatus == "Incomplete"){
+                            val alertDialog = AlertDialog.Builder(requireContext())
+                            alertDialog.setTitle("Confirm")
+                            alertDialog.setMessage(getString(R.string.alert_complete_profile))
+                            alertDialog.setPositiveButton("Go to profile page") { _, _ ->
+                                it.findNavController().navigate(R.id.action_jobView_to_employerInformation)
+                            }
+                            alertDialog.setNegativeButton("Cancel") { dialog, _ ->
+                                dialog.cancel()
+                            }
+                            alertDialog.show()
+                        }else{
+                            val bundle = Bundle().apply {
+                                putString("actionPostJob", postJobAction)
+                            }
+
+                            it.findNavController().navigate(R.id.action_jobView_to_employerJobForm, bundle)
+
+                            Log.d("employer", "employer: $employer")
+                            Log.d("status", "status: $employerStatus")
+
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+
+            })
+
+
         }
         return binding.root
 

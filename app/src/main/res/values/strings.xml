@@ -37,6 +37,7 @@
     <string name="viewed">78 viewed</string>
     <string name="job_details">Job Details</string>
     <string name="example_job_status">Job Status Show here</string>
+    <string name="alert_complete_profile">Please complete your profile before posting job</string>
 
 
     <!--Employer Post Job-->
@@ -152,6 +153,9 @@
     <string name="manage_applicant_button">Manage Applicant</string>
     <string name="edit_button">Edit</string>
     <string name="title_activity_job_edit_form">JobEditForm</string>
+    <string name="show_favorite_added">Job added to favorites</string>
+    <string name="show_favorite_added_failed">Failed to add job to favorites</string>
+    <string name="show_favorite_removed">Job removed to favorites</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -238,6 +242,7 @@
     <string name="show_rejected_message">You have rejected the applicant.</string>
     <string name="cancel_successful_application">Application cancelled</string>
     <string name="cancel_fail_application">Failed to cancel application</string>
+    <string name="company_detail_title">Company Details</string>
 
     <string-array name="jobType">
         <item>Internship</item>

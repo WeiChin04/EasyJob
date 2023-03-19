@@ -118,7 +118,7 @@ class EditUserProfileFragment : Fragment() {
                 != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(requireActivity(), permissions, REQUEST_CODE_STORAGE_PERMISSION)
             } else {
-                // 权限已授权，执行需要权限的操作
+
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
                     Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
@@ -310,7 +310,7 @@ class EditUserProfileFragment : Fragment() {
         val address = binding.etUserAddress.text.toString()
         val education_level = binding.spEducationLevel.selectedItem.toString()
         val about_me = binding.etUserAboutMe.text.toString()
-        val profile_status = "1"
+        val profile_status = "Completed"
 
         if(name.isEmpty()) {
             binding.etUserFullname.error = "Please Enter Name"

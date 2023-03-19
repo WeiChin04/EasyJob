@@ -39,6 +39,23 @@
                     android:text="@string/job_detail_page_title"
                     android:layout_gravity="center"
                     style="@style/toolbar_Title" />
+                <TextView
+                    android:id="@+id/btnFavoriteGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:drawableStartCompat="@drawable/custom_favorite_grey"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/btnFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:drawableStartCompat="@drawable/custom_favorite"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:visibility="gone"/>
+
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -61,11 +78,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/ic_profile_sample"
+                android:src="@drawable/ic_person"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/clTop"
-                app:layout_constraintTop_toTopOf="@+id/clTop"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintTop_toTopOf="@+id/clTop"/>
 
             <TextView
                 android:id="@+id/tvJobDetailTitle"

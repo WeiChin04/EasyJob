@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_jobView_to_employerJobForm"
             app:destination="@id/employerJobForm" />
+        <action
+            android:id="@+id/action_jobView_to_employerInformation"
+            app:destination="@id/employerInformation" />
     </fragment>
 
     <!--Job-->

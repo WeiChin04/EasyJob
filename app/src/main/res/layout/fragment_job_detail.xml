@@ -60,11 +60,10 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_marginTop="25dp"
-                android:src="@drawable/ic_profile_sample"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/clTop"
                 app:layout_constraintTop_toTopOf="@+id/clTop"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:src="@drawable/ic_person"/>
 
             <TextView
                 android:id="@+id/tvJobDetailTitle"

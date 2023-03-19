@@ -47,7 +47,11 @@
         android:id="@+id/userJobDetailFragment"
         android:name="com.example.easyjob.user.UserJobDetailFragment"
         android:label="fragment_user_job_detail"
-        tools:layout="@layout/fragment_user_job_detail" />
+        tools:layout="@layout/fragment_user_job_detail" >
+        <action
+            android:id="@+id/action_userJobDetailFragment_to_uerCompanyOverview"
+            app:destination="@id/uerCompanyOverview" />
+    </fragment>
     <fragment
         android:id="@+id/userSearchResult"
         android:name="com.example.easyjob.user.UserSearchResult"
@@ -56,4 +60,8 @@
             android:id="@+id/action_userSearchResult_to_userJobDetailFragment"
             app:destination="@id/userJobDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/uerCompanyOverview"
+        android:name="com.example.easyjob.user.UserCompanyOverview"
+        android:label="UerCompanyOverview" />
 </navigation>

@@ -11,15 +11,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
 import com.example.easyjob.databinding.FragmentUserJobDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
 import com.example.easyjob.R
+import com.google.firebase.storage.FirebaseStorage
 
 class UserJobDetailFragment : Fragment() {
 
@@ -28,6 +31,8 @@ class UserJobDetailFragment : Fragment() {
     private var currentUser = FirebaseAuth.getInstance().currentUser!!.uid
     private lateinit var database: FirebaseDatabase
     private lateinit var dbRef: DatabaseReference
+    private var isJobInFavorites = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,6 +62,30 @@ class UserJobDetailFragment : Fragment() {
             binding.btnCancelJob.visibility = View.VISIBLE
         }
 
+        val jobId = arguments?.getString("job_id")
+        checkJobInFavorite()
+        binding.btnFavoriteGray.setOnClickListener {
+
+            dbRef = database.getReference("Users").child(currentUser).child("Favorites")
+            dbRef.child(jobId.toString()).setValue(true)
+                .addOnSuccessListener {
+                    binding.btnFavoriteGray.visibility = View.GONE
+                    Toast.makeText(requireContext(), getString(R.string.show_favorite_added), Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener{ exception ->
+                    Log.e(ContentValues.TAG, "Failed to add job to favorites", exception)
+                    Toast.makeText(requireContext(), "Failed to add job to favorites", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        binding.btnFavorite.setOnClickListener {
+            binding.btnFavorite.visibility = View.GONE
+//            binding.btnFavoriteGray.visibility = View.VISIBLE
+            dbRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser).child("Favorites")
+            dbRef.child(jobId.toString()).removeValue()
+            Toast.makeText(requireContext(), getString(R.string.show_favorite_removed), Toast.LENGTH_SHORT).show()
+
+        }
+
         binding.btnApplyJob.setOnClickListener{
             checkApplication()
         }
@@ -74,8 +103,66 @@ class UserJobDetailFragment : Fragment() {
             alertDialog.show()
         }
 
+        val employerId = arguments?.getString("employer_id")
+        binding.btnViewCompanyInfo.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("employer_id", employerId)
+        }
+            it.findNavController().navigate(R.id.action_userJobDetailFragment_to_uerCompanyOverview, bundle)
+
+        }
+
+        dbRef = FirebaseDatabase.getInstance().reference
+
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = "EmployerProfileImages/$employerId"
+        val imageRef = storageRef.child(filePathAndName)
+
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this)
+                .load(uri)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .into(binding.imgJob)
+        }.addOnFailureListener {}
+
 
         return binding.root
+    }
+
+    private fun checkJobInFavorite(){
+
+        val usersNode = "Users"
+        val favoriteNode = "Favorites"
+        val jobId = arguments?.getString("job_id")
+        dbRef = FirebaseDatabase.getInstance().getReference("$usersNode/$currentUser/$favoriteNode/$jobId")
+
+        dbRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                isJobInFavorites = snapshot.exists()
+                updateFavoriteButtonIcon()
+                Log.d("favorite", "status: $isJobInFavorites")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("JobDetailsPage", "Failed to read value.", error.toException())
+
+            }
+
+        })
+
+    }
+
+    private fun updateFavoriteButtonIcon() {
+        if (isAdded) { // check if the fragment is still attached to an activity
+            if (isJobInFavorites) {
+                binding.btnFavorite.visibility = View.VISIBLE
+                binding.btnFavoriteGray.visibility = View.GONE
+            } else {
+                binding.btnFavoriteGray.visibility = View.VISIBLE
+                binding.btnFavorite.visibility = View.GONE
+            }
+        }
     }
 
     private fun cancelApplication() {

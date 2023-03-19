@@ -3,7 +3,6 @@ package com.example.easyjob.user
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -13,7 +12,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
-import com.example.easyjob.employer.EmployerData
 import com.example.easyjob.employer.JobData
 import com.google.firebase.storage.FirebaseStorage
 
@@ -46,7 +44,6 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
                 .error(R.drawable.ic_person)
                 .into(holder.employerImage)
         }.addOnFailureListener {
-
         }
 
         holder.dateApplied.text = currentItem.appliedAt
@@ -79,6 +76,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
                 "job_responsibilities" to jobData[position].jobResponsibilities,
                 "job_type" to jobData[position].jobType.toString(),
                 "job_status" to jobData[position].jobStatus,
+                "employer_id" to jobData[position].employerId,
                 "fromAppliedJob" to "yes"
             )
 
