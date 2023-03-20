@@ -368,9 +368,4 @@ class EmployerJobForm : Fragment() {
             })
         }
     }
-
-
-
-
-
 }

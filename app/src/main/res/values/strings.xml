@@ -243,6 +243,7 @@
     <string name="cancel_successful_application">Application cancelled</string>
     <string name="cancel_fail_application">Failed to cancel application</string>
     <string name="company_detail_title">Company Details</string>
+    <string name="all">All</string>
 
     <string-array name="jobType">
         <item>Internship</item>

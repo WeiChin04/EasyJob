@@ -5,14 +5,18 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.easyjob.R
+import com.example.easyjob.employer.JobData
+import com.google.firebase.storage.FirebaseStorage
 
-class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
+class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,6 +33,20 @@ class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : Recycl
     override fun onBindViewHolder(holder: UserJobAdapter.UserJobViewHolder, position: Int) {
 
         val currentItem = jobList[position]
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = currentItem.imgPath
+        val imageRef = storageRef.child(filePathAndName.toString())
+
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(holder.itemView.context)
+                .load(uri)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .into(holder.imgEmployer)
+        }.addOnFailureListener {
+        }
+
+
         holder.datePosted.text = currentItem.currentDate
         holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
@@ -41,6 +59,7 @@ class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : Recycl
 
         holder.userCardView.setOnClickListener {
             val bundle = bundleOf(
+                "employer_id" to jobList[position].employerId,
                 "job_id" to jobList[position].jobId,
                 "job_title" to jobList[position].jobTitle,
                 "job_salary" to jobList[position].jobSalary,
@@ -62,7 +81,7 @@ class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : Recycl
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFilteredList(filteredList: ArrayList<UserJobData>){
+    fun setFilteredList(filteredList: ArrayList<JobData>){
         this.jobList = filteredList
         notifyDataSetChanged()
     }
@@ -75,6 +94,7 @@ class UserSearchJobAdapter(private var jobList: ArrayList<UserJobData>) : Recycl
         val jobType: TextView = itemView.findViewById(R.id.tvShowJobType)
         val jobStatus: TextView = itemView.findViewById(R.id.tvShowAvailable)
         val userCardView: CardView = itemView.findViewById(R.id.userJobCardView)
+        val imgEmployer: ImageView = itemView.findViewById(R.id.imgEmployerForUserHome)
 
     }
 }

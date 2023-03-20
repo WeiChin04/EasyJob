@@ -82,30 +82,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_sort" />
 
             <TextView
-                android:id="@+id/tv_job_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:text="@string/job_type"
-                app:layout_constraintStart_toEndOf="@+id/tv_sort"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Spinner
-                android:id="@+id/sp_job_type"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                app:layout_constraintStart_toStartOf="@+id/tv_job_type"
-                app:layout_constraintTop_toBottomOf="@+id/tv_job_type"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <TextView
-                android:id="@+id/tv_salaary"
+                android:id="@+id/tv_salary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="90dp"
                 android:text="@string/job_salary"
-                app:layout_constraintStart_toEndOf="@+id/tv_job_type"
+                app:layout_constraintStart_toEndOf="@+id/tv_sort"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
@@ -114,8 +96,34 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/Salary"
                 android:minHeight="48dp"
-                app:layout_constraintStart_toStartOf="@+id/tv_salaary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_salaary" />
+                app:layout_constraintStart_toStartOf="@+id/tv_salary"
+                app:layout_constraintTop_toBottomOf="@+id/tv_salary" />
+
+            <TextView
+                android:id="@+id/tv_job_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="55dp"
+                android:text="@string/job_type"
+                app:layout_constraintStart_toEndOf="@+id/tv_salary"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/job_type"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:minHeight="48dp"
+                android:gravity="center_vertical"
+                android:text="@string/all"
+                android:fontFamily="@font/nunito_semibold"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                app:layout_constraintStart_toStartOf="@+id/tv_job_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_job_type" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
