@@ -20,6 +20,8 @@ import com.example.easyjob.R
 import com.example.easyjob.employer.JobData
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
@@ -56,8 +58,11 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
         }.addOnFailureListener {
         }
 
-
-        holder.datePosted.text = currentItem.currentDate
+        val currentTimeMillis = currentItem.currentDate!!.toLong()
+        val date = Date(currentTimeMillis)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val currentTime = dateFormat.format(date)
+        holder.datePosted.text = currentTime
         holder.jobTitle.text = currentItem.jobTitle
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus

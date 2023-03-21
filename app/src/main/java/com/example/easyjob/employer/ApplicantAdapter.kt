@@ -16,6 +16,9 @@ import com.example.easyjob.R
 import com.example.easyjob.user.UserApplicationData
 import com.example.easyjob.user.UserData
 import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ApplicantAdapter(private val childId: String,
                        private val appliedDataList: ArrayList<UserApplicationData>,
@@ -50,7 +53,12 @@ class ApplicantAdapter(private val childId: String,
                 .into(holder.applicantImage)
         }.addOnFailureListener {}
 
-        holder.applyDate.text = appliedDataList.appliedAt
+        val currentTimeMillis = appliedDataList.appliedAt!!.toLong()
+        val date = Date(currentTimeMillis)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val currentTime = dateFormat.format(date)
+        holder.applyDate.text = currentTime
+
         holder.applicantName.text = applicantList.name
         holder.applicantContract.text = applicantList.contact
         holder.applicantEmail.text = applicantList.email
@@ -80,7 +88,8 @@ class ApplicantAdapter(private val childId: String,
                 "expected_salary" to applicantList.jobsalary,
                 "address" to applicantList.address,
                 "about_me" to applicantList.about_me,
-                "apply_status" to appliedDataList.status
+                "apply_status" to appliedDataList.status,
+                "job_id" to appliedDataList.jobId
             )
             it.findNavController().navigate(R.id.action_applicantManagementFragment_to_applicantDetailsFragment, bundle)
         }

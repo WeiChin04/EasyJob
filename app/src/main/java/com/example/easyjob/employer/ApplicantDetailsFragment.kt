@@ -40,7 +40,8 @@ class ApplicantDetailsFragment : Fragment() {
 
     private  var _binding: FragmentApplicantDetailsBinding? =null
     private val binding get() = _binding!!
-    private lateinit var database: DatabaseReference
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 //    private val deviceToken = arguments?.getString("deviceToken")
 
 
@@ -159,11 +160,10 @@ class ApplicantDetailsFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun approveApplicant() {
-        database = FirebaseDatabase.getInstance().reference
-        val currentDate = Date()
+        dbRef = FirebaseDatabase.getInstance().reference
         val currentTimeInSeconds = Instant.now().epochSecond
         val applicationId = arguments?.getString("application_id")
-        val applicationRef = database.child("Applications").child(applicationId.toString())
+        val applicationRef = dbRef.child("Applications").child(applicationId.toString())
 
         applicationRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -180,6 +180,7 @@ class ApplicantDetailsFragment : Fragment() {
 
                         Toast.makeText(requireContext(), "You have approved the applicant", Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
+                        analysisApproved()
                     } else {
                         Toast.makeText(requireContext(), "Something error, your job cannot be updated", Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
@@ -194,12 +195,41 @@ class ApplicantDetailsFragment : Fragment() {
         })
     }
 
+    private fun analysisApproved() {
+        val jobId = arguments?.getString("job_id")
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId.toString())
+        val approvedCountRef = dbRef.child("totalApproved")
+        approvedCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var approveCount = currentData.getValue(Int::class.java)
+                if (approveCount == null) {
+                    approveCount = 0
+                }
+                currentData.value = approveCount + 1
+
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            }
+        })
+    }
+
     private fun rejectApplicant() {
 
-        database = FirebaseDatabase.getInstance().reference
+        dbRef = FirebaseDatabase.getInstance().reference
         val currentTimeInSeconds = System.currentTimeMillis()
         val applicationId = arguments?.getString("application_id")
-        val applicationRef = database.child("Applications").child(applicationId.toString())
+        val applicationRef = dbRef.child("Applications").child(applicationId.toString())
 
         applicationRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -214,6 +244,7 @@ class ApplicantDetailsFragment : Fragment() {
                     if (it.isSuccessful) {
                         Toast.makeText(requireContext(), "You have rejected the applicant", Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
+                        analysisRejected()
                     } else {
                         Toast.makeText(requireContext(), "Something error, your job cannot be updated", Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
@@ -227,6 +258,35 @@ class ApplicantDetailsFragment : Fragment() {
             }
         })
 
+    }
+
+    private fun analysisRejected() {
+        val jobId = arguments?.getString("job_id")
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId.toString())
+        val rejectedCountRef = dbRef.child("totalRejected")
+        rejectedCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var rejectedCount = currentData.getValue(Int::class.java)
+                if (rejectedCount == null) {
+                    rejectedCount = 0
+                }
+                currentData.value = rejectedCount + 1
+
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            }
+        })
     }
 
 }

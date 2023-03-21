@@ -201,9 +201,8 @@ class EmployerJobForm : Fragment() {
             val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
 
             val jobId = dbRef.push().key
-            val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
             val employerImgPath = "EmployerProfileImages/$currentUser"
-            val currentDate = sdf.format(Date())
+            val currentTime = System.currentTimeMillis().toString()
 
             val newJob = JobData(
                 currentUser,
@@ -216,7 +215,7 @@ class EmployerJobForm : Fragment() {
                 jobReq,
                 jobResp,
                 jobstatus,
-                currentDate,
+                currentTime,
                 jobId,
                 employerImgPath
             )
@@ -239,12 +238,22 @@ class EmployerJobForm : Fragment() {
 
         val clickCount = 0
         val favouriteCount = 0
-        val lastClickTime = "0"
+        val lastClickTime = ""
+        val lastApplyAt = ""
+        val totalApply = 0
+        val totalCancel = 0
+        val totalApproved = 0
+        val totalRejected = 0
 
         val analysisData = hashMapOf(
             "clickCount" to clickCount,
             "favouriteCount" to favouriteCount,
-            "lastClickTime" to lastClickTime
+            "lastClickTime" to lastClickTime,
+            "lastApplyAt" to lastApplyAt,
+            "totalApply" to totalApply,
+            "totalCancel" to totalCancel,
+            "totalApproved" to totalApproved,
+            "totalRejected" to totalRejected,
         )
 
         dbRef.setValue(analysisData)

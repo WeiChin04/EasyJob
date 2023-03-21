@@ -19,8 +19,6 @@ import com.bumptech.glide.Glide
 import com.example.easyjob.databinding.FragmentUserJobDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import java.text.SimpleDateFormat
-import java.util.*
 import com.example.easyjob.R
 import com.google.firebase.storage.FirebaseStorage
 
@@ -236,6 +234,7 @@ class UserJobDetailFragment : Fragment() {
 
                 if(snapshot.exists()){
                     applicationRef.removeValue().addOnSuccessListener {
+                        analysisCancelJob()
                         Toast.makeText(requireContext(), getString(R.string.cancel_successful_application), Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
                     }.addOnFailureListener{
@@ -253,6 +252,35 @@ class UserJobDetailFragment : Fragment() {
         })
     }
 
+    private fun analysisCancelJob() {
+        val jobId = arguments?.getString("job_id")
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId.toString())
+        val clickCountRef = dbRef.child("totalCancel")
+        clickCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var cancelCount = currentData.getValue(Int::class.java)
+                if (cancelCount == null) {
+                    cancelCount = 0
+                }
+                currentData.value = cancelCount + 1
+
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            }
+        })
+    }
+
     private fun checkApplication(){
 
         dbRef = database.getReference("Applications")
@@ -261,8 +289,7 @@ class UserJobDetailFragment : Fragment() {
 
         val ref = FirebaseDatabase.getInstance().getReference("Applications").child(appliedJobId)
         val status = "Pending"
-        val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
-        val appliedAt = sdf.format(Date())
+        val currentTime = System.currentTimeMillis().toString()
 
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -274,19 +301,55 @@ class UserJobDetailFragment : Fragment() {
                         jobId,
                         currentUser,
                         status,
-                        appliedAt,
+                        currentTime,
                         "",
                         "",
                         appliedJobId
                     )
                     dbRef.child(appliedJobId).setValue(newApplication)
                     Toast.makeText(requireContext(), getString(R.string.show_applied_success_message), Toast.LENGTH_SHORT).show()
+                    analysisApplyJob()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
                 Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
+
+    private fun analysisApplyJob() {
+        val jobId = arguments?.getString("job_id")
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId.toString())
+        val currentTime = System.currentTimeMillis().toString()
+        val applyCountRef = dbRef.child("totalApply")
+        val lastApplyTimeRef = dbRef.child("lastApplyAt")
+        applyCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var applyCount = currentData.getValue(Int::class.java)
+                if (applyCount == null) {
+                    applyCount = 0
+                }
+                currentData.value = applyCount + 1
+
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+                if (committed) {
+                    lastApplyTimeRef.setValue(currentTime)
+                }
             }
         })
     }
