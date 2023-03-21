@@ -1,7 +1,9 @@
 package com.example.easyjob.user
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.employer.JobData
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 
 class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
+
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -48,7 +54,6 @@ class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerVi
 
 
         holder.datePosted.text = currentItem.currentDate
-        holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus
@@ -71,9 +76,43 @@ class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerVi
                 "job_type" to jobList[position].jobType.toString(),
                 "job_status" to jobList[position].jobStatus
             )
+            clickThroughRate(this.jobList[position].jobId.toString())
             it.findNavController()
                 .navigate(R.id.action_userSearchResult_to_userJobDetailFragment, bundle)
         }
+    }
+
+    private fun clickThroughRate(jobId: String) {
+
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId)
+        val currentTime = System.currentTimeMillis().toString()
+        val clickCountRef = dbRef.child("clickCount")
+        val lastClickTimeRef = dbRef.child("lastClickTime")
+        clickCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var clickCount = currentData.getValue(Int::class.java)
+                if (clickCount == null) {
+                    clickCount = 0
+                }
+                currentData.value = clickCount + 1
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+                if (committed) {
+                    lastClickTimeRef.setValue(currentTime)
+                }
+            }
+        })
     }
 
     override fun getItemCount(): Int {

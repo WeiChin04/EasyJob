@@ -75,6 +75,7 @@ class UserJobDetailFragment : Fragment() {
                     Log.e(ContentValues.TAG, "Failed to add job to favorites", exception)
                     Toast.makeText(requireContext(), "Failed to add job to favorites", Toast.LENGTH_SHORT).show()
                 }
+            addFavouriteCount(jobId!!)
         }
 
         binding.btnFavorite.setOnClickListener {
@@ -83,7 +84,7 @@ class UserJobDetailFragment : Fragment() {
             dbRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser).child("Favorites")
             dbRef.child(jobId.toString()).removeValue()
             Toast.makeText(requireContext(), getString(R.string.show_favorite_removed), Toast.LENGTH_SHORT).show()
-
+            minusFavouriteCount(jobId!!)
         }
 
         binding.btnApplyJob.setOnClickListener{
@@ -130,6 +131,7 @@ class UserJobDetailFragment : Fragment() {
         return binding.root
     }
 
+
     private fun checkJobInFavorite(){
 
         val usersNode = "Users"
@@ -163,6 +165,64 @@ class UserJobDetailFragment : Fragment() {
                 binding.btnFavorite.visibility = View.GONE
             }
         }
+    }
+
+    private fun addFavouriteCount(jobId: String) {
+
+        Log.d("jobId", "status: $jobId")
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId)
+
+        val clickCountRef = dbRef.child("favouriteCount")
+
+        clickCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var favouriteCount = currentData.getValue(Int::class.java)
+                if (favouriteCount == null) {
+                    favouriteCount = 0
+                }
+                currentData.value = favouriteCount + 1
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            }
+        })
+    }
+
+    private fun minusFavouriteCount(jobId: String) {
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId)
+
+        val clickCountRef = dbRef.child("favouriteCount")
+
+        clickCountRef.runTransaction(object : Transaction.Handler {
+            override fun doTransaction(currentData: MutableData): Transaction.Result {
+                var favouriteCount = currentData.getValue(Int::class.java)
+                if (favouriteCount == null) {
+                    favouriteCount = 0
+                }
+                currentData.value = favouriteCount - 1
+                return Transaction.success(currentData)
+            }
+
+            override fun onComplete(
+                error: DatabaseError?,
+                committed: Boolean,
+                currentData: DataSnapshot?
+            ) {
+                if (error != null) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            }
+        })
     }
 
     private fun cancelApplication() {

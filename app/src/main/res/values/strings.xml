@@ -245,7 +245,7 @@
     <string name="cancel_fail_application">Failed to cancel application</string>
     <string name="company_detail_title">Company Details</string>
     <string name="all">All</string>
-    <string name="show_no_favourite_job_added">You have not added any jobs to your collection</string>
+    <string name="show_no_favourite_job_added">You have not added any jobs to your favourite</string>
 
     <string-array name="jobType">
         <item>Internship</item>

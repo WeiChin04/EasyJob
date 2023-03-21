@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -12,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -29,6 +31,7 @@ import com.google.firebase.installations.InstallationTokenResult.builder
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
+import java.time.Instant
 import java.util.*
 import java.util.stream.DoubleStream.builder
 import java.util.stream.IntStream.builder
@@ -41,6 +44,7 @@ class ApplicantDetailsFragment : Fragment() {
 //    private val deviceToken = arguments?.getString("deviceToken")
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -153,10 +157,11 @@ class ApplicantDetailsFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun approveApplicant() {
         database = FirebaseDatabase.getInstance().reference
         val currentDate = Date()
-        val currentTimeInSeconds = currentDate.time / 1000 // divide by 1000 to get time in seconds
+        val currentTimeInSeconds = Instant.now().epochSecond
         val applicationId = arguments?.getString("application_id")
         val applicationRef = database.child("Applications").child(applicationId.toString())
 

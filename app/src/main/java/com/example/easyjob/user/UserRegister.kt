@@ -102,7 +102,7 @@ class UserRegister : AppCompatActivity() {
     {
         val email  = binding.etUserEmail.text.toString()
         val profileStatus = "Incomplete"
-        val educationLevel = "Click To Select Education Level"
+        val educationLevel = ""
 
         dbref = FirebaseDatabase.getInstance().getReference("Users")
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid

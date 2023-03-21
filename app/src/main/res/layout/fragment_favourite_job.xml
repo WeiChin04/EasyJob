@@ -27,14 +27,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_job_page_title"
+                android:text="@string/FavouriteJob"
                 android:layout_gravity="center"
                 style="@style/toolbar_Title" />
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/myJobAppliedList"
+        android:id="@+id/myFavouriteJobList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,9 +49,9 @@
         android:layout_height="wrap_content"
         android:text="@string/show_no_favourite_job_added"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/myJobAppliedList"
-        app:layout_constraintEnd_toEndOf="@+id/myJobAppliedList"
-        app:layout_constraintStart_toStartOf="@+id/myJobAppliedList"
+        app:layout_constraintBottom_toBottomOf="@+id/myFavouriteJobList"
+        app:layout_constraintEnd_toEndOf="@+id/myFavouriteJobList"
+        app:layout_constraintStart_toStartOf="@+id/myFavouriteJobList"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

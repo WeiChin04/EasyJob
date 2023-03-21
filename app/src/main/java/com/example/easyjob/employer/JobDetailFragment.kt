@@ -10,8 +10,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentJobDetailBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 
 class JobDetailFragment : Fragment() {
 
@@ -40,6 +43,20 @@ class JobDetailFragment : Fragment() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
 
+
+        val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
+        val storageRef = FirebaseStorage.getInstance().reference
+        val filePathAndName = "EmployerProfileImages/$currentUser"
+        val imageRef = storageRef.child(filePathAndName)
+
+
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this)
+                .load(uri)
+                .placeholder(R.drawable.ic_person)
+                .error(R.drawable.ic_person)
+                .into(binding.imgJob)
+        }.addOnFailureListener {}
 
         val jobId = arguments?.getString("job_id")
         binding.btnEditJob.setOnClickListener{

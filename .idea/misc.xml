@@ -61,7 +61,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/activity_user_home.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/activity_user_register.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/applicant_item.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_applicant_details.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_applicant_details.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_applicant_management.xml" value="0.2359375" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_applied_job.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_edit_employer_profile.xml" value="0.25" />
@@ -150,7 +150,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.176" />
       </ProjectState>
     </option>
   </component>

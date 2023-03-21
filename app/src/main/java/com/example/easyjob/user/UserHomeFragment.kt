@@ -28,8 +28,6 @@ class UserHomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var dbRef: DatabaseReference
-    private lateinit var uid: String
-    private lateinit var user: UserData
     private lateinit var userDataViewModel: UserDataViewModel
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<JobData>

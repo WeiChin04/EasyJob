@@ -1,6 +1,7 @@
 package com.example.easyjob.employer
 
 import android.app.TimePickerDialog
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
@@ -23,7 +24,6 @@ import java.util.*
 class EmployerJobForm : Fragment() {
     private  var _binding: FragmentEmployerJobFormBinding? =null
     private val binding get() = _binding!!
-    //private val jobId = arguments?.getString("jobId").toString()
     private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
 
@@ -201,7 +201,6 @@ class EmployerJobForm : Fragment() {
             val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
 
             val jobId = dbRef.push().key
-            val jobCtr = 0
             val sdf = SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault())
             val employerImgPath = "EmployerProfileImages/$currentUser"
             val currentDate = sdf.format(Date())
@@ -217,7 +216,6 @@ class EmployerJobForm : Fragment() {
                 jobReq,
                 jobResp,
                 jobstatus,
-                jobCtr,
                 currentDate,
                 jobId,
                 employerImgPath
@@ -225,12 +223,32 @@ class EmployerJobForm : Fragment() {
 
             if (jobId != null) {
                 dbRef.child(jobId).setValue(newJob)
+                analysisCreate(jobId)
                 Toast.makeText(requireContext(), "Post Successfully!!", Toast.LENGTH_SHORT).show()
                 requireActivity().onBackPressed()
             } else {
                 Toast.makeText(requireContext(), "Post Failed!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun analysisCreate(jobId : String) {
+
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(jobId)
+
+        val clickCount = 0
+        val favouriteCount = 0
+        val lastClickTime = "0"
+
+        val analysisData = hashMapOf(
+            "clickCount" to clickCount,
+            "favouriteCount" to favouriteCount,
+            "lastClickTime" to lastClickTime
+        )
+
+        dbRef.setValue(analysisData)
+
     }
 
     private fun fillData() {
