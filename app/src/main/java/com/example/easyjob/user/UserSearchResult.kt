@@ -29,6 +29,8 @@ class UserSearchResult : Fragment() {
     private lateinit var userJobAdapter: UserSearchJobAdapter
     private var sortSpinnerPosition = 0
     private var salarySpinnerPosition = 0
+    private lateinit var selectedType: BooleanArray
+//    private val jobTypeArray = arrayOf("Internship","Part Time","Full Time")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +44,6 @@ class UserSearchResult : Fragment() {
         val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val savedSearchResult = sharedPref.getString("search_result", "")
         filterList(savedSearchResult)
-
 
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -79,6 +80,24 @@ class UserSearchResult : Fragment() {
         }
 
         jobType()
+//        val stringBuilder = StringBuilder()
+//        val langList: ArrayList<Int> = ArrayList()
+//        for (i in selectedType.indices) {
+//            if (selectedType[i]) {
+//                langList.add(i)
+//            }
+//        }
+//        for (j in langList.indices) {
+//            stringBuilder.append(jobTypeArray[langList[j]])
+//            if (j != langList.size - 1) {
+//                stringBuilder.append(", ")
+//            }
+//        }
+//        if (stringBuilder.isEmpty()) {
+//            binding.jobType.text = "All"
+//        } else {
+//            binding.jobType.text = stringBuilder.toString()
+//        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -114,7 +133,6 @@ class UserSearchResult : Fragment() {
                                 }
                             }
                         }
-//                        val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
                         val editor = sharedPref.edit()
                         editor.putString("search_result", query)
                         editor.apply()
@@ -151,57 +169,32 @@ class UserSearchResult : Fragment() {
     }
 
     private fun jobType(){
-        val selectedJobType: BooleanArray
+//        val selectedJobType: BooleanArray
         val langList: ArrayList<Int> = ArrayList()
         val jobTypeArray = arrayOf("Internship","Part Time","Full Time")
-
         val jobType= binding.jobType
-
-        // initialize selected language array
-        selectedJobType = BooleanArray(jobTypeArray.size)
+        selectedType = BooleanArray(jobTypeArray.size)
 
         jobType.setOnClickListener {
-            // Initialize alert dialog
             val builder = AlertDialog.Builder(requireContext())
-
-            // set title
             builder.setTitle("Select Job Type")
-
-            // set dialog non cancelable
             builder.setCancelable(false)
-
-            builder.setMultiChoiceItems(jobTypeArray, selectedJobType) { _, i, b ->
-                // check condition
+            builder.setMultiChoiceItems(jobTypeArray, selectedType) { _, i, b ->
                 if (b) {
-                    // when checkbox selected
-                    // Add position  in lang list
                     langList.add(i)
-                    // Sort array list
                     langList.sort()
                 } else {
-                    // when checkbox unselected
-                    // Remove position from langList
                     langList.remove(Integer.valueOf(i))
                 }
             }
-
             builder.setPositiveButton("OK") { _, _ ->
-                // Initialize string builder
                 val stringBuilder = StringBuilder()
-                // use for loop
                 for (j in langList.indices) {
-                    // concat array value
                     stringBuilder.append(jobTypeArray[langList[j]])
-                    // check condition
                     if (j != langList.size - 1) {
-                        // When j value  not equal
-                        // to lang list size - 1
-                        // add comma
                         stringBuilder.append(", ")
                     }
                 }
-
-                // set text on textView
                 if (stringBuilder.isEmpty()) {
                     jobType.text = "All"
                 } else {
@@ -209,23 +202,17 @@ class UserSearchResult : Fragment() {
                 }
                 updateRecyclerViewAdapter()
             }
-
             builder.setNegativeButton("Cancel") { dialogInterface, _ ->
-                // dismiss dialog
                 dialogInterface.dismiss()
             }
             builder.setNeutralButton("Clear All") { _, _ ->
-                // use for loop
-                for (j in selectedJobType.indices) {
-                    // remove all selection
-                    selectedJobType[j] = false
+                for (j in selectedType.indices) {
+                    selectedType[j] = false
                 }
-                // clear language list
                 langList.clear()
-                // clear text view value
                 jobType.text = "All"
+                updateRecyclerViewAdapter()
             }
-            // show dialog
             builder.show()
         }
     }
@@ -245,7 +232,6 @@ class UserSearchResult : Fragment() {
             filteredList.clear()
             filteredList.addAll(jobArrayList)
         }
-        Log.d("jobSelect","$jobTypeText")
 
         // 根据选定的 Spinner 选项筛选列表...
         when (sortSpinnerPosition) {
@@ -285,13 +271,18 @@ class UserSearchResult : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putInt("sortItem",binding.spSort.selectedItemPosition)
         outState.putInt("salaryFilter",binding.spSalary.selectedItemPosition)
-//        outState.putInt("jobType",binding.spJobType.selectedItemPosition)
+//        outState.putBooleanArray("selectedJobType", selectedType)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.getInt("sortItem",0)?.let { binding.spSort.setSelection(it) }
-        savedInstanceState?.getInt("salaryFilter",0)?.let { binding.spSalary.setSelection(it) }
-//        savedInstanceState?.getInt("jobType",0)?.let { binding.spJobType.setSelection(it) }
+//        savedInstanceState?.getInt("salaryFilter",0)?.let { binding.spSalary.setSelection(it) }
+//        if (savedInstanceState != null) {
+//            selectedType = savedInstanceState.getBooleanArray("selectedJobType") ?: BooleanArray(3)
+//            updateRecyclerViewAdapter()
+//        }else{
+//            selectedType = BooleanArray(jobTypeArray.size)
+//        }
     }
 }

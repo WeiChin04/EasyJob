@@ -139,15 +139,15 @@
     <string name="personal_information">Personal Information</string>
 
 
-    <string-array name="education_level">
-        <item>Click To Select Education Level</item>
-        <item>Secondary School</item>
-        <item>Pre-University</item>
-        <item>Diploma</item>
-        <item>Bachelor Degree</item>
-        <item>Master Degree</item>
-        <item>PhD</item>
-    </string-array>
+<!--    <string-array name="education_level">-->
+<!--        <item>Click To Select Education Level</item>-->
+<!--        <item>Secondary School</item>-->
+<!--        <item>Pre-University</item>-->
+<!--        <item>Diploma</item>-->
+<!--        <item>Bachelor's Degree</item>-->
+<!--        <item>Master's Degree</item>-->
+<!--        <item>PhD</item>-->
+<!--    </string-array>-->
 
     <!--    Job Details View-->
     <string name="job_detail_page_title">Job Details</string>

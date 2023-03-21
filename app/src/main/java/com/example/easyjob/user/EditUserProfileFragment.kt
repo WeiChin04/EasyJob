@@ -2,10 +2,15 @@ package com.example.easyjob.user
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -19,7 +24,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -39,8 +47,8 @@ class EditUserProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var dbref: DatabaseReference
     private lateinit var uid: String
-    private lateinit var user: UserData
     private lateinit var userDataViewModel: UserDataViewModel
+    private val CHANNEL_ID = "Channel_id_example_01"
     private var imageUri: Uri? = null
     private var pdfUri: Uri? = null
 
@@ -110,18 +118,50 @@ class EditUserProfileFragment : Fragment() {
         }
 
         val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val file = File(downloadsFolder, "Resume.pdf")
+        var fileName = "Resume.pdf"
+        var count = 1
+        while (File(downloadsFolder, fileName).exists()) {
+            fileName = "Resume($count).pdf"
+            count++
+        }
+        val file = File(downloadsFolder, fileName)
         val downloadTask = pdfRef.getFile(file)
         val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         binding.tvResumeFile.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(requireActivity(), permissions, REQUEST_CODE_STORAGE_PERMISSION)
+                ActivityCompat.requestPermissions(requireActivity(), permissions,
+                    UserInformationFragment.REQUEST_CODE_STORAGE_PERMISSION
+                )
             } else {
-
+                // 权限已授权，执行需要权限的操作
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
                     Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
+
+                    // 下载完成后，创建通知
+                    createNotificationChannel()
+                    val notificationId = 1
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val fileUri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.example.easyjob.fileprovider",
+                        file
+                    )
+                    intent.setDataAndType(fileUri, "application/pdf")
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
+                    val notification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle("$fileName Downloaded")
+                        .setContentText("Click to view the downloaded PDF file.")
+                        .setContentIntent(pendingIntent)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setAutoCancel(true)
+                        .build()
+                    val notificationManager = NotificationManagerCompat.from(requireContext())
+                    notificationManager.notify(notificationId, notification)
+
                 }.addOnFailureListener { exception ->
                     Log.e("DOWNLOAD", "Download failed: $exception")
                     Toast.makeText(requireContext(),"Download Failed",Toast.LENGTH_SHORT).show()
@@ -149,18 +189,17 @@ class EditUserProfileFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         dbref = FirebaseDatabase.getInstance().getReference("Users")
         uid = auth.currentUser?.uid.toString()
-        val adapter = ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.education_level,
-            android.R.layout.simple_spinner_item
-        ).apply {
-            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        }
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         val spinner = binding.spEducationLevel
 
         val educationLevels = arrayListOf("Click To Select Education Level","Secondary School", "Pre-University", "Diploma", "Bachelor's Degree", "Master's Degree", "PhD")
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            educationLevels
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
         dbref.child(uid).addValueEventListener(object : ValueEventListener {
@@ -168,7 +207,9 @@ class EditUserProfileFragment : Fragment() {
                 val user = snapshot.getValue(UserData::class.java)
                 user?.let {
                     val educationLevel = it.education_level
+                    Log.d("education_level", "educationLevel: $educationLevel")
                     val index = educationLevels.indexOf(educationLevel)
+                    Log.d("education", "educationLevel: $index")
                     spinner.setSelection(index)
                 }
             }
@@ -364,6 +405,19 @@ class EditUserProfileFragment : Fragment() {
             dialog.cancel()
         }
         alertDialog.show()
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val notificationTitle = "Notification Title"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID,notificationTitle,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     override fun onDestroyView() {

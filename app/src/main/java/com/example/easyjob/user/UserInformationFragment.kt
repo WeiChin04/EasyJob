@@ -1,7 +1,14 @@
 package com.example.easyjob.user
 
 import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -9,7 +16,11 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -30,12 +41,9 @@ class UserInformationFragment : Fragment() {
     private var _binding: FragmentUserInformationBinding? = null
     private val binding get()  = _binding!!
     private lateinit var auth: FirebaseAuth
-    private lateinit var dbref: DatabaseReference
-    private lateinit var uid: String
-    private lateinit var user: UserData
     private lateinit var navController: NavController
     private lateinit var userDataViewModel: UserDataViewModel
-
+    private val CHANNEL_ID = "Channel_id_example_01"
 
     companion object {
         internal const val REQUEST_CODE_STORAGE_PERMISSION = 100
@@ -81,6 +89,7 @@ class UserInformationFragment : Fragment() {
 
         pdfRef.downloadUrl.addOnSuccessListener {
             binding.tvUserResume.text = getString(R.string.pdf_name)
+            createNotificationChannel()
         }.addOnFailureListener {}
 
 
@@ -100,7 +109,13 @@ class UserInformationFragment : Fragment() {
         }
 
         val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val file = File(downloadsFolder, "Resume.pdf")
+        var fileName = "Resume.pdf"
+        var count = 1
+        while (File(downloadsFolder, fileName).exists()) {
+            fileName = "Resume($count).pdf"
+            count++
+        }
+        val file = File(downloadsFolder, fileName)
         val downloadTask = pdfRef.getFile(file)
         val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
@@ -113,6 +128,30 @@ class UserInformationFragment : Fragment() {
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
                     Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
+
+                    // 下载完成后，创建通知
+                    createNotificationChannel()
+                    val notificationId = 1
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val fileUri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.example.easyjob.fileprovider",
+                        file
+                    )
+                    intent.setDataAndType(fileUri, "application/pdf")
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
+                    val notification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle("$fileName Downloaded")
+                        .setContentText("Click to view the downloaded PDF file.")
+                        .setContentIntent(pendingIntent)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setAutoCancel(true)
+                        .build()
+                    val notificationManager = NotificationManagerCompat.from(requireContext())
+                    notificationManager.notify(notificationId, notification)
+
                 }.addOnFailureListener { exception ->
                     Log.e("DOWNLOAD", "Download failed: $exception")
                     Toast.makeText(requireContext(),"Download Failed",Toast.LENGTH_SHORT).show()
@@ -130,24 +169,6 @@ class UserInformationFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        auth = FirebaseAuth.getInstance()
-//        dbref = FirebaseDatabase.getInstance().getReference("Users")
-//        uid = auth.currentUser?.uid.toString()
-//
-//        dbref.child(uid).addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot){
-//                user = snapshot.getValue(UserData::class.java)!!
-//                binding.tvUserFullname.text = user.name
-//                binding.tvUserEmail.text = user.email
-//                binding.tvUserContact.text = user.contact
-//                binding.tvUserJobSalary.text = user.jobsalary
-//                binding.tvUserAddress.text = user.address
-//                binding.tvEducationLevel.text = user.education_level
-//                binding.tvUserAboutMe.text = user.about_me
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//        })
 
         binding.btnUserEditProfile.setOnClickListener {
             navController = findNavController(binding.btnUserEditProfile)
@@ -163,6 +184,19 @@ class UserInformationFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val notificationTitle = "Notification Title"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID,notificationTitle,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     override fun onDestroyView() {
