@@ -50,6 +50,7 @@
                 android:focusable="false"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search..."
+                android:queryBackground="@android:color/transparent"
                 android:searchHintIcon="@null"
                 android:searchIcon="@drawable/ic_search"
                 tools:targetApi="lollipop_mr1" />
