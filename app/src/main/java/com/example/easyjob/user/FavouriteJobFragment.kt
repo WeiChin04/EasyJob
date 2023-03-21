@@ -36,7 +36,7 @@ class FavouriteJobFragment : Fragment() {
         favouriteJobRecyclerView.setHasFixedSize(true)
         favouriteJobDataArrayList = arrayListOf<JobData>()
 
-        checkFavouriteJobExist()
+
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -60,6 +60,7 @@ class FavouriteJobFragment : Fragment() {
 
         //hide bottom navigation bar
         (activity as UserHome).hideBottomNavigationView()
+        checkFavouriteJobExist()
 
         return binding.root
     }
@@ -92,8 +93,6 @@ class FavouriteJobFragment : Fragment() {
                                         val employerId = jobData.employerId
                                         employerId?.let { employerIds.add(it) }
                                     }
-                                } else {
-                                    binding.etNoFavouriteJobShow.visibility = View.VISIBLE
                                 }
                                 favouriteJobRecyclerView.adapter =
                                     UserFavouriteJobAdapter(favouriteJobDataArrayList)

@@ -1,5 +1,7 @@
 package com.example.easyjob.user
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,16 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.easyjob.AnalysisData
 import com.example.easyjob.R
 import com.example.easyjob.employer.JobData
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 
 class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>, private val jobData: ArrayList<JobData>) : RecyclerView.Adapter<UserJobAppliedAdapter.UserJobAppliedViewHolder>() {
+
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -50,6 +57,26 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
         holder.jobTitle.text = currentJobItem.jobTitle
         holder.jobType.text = currentJobItem.jobType.toString()
         holder.jobAppliedStatus.text = currentItem.status
+
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(currentItem.jobId.toString())
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val ctr = snapshot.getValue(AnalysisData::class.java)
+                    if (ctr != null) {
+                        val showCTR = ctr.clickCount ?: 0
+                        holder.jobCTR.text = showCTR.toString()
+                        Log.d("showCTR", "showCTR: $showCTR")
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
 
         when (holder.jobAppliedStatus.text) {
             "Pending" -> {
@@ -101,6 +128,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
         val dateApplied : TextView = itemView.findViewById(R.id.tvAppliedDate)
         val jobTitle : TextView = itemView.findViewById(R.id.tvShowJobTitle)
         val jobType : TextView = itemView.findViewById(R.id.tvShowJobType)
+        val jobCTR : TextView = itemView.findViewById(R.id.tvShowViewed)
         val jobAppliedStatus : TextView = itemView.findViewById(R.id.tvShowJobAppliedStatus)
         val employerImage : ImageView = itemView.findViewById(R.id.employer_imageView)
         val userCardView: CardView = itemView.findViewById(R.id.userJobAppliedCardView)

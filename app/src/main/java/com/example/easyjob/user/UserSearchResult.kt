@@ -232,7 +232,7 @@ class UserSearchResult : Fragment() {
 
     private fun updateRecyclerViewAdapter() {
         val filteredList = ArrayList<JobData>(jobArrayList)
-        var jobTypeText = binding.jobType.text
+        val jobTypeText = binding.jobType.text
         val selectedJobTypes = binding.jobType.text.split(", ")
 
 

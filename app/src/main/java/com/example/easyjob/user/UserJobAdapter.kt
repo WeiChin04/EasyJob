@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.easyjob.AnalysisData
 import com.example.easyjob.R
 import com.example.easyjob.employer.JobData
 import com.google.firebase.database.*
@@ -59,6 +62,26 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus
 
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(currentItem.jobId.toString())
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val ctr = snapshot.getValue(AnalysisData::class.java)
+                    if (ctr != null) {
+                        val showCTR = ctr.clickCount ?: 0
+                        holder.jobCTR.text = showCTR.toString()
+                        Log.d("showCTR", "showCTR: $showCTR")
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
+
         if (holder.jobStatus.text == "Unavailable") {
             holder.jobStatus.setBackgroundColor(Color.GRAY)
         }
@@ -98,6 +121,7 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
                     clickCount = 0
                 }
                 currentData.value = clickCount + 1
+
                 return Transaction.success(currentData)
             }
 

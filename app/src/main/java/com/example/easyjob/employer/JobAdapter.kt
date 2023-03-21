@@ -1,6 +1,8 @@
 package com.example.easyjob.employer
 
+import android.content.ContentValues
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +13,15 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.easyjob.AnalysisData
 import com.example.easyjob.R
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 
 class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter<JobAdapter.JobViewHolder>() {
+
+    private lateinit var dbRef: DatabaseReference
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JobViewHolder {
 
@@ -44,6 +51,26 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         holder.jobTitle.text = currentItem.jobTitle
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus
+
+        database = FirebaseDatabase.getInstance()
+        dbRef = database.getReference("Analysis").child(currentItem.jobId.toString())
+
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val ctr = snapshot.getValue(AnalysisData::class.java)
+                    if (ctr != null) {
+                        val showCTR = ctr.clickCount ?: 0
+                        holder.jobCTR.text = showCTR.toString()
+                        Log.d("showCTR", "showCTR: $showCTR")
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
 
         if(holder.jobStatus.text == "Unavailable"){
             holder.jobStatus.setBackgroundColor(Color.GRAY)
