@@ -19,7 +19,7 @@ import com.example.easyjob.employer.JobData
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 
-class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserJobAdapter.UserJobViewHolder>(){
+class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserSearchJobAdapter.UserJobViewHolder>(){
 
     private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
@@ -27,16 +27,16 @@ class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerVi
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): UserJobAdapter.UserJobViewHolder {
+    ): UserJobViewHolder {
 
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.job_item_user,
             parent, false
         )
-        return UserJobAdapter.UserJobViewHolder(itemView)
+        return UserJobViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: UserJobAdapter.UserJobViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserJobViewHolder, position: Int) {
 
         val currentItem = jobList[position]
         val storageRef = FirebaseStorage.getInstance().reference

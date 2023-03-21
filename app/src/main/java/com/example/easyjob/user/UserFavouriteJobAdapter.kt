@@ -43,7 +43,6 @@ class UserFavouriteJobAdapter (private val jobDataList: ArrayList<JobData>) : Re
 
 
         holder.datePosted.text = currentItem.currentDate
-        holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus

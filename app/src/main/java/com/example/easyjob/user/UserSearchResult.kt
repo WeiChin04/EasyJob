@@ -253,7 +253,7 @@ class UserSearchResult : Fragment() {
                 filteredList.sortBy{it.currentDate}
             }
             1 -> {
-                filteredList.sortBy { it.ctr }
+//                filteredList.sortBy { it.ctr }
             }
             2 -> {
                 filteredList.sortByDescending { it.jobSalary?.toDoubleOrNull() ?: Double.POSITIVE_INFINITY }

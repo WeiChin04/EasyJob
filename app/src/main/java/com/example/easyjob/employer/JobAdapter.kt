@@ -41,7 +41,6 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         }.addOnFailureListener {}
 
         holder.datePosted.text = currentItem.currentDate
-        holder.jobCTR.text = currentItem.ctr.toString()
         holder.jobTitle.text = currentItem.jobTitle
         holder.jobType.text = currentItem.jobType.toString()
         holder.jobStatus.text = currentItem.jobStatus

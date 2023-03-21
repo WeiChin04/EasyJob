@@ -2,7 +2,6 @@ package com.example.easyjob.employer
 
 import java.util.ArrayList
 
-
 data class JobData(
     var employerId: String? =null,
     var jobTitle: String? =null,
