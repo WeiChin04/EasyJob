@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_userProfile_to_userInformationFragment"
             app:destination="@id/userInformationFragment" />
+        <action
+            android:id="@+id/action_userProfile_to_favouriteJobFragment"
+            app:destination="@id/favouriteJobFragment" />
     </fragment>
     <fragment
         android:id="@+id/userInformationFragment"
@@ -64,4 +67,13 @@
         android:id="@+id/uerCompanyOverview"
         android:name="com.example.easyjob.user.UserCompanyOverview"
         android:label="UerCompanyOverview" />
+    <fragment
+        android:id="@+id/favouriteJobFragment"
+        android:name="com.example.easyjob.user.FavouriteJobFragment"
+        android:label="fragment_favourite_job"
+        tools:layout="@layout/fragment_favourite_job" >
+        <action
+            android:id="@+id/action_favouriteJobFragment_to_userJobDetailFragment"
+            app:destination="@id/userJobDetailFragment" />
+    </fragment>
 </navigation>

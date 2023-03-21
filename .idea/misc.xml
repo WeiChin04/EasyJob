@@ -20,6 +20,8 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.1795" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.213" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1555" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1795" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_email.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_email_focused.xml" value="0.134" />
@@ -46,6 +48,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_home.xml" value="0.2368659420289855" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_job_view.xml" value="0.22780797101449277" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_profile.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_favourite_job.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_detail.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_edit.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_form.xml" value="0.21557971014492755" />

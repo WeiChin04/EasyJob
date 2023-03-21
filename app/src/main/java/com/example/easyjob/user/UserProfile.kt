@@ -64,8 +64,22 @@ class UserProfile : Fragment() {
 
         //to view user personal information
         information()
+        favorite()
         logOut()
         return binding.root
+    }
+
+    private fun favorite() {
+
+        binding.tvFavorite.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvFavorite)
+            navController.navigate(R.id.action_userProfile_to_favouriteJobFragment)
+        }
+        binding.tvFavoriteArrow.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvFavorite)
+            navController.navigate(R.id.action_userProfile_to_favouriteJobFragment)
+        }
+
     }
 
     private fun information(){
