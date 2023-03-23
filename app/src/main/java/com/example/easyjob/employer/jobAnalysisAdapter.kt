@@ -37,16 +37,24 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
         val currentJob = jobDataList[jobListPosition]
         val currentAnalysis = jobAnalysisDataList[jobAnalysisPosition]
 
-        val currentTimeMills = currentAnalysis.lastClickTime!!.toLong()
-        val date = Date(currentTimeMills)
-        val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
-        val currentTime = dateFormat.format(date)
+        if(currentAnalysis.clickCount == 0){
+            holder.totalView.text = "0"
+        }else{
+            holder.totalView.text = currentAnalysis.clickCount.toString()
+        }
 
-        holder.lastViewAt.text = currentTime
-        holder.totalView.text = currentAnalysis.clickCount.toString()
-        holder.jobAnalysisTitle.text = currentJob.jobTitle.toString()
+        holder.jobAnalysisTitle.text = currentJob.jobTitle
 
+        if(currentAnalysis.lastClickTime == ""){
+            holder.lastViewAt.text = "-"
+        }else{
+            val currentTimeMills = currentAnalysis.lastClickTime!!.toLong()
+            val date = Date(currentTimeMills)
+            val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
+            val currentTime = dateFormat.format(date)
 
+            holder.lastViewAt.text = currentTime
+        }
     }
 
     private fun getPosition(position: Int): Pair<Int, Int> {
