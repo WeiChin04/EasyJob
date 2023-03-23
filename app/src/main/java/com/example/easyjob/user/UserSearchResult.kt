@@ -30,7 +30,6 @@ class UserSearchResult : Fragment() {
     private var sortSpinnerPosition = 0
     private var salarySpinnerPosition = 0
     private lateinit var selectedType: BooleanArray
-//    private val jobTypeArray = arrayOf("Internship","Part Time","Full Time")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,24 +79,6 @@ class UserSearchResult : Fragment() {
         }
 
         jobType()
-//        val stringBuilder = StringBuilder()
-//        val langList: ArrayList<Int> = ArrayList()
-//        for (i in selectedType.indices) {
-//            if (selectedType[i]) {
-//                langList.add(i)
-//            }
-//        }
-//        for (j in langList.indices) {
-//            stringBuilder.append(jobTypeArray[langList[j]])
-//            if (j != langList.size - 1) {
-//                stringBuilder.append(", ")
-//            }
-//        }
-//        if (stringBuilder.isEmpty()) {
-//            binding.jobType.text = "All"
-//        } else {
-//            binding.jobType.text = stringBuilder.toString()
-//        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -169,7 +150,6 @@ class UserSearchResult : Fragment() {
     }
 
     private fun jobType(){
-//        val selectedJobType: BooleanArray
         val langList: ArrayList<Int> = ArrayList()
         val jobTypeArray = arrayOf("Internship","Part Time","Full Time")
         val jobType= binding.jobType
@@ -277,7 +257,7 @@ class UserSearchResult : Fragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.getInt("sortItem",0)?.let { binding.spSort.setSelection(it) }
-//        savedInstanceState?.getInt("salaryFilter",0)?.let { binding.spSalary.setSelection(it) }
+        savedInstanceState?.getInt("salaryFilter",0)?.let { binding.spSalary.setSelection(it) }
 //        if (savedInstanceState != null) {
 //            selectedType = savedInstanceState.getBooleanArray("selectedJobType") ?: BooleanArray(3)
 //            updateRecyclerViewAdapter()

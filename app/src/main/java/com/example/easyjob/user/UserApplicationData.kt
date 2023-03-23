@@ -9,5 +9,4 @@ data class UserApplicationData(
     var rejectAt: String? = null,
     var approvedAt: String? =null,
     var applicationId: String? = null
-
-    )
+)

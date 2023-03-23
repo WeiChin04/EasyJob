@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.easyjob.AnalysisData
 import com.example.easyjob.R
+import com.example.easyjob.user.UserApplicationData
+import com.example.easyjob.user.UserData
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import java.text.SimpleDateFormat
@@ -83,6 +86,39 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
             holder.jobStatus.setBackgroundColor(Color.GRAY)
         }
 
+        val status = mutableListOf<String>()
+        dbRef = FirebaseDatabase.getInstance().getReference("Applications")
+        dbRef.orderByChild("jobId").equalTo(currentItem.jobId.toString())
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (applicantSnapshot in snapshot.children) {
+                            val applyDetail = applicantSnapshot.getValue(UserApplicationData::class.java)
+                            val applicantStatus = applyDetail!!.status
+                            if (applicantStatus == "Pending") {
+                                applicantStatus.let { status.add(it) }
+                            }
+                        }
+                        for (applicantStatus in status) {
+                            val jobQuery = dbRef.orderByChild("status").equalTo(applicantStatus)
+                            jobQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    if (snapshot.exists()) {
+                                        holder.redDot.visibility = View.VISIBLE
+                                    }
+                                }
+                                override fun onCancelled(error: DatabaseError) {
+                                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                                }
+                            })
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            })
+
         holder.cardView.setOnClickListener{
             val bundle = bundleOf(
                 "job_id" to jobList[position].jobId,
@@ -98,8 +134,6 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
             )
             it.findNavController().navigate(R.id.action_jobView_to_jobDetailFragment, bundle)
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -116,7 +150,7 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         val jobStatus : TextView = itemView.findViewById(R.id.tvShowAvailable)
         val cardView: CardView = itemView.findViewById(R.id.jobCardView)
         val employerImg: ImageView = itemView.findViewById(R.id.imgEmployerForUserHome)
-
+        val redDot: View = itemView.findViewById(R.id.redDot)
     }
 
 }

@@ -72,7 +72,5 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
         val jobAnalysisTitle : TextView = itemView.findViewById(R.id.tvJobAnalysisTitle)
         val totalView : TextView = itemView.findViewById(R.id.tvTotalView)
         val lastViewAt : TextView = itemView.findViewById(R.id.tvLastViewAt)
-
-
     }
 }

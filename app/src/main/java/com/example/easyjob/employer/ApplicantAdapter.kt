@@ -92,8 +92,6 @@ class ApplicantAdapter(private val childId: String,
             )
             it.findNavController().navigate(R.id.action_applicantManagementFragment_to_applicantDetailsFragment, bundle)
         }
-
-
     }
 
     private fun getPosition(position: Int): Pair<Int, Int> {
@@ -115,7 +113,6 @@ class ApplicantAdapter(private val childId: String,
         val applyJobStatus : TextView = itemView.findViewById(R.id.tvShowStatus)
         val applicantImage : ImageView = itemView.findViewById(R.id.imgApplicant)
         val cardView: CardView = itemView.findViewById(R.id.applicantCardView)
-
     }
 
 }
