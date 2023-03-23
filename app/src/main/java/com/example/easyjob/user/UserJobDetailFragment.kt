@@ -15,21 +15,34 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.example.easyjob.databinding.FragmentUserJobDetailBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.example.easyjob.R
+import com.example.easyjob.employer.EmployerData
 import com.google.firebase.storage.FirebaseStorage
+import org.json.JSONException
+import org.json.JSONObject
 
 class UserJobDetailFragment : Fragment() {
 
-    private  var _binding: FragmentUserJobDetailBinding? =null
+    private var _binding: FragmentUserJobDetailBinding? =null
     private val binding get() = _binding!!
     private var currentUser = FirebaseAuth.getInstance().currentUser!!.uid
     private lateinit var database: FirebaseDatabase
     private lateinit var dbRef: DatabaseReference
     private var isJobInFavorites = false
+    private val FCM_API = "https://fcm.googleapis.com/fcm/send"
+    private val serverKey = "key=AAAAhetHQJI:APA91bHKV1nH51kVk_DDwNBODLC3jc6eUHVUGNo25t3Qg8ANqrpo_WmM6srPeXLmSC7UL7-YgqNBEyeCr98RoD92lvNn0LTxZ1_vzw6TUusqKSRHWd-yk8foP94zERZbmR3TQxH7iyKd"
+    private val contentType = "application/json"
+    private val TAG = "NOTIFICATION TAG"
+    private var NOTIFICATION_TITLE = ""
+    private var NOTIFICATION_MESSAGE = ""
+    private var TOPIC = ""
+    private var deviceToken: String? =null
 
 
     override fun onCreateView(
@@ -61,6 +74,7 @@ class UserJobDetailFragment : Fragment() {
         }
 
         val jobId = arguments?.getString("job_id")
+
         checkJobInFavorite()
         binding.btnFavoriteGray.setOnClickListener {
 
@@ -85,8 +99,36 @@ class UserJobDetailFragment : Fragment() {
             minusFavouriteCount(jobId!!)
         }
 
+        val employerId = arguments?.getString("employer_id")
+
+//        employerDataViewModel = ViewModelProvider(requireActivity())[EmployerDataViewModel::class.java]
+//
+//        employerDataViewModel.getData(employerId.toString())
+//        employerDataViewModel.employerData.observe(viewLifecycleOwner) { employerData ->
+//            deviceToken = employerData.deviceToken
+//        }
+
+        val jobTitle = arguments?.getString("job_title")
+        val message = "There are new applicants waiting for your processing"
+
+        getDeviceToken()
         binding.btnApplyJob.setOnClickListener{
             checkApplication()
+            TOPIC = deviceToken.toString()
+            NOTIFICATION_TITLE = jobTitle.toString()
+            NOTIFICATION_MESSAGE = message
+
+            val notification = JSONObject()
+            val notifcationBody = JSONObject()
+            try {
+                notifcationBody.put("title", NOTIFICATION_TITLE)
+                notifcationBody.put("message", NOTIFICATION_MESSAGE)
+                notification.put("to", TOPIC)
+                notification.put("data", notifcationBody)
+            } catch (e: JSONException) {
+                Log.e(TAG, "onCreate: " + e.message)
+            }
+            sendNotification(notification)
         }
 
         binding.btnCancelJob.setOnClickListener {
@@ -102,7 +144,6 @@ class UserJobDetailFragment : Fragment() {
             alertDialog.show()
         }
 
-        val employerId = arguments?.getString("employer_id")
         binding.btnViewCompanyInfo.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("employer_id", employerId)
@@ -377,10 +418,48 @@ class UserJobDetailFragment : Fragment() {
 
     }
 
+    private fun sendNotification(notification: JSONObject) {
+        val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
+            Method.POST,
+            FCM_API,
+            notification,
+            Response.Listener { response ->
+                Log.i(TAG, "onResponse: $response")
+            },
+            Response.ErrorListener {
+                Toast.makeText(requireContext(), "Request error", Toast.LENGTH_LONG).show()
+                Log.i(TAG, "onErrorResponse: Didn't work")
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["Authorization"] = serverKey
+                params["Content-Type"] = contentType
+                return params
+            }
+        }
+        MySingleton.getInstance(requireContext()).addToRequestQueue(jsonObjectRequest)
+    }
+
+    private fun getDeviceToken(){
+        val employerId = arguments?.getString("employer_id")
+        val employerNode = "Employers"
+
+        dbRef = FirebaseDatabase.getInstance().getReference("$employerNode/$employerId")
+        dbRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val employer = snapshot.getValue(EmployerData::class.java)
+                    deviceToken = employer!!.deviceToken.toString()
+                    Log.d("token", "token: $deviceToken")
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(),"Failed to get device token",Toast.LENGTH_SHORT).show()
+                }
+        })
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

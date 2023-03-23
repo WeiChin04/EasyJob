@@ -45,19 +45,6 @@ class EmployerHomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        auth = FirebaseAuth.getInstance()
-//        dbref = FirebaseDatabase.getInstance().getReference("Employers")
-//        uid = auth.currentUser?.uid.toString()
-//
-//        dbref.child(uid).addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot){
-//                employer = snapshot.getValue(EmployerData::class.java)!!
-//                binding.tvtest.text = employer.email
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {}
-//        })
-
         binding.button2.setOnClickListener {
             auth.signOut()
             activity?.let{

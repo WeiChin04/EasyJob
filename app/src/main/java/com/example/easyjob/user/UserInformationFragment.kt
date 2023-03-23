@@ -43,7 +43,7 @@ class UserInformationFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var navController: NavController
     private lateinit var userDataViewModel: UserDataViewModel
-    private val CHANNEL_ID = "Channel_id_example_01"
+    private val channelId = "Channel_id_01"
 
     companion object {
         internal const val REQUEST_CODE_STORAGE_PERMISSION = 100
@@ -141,7 +141,7 @@ class UserInformationFragment : Fragment() {
                     intent.setDataAndType(fileUri, "application/pdf")
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
-                    val notification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                    val notification = NotificationCompat.Builder(requireContext(), channelId)
                         .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle("$fileName Downloaded")
                         .setContentText("Click to view the downloaded PDF file.")
@@ -191,7 +191,7 @@ class UserInformationFragment : Fragment() {
             val notificationTitle = "Notification Title"
             val descriptionText = "Notification Description"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel(CHANNEL_ID,notificationTitle,importance).apply {
+            val channel = NotificationChannel(channelId,notificationTitle,importance).apply {
                 description = descriptionText
             }
             val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

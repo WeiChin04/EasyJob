@@ -9,5 +9,6 @@ data class EmployerData(
     var companyIndustry : String? = null,
     var overview : String? = null,
     var profileStatus : String? = null,
+    val deviceToken: String? =null,
 )
 

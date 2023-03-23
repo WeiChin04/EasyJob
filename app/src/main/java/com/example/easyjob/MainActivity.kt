@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                         })
                     }
                 }
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {Log.d("user","This is a Employer")}
             })
 
             dberef.addListenerForSingleValueEvent(object: ValueEventListener {
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-                override fun onCancelled(error: DatabaseError) {}
+                override fun onCancelled(error: DatabaseError) {Log.d("employer","This is a User")}
             })
         }
     }

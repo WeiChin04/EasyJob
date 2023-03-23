@@ -21,15 +21,21 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentApplicantDetailsBinding
+import com.example.easyjob.user.MySingleton
 import com.example.easyjob.user.UserApplicationData
+import com.example.easyjob.user.UserData
 import com.example.easyjob.user.UserInformationFragment
 import com.google.firebase.database.*
 import com.google.firebase.installations.InstallationTokenResult.builder
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
+import org.json.JSONException
+import org.json.JSONObject
 import java.io.File
 import java.time.Instant
 import java.util.*
@@ -42,8 +48,15 @@ class ApplicantDetailsFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
-//    private val deviceToken = arguments?.getString("deviceToken")
-
+    private val FCM_API = "https://fcm.googleapis.com/fcm/send"
+    private val serverKey = "key=AAAAhetHQJI:APA91bHKV1nH51kVk_DDwNBODLC3jc6eUHVUGNo25t3Qg8ANqrpo_WmM6srPeXLmSC7UL7-YgqNBEyeCr98RoD92lvNn0LTxZ1_vzw6TUusqKSRHWd-yk8foP94zERZbmR3TQxH7iyKd"
+    private val contentType = "application/json"
+    private val TAG = "NOTIFICATION TAG"
+    private var NOTIFICATION_TITLE = ""
+    private var NOTIFICATION_MESSAGE = ""
+    private var TOPIC = ""
+    private var deviceToken: String? =null
+    private var jobTitle: String? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
@@ -120,6 +133,9 @@ class ApplicantDetailsFragment : Fragment() {
             }
         }
 
+        getJobTitle()
+        deviceToken = arguments?.getString("deviceToken")
+
         if(arguments?.getString("apply_status") == "Rejected"){
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
@@ -131,6 +147,22 @@ class ApplicantDetailsFragment : Fragment() {
                 alertDialog.setMessage("Do you want to reject "+arguments?.getString("name")+" ?")
                 alertDialog.setPositiveButton("Yes") { _, _ ->
                     rejectApplicant()
+                    val message = "Employer has rejected your application"
+                    TOPIC = deviceToken.toString()
+                    NOTIFICATION_TITLE = jobTitle.toString()
+                    NOTIFICATION_MESSAGE = message
+
+                    val notification = JSONObject()
+                    val notifcationBody = JSONObject()
+                    try {
+                        notifcationBody.put("title", NOTIFICATION_TITLE)
+                        notifcationBody.put("message", NOTIFICATION_MESSAGE)
+                        notification.put("to", TOPIC)
+                        notification.put("data", notifcationBody)
+                    } catch (e: JSONException) {
+                        Log.e(TAG, "onCreate: " + e.message)
+                    }
+                    sendNotification(notification)
                 }
                 alertDialog.setNegativeButton("No") { dialog, _ ->
                     dialog.cancel()
@@ -145,6 +177,22 @@ class ApplicantDetailsFragment : Fragment() {
                 alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
                 alertDialog.setPositiveButton("Yes") { _, _ ->
                     approveApplicant()
+                    val message = "Employer has approved your application"
+                    TOPIC = deviceToken.toString()
+                    NOTIFICATION_TITLE = jobTitle.toString()
+                    NOTIFICATION_MESSAGE = message
+
+                    val notification = JSONObject()
+                    val notifcationBody = JSONObject()
+                    try {
+                        notifcationBody.put("title", NOTIFICATION_TITLE)
+                        notifcationBody.put("message", NOTIFICATION_MESSAGE)
+                        notification.put("to", TOPIC)
+                        notification.put("data", notifcationBody)
+                    } catch (e: JSONException) {
+                        Log.e(TAG, "onCreate: " + e.message)
+                    }
+                    sendNotification(notification)
                 }
                 alertDialog.setNegativeButton("No") { dialog, _ ->
                     dialog.cancel()
@@ -152,8 +200,6 @@ class ApplicantDetailsFragment : Fragment() {
                 alertDialog.show()
             }
         }
-
-
 
         return binding.root
     }
@@ -285,6 +331,46 @@ class ApplicantDetailsFragment : Fragment() {
                 if (error != null) {
                     Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
                 }
+            }
+        })
+    }
+
+    private fun sendNotification(notification: JSONObject) {
+        val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
+            Method.POST,
+            FCM_API,
+            notification,
+            Response.Listener { response ->
+                Log.i(TAG, "onResponse: $response")
+            },
+            Response.ErrorListener {
+                Toast.makeText(requireContext(), "Request error", Toast.LENGTH_LONG).show()
+                Log.i(TAG, "onErrorResponse: Didn't work")
+            }) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val params: MutableMap<String, String> = HashMap()
+                params["Authorization"] = serverKey
+                params["Content-Type"] = contentType
+                return params
+            }
+        }
+        MySingleton.getInstance(requireContext()).addToRequestQueue(jsonObjectRequest)
+    }
+
+    private fun getJobTitle(){
+        val jobId = arguments?.getString("job_id")
+        val jobNode = "Jobs"
+
+        dbRef = FirebaseDatabase.getInstance().getReference("$jobNode/$jobId")
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val job = snapshot.getValue(JobData::class.java)
+                jobTitle = job!!.jobTitle.toString()
+                Log.d("Token", "Job Title: $jobTitle")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(),"Failed to get device token",Toast.LENGTH_SHORT).show()
             }
         })
     }
