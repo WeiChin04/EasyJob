@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.easyjob.AnalysisData
 import com.example.easyjob.R
@@ -44,17 +47,32 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
         }
 
         holder.jobAnalysisTitle.text = currentJob.jobTitle
+        val currentTimeMills = currentAnalysis.lastClickTime!!.toLong()
+        val date = Date(currentTimeMills)
+        val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
+        val currentTime = dateFormat.format(date)
 
         if(currentAnalysis.lastClickTime == ""){
             holder.lastViewAt.text = "-"
         }else{
-            val currentTimeMills = currentAnalysis.lastClickTime!!.toLong()
-            val date = Date(currentTimeMills)
-            val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
-            val currentTime = dateFormat.format(date)
+
 
             holder.lastViewAt.text = currentTime
         }
+
+        holder.cardView.setOnClickListener {
+            val bundle = bundleOf(
+                "total_click" to currentAnalysis.clickCount.toString(),
+                "total_applied" to currentAnalysis.totalApply.toString(),
+                "total_approved" to currentAnalysis.totalApproved.toString(),
+                "total_cancelled" to currentAnalysis.totalCancel.toString(),
+                "total_rejected" to currentAnalysis.totalRejected.toString(),
+                "total_favourite" to currentAnalysis.favouriteCount.toString(),
+                "last_click" to currentTime
+            )
+            it.findNavController().navigate(R.id.action_employerHomeFragment_to_jobAnalysisDetailsFragment, bundle)
+        }
+
     }
 
     private fun getPosition(position: Int): Pair<Int, Int> {
@@ -72,5 +90,8 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
         val jobAnalysisTitle : TextView = itemView.findViewById(R.id.tvJobAnalysisTitle)
         val totalView : TextView = itemView.findViewById(R.id.tvTotalView)
         val lastViewAt : TextView = itemView.findViewById(R.id.tvLastViewAt)
+        val cardView : CardView = itemView.findViewById(R.id.cvJobAnalysis)
+
+
     }
 }

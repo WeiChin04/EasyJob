@@ -8,7 +8,11 @@
     <fragment
         android:id="@+id/employerHomeFragment"
         android:name="com.example.easyjob.employer.EmployerHomeFragment"
-        tools:layout="@layout/fragment_employer_home" />
+        tools:layout="@layout/fragment_employer_home" >
+        <action
+            android:id="@+id/action_employerHomeFragment_to_jobAnalysisDetailsFragment"
+            app:destination="@id/jobAnalysisDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/jobView"
         android:name="com.example.easyjob.employer.EmployerJobView"
@@ -74,4 +78,9 @@
         android:id="@+id/employerJobForm"
         android:name="com.example.easyjob.employer.EmployerJobForm"
         android:label="EmployerJobForm" />
+    <fragment
+        android:id="@+id/jobAnalysisDetailsFragment"
+        android:name="com.example.easyjob.employer.JobAnalysisDetailsFragment"
+        android:label="fragment_job_analysis_details"
+        tools:layout="@layout/fragment_job_analysis_details" />
 </navigation>

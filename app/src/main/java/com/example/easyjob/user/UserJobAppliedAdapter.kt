@@ -58,7 +58,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
 
         val currentTimeMillis = currentItem.appliedAt!!.toLong()
         val date = Date(currentTimeMillis)
-        val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
         val currentTime = dateFormat.format(date)
         holder.dateApplied.text = currentTime
         holder.jobTitle.text = currentJobItem.jobTitle

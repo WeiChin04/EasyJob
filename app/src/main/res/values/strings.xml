@@ -139,15 +139,15 @@
     <string name="personal_information">Personal Information</string>
 
 
-<!--    <string-array name="education_level">-->
-<!--        <item>Click To Select Education Level</item>-->
-<!--        <item>Secondary School</item>-->
-<!--        <item>Pre-University</item>-->
-<!--        <item>Diploma</item>-->
-<!--        <item>Bachelor's Degree</item>-->
-<!--        <item>Master's Degree</item>-->
-<!--        <item>PhD</item>-->
-<!--    </string-array>-->
+    <!--    <string-array name="education_level">-->
+    <!--        <item>Click To Select Education Level</item>-->
+    <!--        <item>Secondary School</item>-->
+    <!--        <item>Pre-University</item>-->
+    <!--        <item>Diploma</item>-->
+    <!--        <item>Bachelor's Degree</item>-->
+    <!--        <item>Master's Degree</item>-->
+    <!--        <item>PhD</item>-->
+    <!--    </string-array>-->
 
     <!--    Job Details View-->
     <string name="job_detail_page_title">Job Details</string>
@@ -206,13 +206,13 @@
     <string name="show_repeat_applied_job_message">You have applied this job before</string>
 
 
-    <!--    messageDialog   -->
+    <!--    messageDialog       -->
     <string name="messageDialog_yes">Yes</string>
     <string name="messageDialog_confirm">Confirm</string>
     <string name="messageDialog_no">no</string>
 
 
-    <!--    applicant item-->
+    <!--    applicant item      -->
     <string name="apply_date_title">Apply Date : </string>
     <string name="example_applicant_name">Michelle</string>
     <string name="example_contact">012–7123453</string>
@@ -262,16 +262,19 @@
         <item>10000 &amp; above</item>
     </string-array>
 
-<!--    job analysis card view-->
+    <!--    job analysis card view      -->
     <string name="total_view_description">Total Views :</string>
     <string name="example_total_view">999</string>
-    <string name="last_view_at_description">Last view at :</string>
+    <string name="last_view_at_description">Last update at :</string>
     <string name="example_last_view">2023/01/01 20:22</string>
-    <string name="total_bookmarks_description"> people have bookmarked this job</string>
-    <string name="total_apply_description">people applied for the job</string>
-    <string name="total_cancel_description">people cancelled this application after applying</string>
-    <string name="total_approved_description">people have been approved</string>
-    <string name="total_rejected_description">people have been rejected</string>
+    <string name="total_bookmarks_description">Favourite</string>
+    <string name="total_apply_description">Applied</string>
+    <string name="total_approved_description">Cancelled</string>
+    <string name="total_cancel_description">Approved</string>
+    <string name="total_rejected_description">Rejected</string>
+    <string name="job_analysis_page_title">Job Analysis</string>
+
+    <!--     Job Analysis Detail Page   -->
 
 
 </resources>

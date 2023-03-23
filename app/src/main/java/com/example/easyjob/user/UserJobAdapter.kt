@@ -60,7 +60,7 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
 
         val currentTimeMillis = currentItem.currentDate!!.toLong()
         val date = Date(currentTimeMillis)
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
         val currentTime = dateFormat.format(date)
         holder.datePosted.text = currentTime
         holder.jobTitle.text = currentItem.jobTitle

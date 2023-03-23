@@ -54,7 +54,7 @@ class ApplicantAdapter(private val childId: String,
 
         val currentTimeMillis = appliedDataList.appliedAt!!.toLong()
         val date = Date(currentTimeMillis)
-        val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
         val currentTime = dateFormat.format(date)
         holder.applyDate.text = currentTime
 

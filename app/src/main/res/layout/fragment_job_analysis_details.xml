@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".employer.JobAnalysisDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/Theme.EasyJob">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorOnPrimary"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+                app:popupTheme="@style/Theme.EasyJob"
+                app:titleTextColor="@color/green">
+
+                <TextView
+                    style="@style/toolbar_Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/job_analysis_page_title" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clTop">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/ADTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_view_description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvADTotalView"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="@string/example_total_view"
+                android:textColor="@color/green"
+                android:background="@color/white"
+                tools:targetApi="26" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/ADTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="end"
+                android:background="@color/white"
+                android:text="@string/last_view_at_description" />
+
+            <TextView
+                android:id="@+id/tvADLastUpdate"
+                style="@style/textview_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="end"
+                android:background="@color/white"
+                android:text="@string/example_last_view" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_apply_description" />
+
+            <TextView
+                android:id="@+id/textView7"
+                style="@style/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_cancel_description" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/tvADApplied"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="@string/example_total_view"
+                android:textColor="@color/green"
+                android:background="@color/white"
+                tools:targetApi="26" />
+
+            <TextView
+                android:id="@+id/tvADApproved"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="@string/example_total_view"
+                android:textColor="@color/green"
+                android:background="@color/white"
+                tools:targetApi="26" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_approved_description" />
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_rejected_description" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+            <TextView
+                android:id="@+id/tvADCancelled"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="@string/example_total_view"
+                android:textColor="@color/green"
+                android:background="@color/white"
+                tools:targetApi="26" />
+
+            <TextView
+                android:id="@+id/tvADRejected"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:text="@string/example_total_view"
+                android:textColor="@color/green"
+                android:background="@color/white"
+                tools:targetApi="26" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_background"
+                android:text="@string/total_bookmarks_description" />
+
+            <TextView
+                android:id="@+id/tvADFavourite"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:autoSizeMaxTextSize="70sp"
+                android:autoSizeMinTextSize="10sp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/nunito_bold"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:text="@string/example_total_view"
+                android:background="@color/white"
+                tools:targetApi="26"/>
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

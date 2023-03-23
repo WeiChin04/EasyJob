@@ -1,8 +1,6 @@
 package com.example.easyjob.employer
-
 import android.annotation.SuppressLint
 import android.content.ContentValues
-
 import android.os.Bundle
 import android.text.method.TextKeyListener.clear
 import android.util.Log
@@ -10,22 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.easyjob.AnalysisData
-
 import com.example.easyjob.databinding.FragmentEmployerHomeBinding
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.core.RepoManager.clear
 import java.util.ArrayList
-
 class EmployerHomeFragment : Fragment() {
 
     private var _binding: FragmentEmployerHomeBinding? =null
