@@ -41,7 +41,7 @@ class JobDetailFragment : Fragment() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         val navController = findNavController()
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
+       // NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
 
 
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid

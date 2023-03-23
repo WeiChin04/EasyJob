@@ -1,6 +1,5 @@
 package com.example.easyjob.employer
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +54,7 @@ class ApplicantAdapter(private val childId: String,
 
         val currentTimeMillis = appliedDataList.appliedAt!!.toLong()
         val date = Date(currentTimeMillis)
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("HH:mm , dd/MMM/yyyy", Locale.getDefault())
         val currentTime = dateFormat.format(date)
         holder.applyDate.text = currentTime
 

@@ -6,34 +6,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".employer.EmployerHomeFragment">
 
-    <TextView
-        android:id="@+id/tvtest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/tveh"
-        app:layout_constraintStart_toStartOf="@+id/tveh"
-        app:layout_constraintTop_toBottomOf="@+id/tveh" />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tveh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="Employer Home"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myJobAnalysis"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:listitem="@layout/job_analysis_item" />
 
-    <Button
-        android:id="@+id/button2"
-        style="@style/ButtonGreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="log out"
-        app:layout_constraintEnd_toEndOf="@+id/tvtest"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="@+id/tvtest"
-        app:layout_constraintTop_toBottomOf="@+id/tvtest" />
+        <TextView
+            android:id="@+id/etNoJobShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_work_display"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/myJobAnalysis"
+            app:layout_constraintEnd_toEndOf="@+id/myJobAnalysis"
+            app:layout_constraintStart_toStartOf="@+id/myJobAnalysis"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

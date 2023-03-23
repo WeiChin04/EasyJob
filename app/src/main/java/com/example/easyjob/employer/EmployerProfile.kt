@@ -46,13 +46,11 @@ class EmployerProfile : Fragment() {
         val filePathAndName = "EmployerProfileImages/"+ auth.currentUser!!.uid
         val imageRef = storageRef.child(filePathAndName)
 
-        if(imageRef!=null) {
-            imageRef.downloadUrl.addOnSuccessListener { uri ->
-                Glide.with(this)
-                    .load(uri)
-                    .into(binding.ivEmployerProfile)
-            }.addOnFailureListener {}
-        }
+        imageRef.downloadUrl.addOnSuccessListener { uri ->
+            Glide.with(this)
+                .load(uri)
+                .into(binding.ivEmployerProfile)
+        }.addOnFailureListener {}
 
         //get user data form view model
         employerDataViewModel = ViewModelProvider(requireActivity())[EmployerDataViewModel::class.java]

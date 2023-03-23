@@ -262,4 +262,16 @@
         <item>10000 &amp; above</item>
     </string-array>
 
+<!--    job analysis card view-->
+    <string name="total_view_description">Total Views :</string>
+    <string name="example_total_view">999</string>
+    <string name="last_view_at_description">Last view at :</string>
+    <string name="example_last_view">2023/01/01 20:22</string>
+    <string name="total_bookmarks_description"> people have bookmarked this job</string>
+    <string name="total_apply_description">people applied for the job</string>
+    <string name="total_cancel_description">people cancelled this application after applying</string>
+    <string name="total_approved_description">people have been approved</string>
+    <string name="total_rejected_description">people have been rejected</string>
+
+
 </resources>

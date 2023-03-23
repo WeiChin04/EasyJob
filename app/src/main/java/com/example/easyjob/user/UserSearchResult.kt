@@ -121,7 +121,7 @@ class UserSearchResult : Fragment() {
 
         val status = "Available"
         dbRef.orderByChild("jobStatus").equalTo(status)
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val filteredList = ArrayList<JobData>()

@@ -1,5 +1,6 @@
 package com.example.easyjob.user
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.os.Bundle
 import android.util.Log
@@ -45,7 +46,22 @@ class UserMyJobFragment : Fragment() {
     ): View {
 
         _binding = FragmentUserMyJobBinding.inflate(inflater,container,false)
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data here
+            refreshData()
+        }
+
         return binding.root
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshData() {
+        jobArrayList.clear()
+        jobDataArrayList.clear()
+        checkAppliedJobExist()
+        jobRecyclerView.adapter?.notifyDataSetChanged()
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun checkAppliedJobExist() {

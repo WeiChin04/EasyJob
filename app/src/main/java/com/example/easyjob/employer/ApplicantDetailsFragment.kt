@@ -105,7 +105,8 @@ class ApplicantDetailsFragment : Fragment() {
         binding.tvUserResume.text = getString(R.string.empty_resume)
 
         //get resume file
-        val pdfChillName = "PDFFiles/${arguments?.getString("applicant_id")}.pdf"
+        val applicantId = arguments?.getString("applicant_id")
+        val pdfChillName = "PDFFiles/$applicantId.pdf"
         val pdfRef = storageRef.child(pdfChillName)
 
         pdfRef.downloadUrl.addOnSuccessListener {
@@ -127,7 +128,7 @@ class ApplicantDetailsFragment : Fragment() {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
                     Toast.makeText(requireContext(),"Download Completed", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener { exception ->
-                    Log.e("DOWNLOAD", "Download failed: $exception")
+                    Log.e("DOWNLOAD", "Download failed: $applicantId")
                     Toast.makeText(requireContext(),"Download Failed", Toast.LENGTH_SHORT).show()
                 }
             }

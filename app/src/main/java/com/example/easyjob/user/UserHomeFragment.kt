@@ -1,5 +1,6 @@
 package com.example.easyjob.user
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
@@ -79,7 +80,20 @@ class UserHomeFragment : Fragment() {
         userDataViewModel.getData(auth.currentUser!!.uid)
 
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data here
+            refreshData()
+        }
+
         return binding.root
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshData() {
+        jobArrayList.clear()
+        getJobData()
+        jobRecyclerView.adapter?.notifyDataSetChanged()
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun getJobData() {
@@ -88,7 +102,7 @@ class UserHomeFragment : Fragment() {
 
         val status = "Available"
         dbRef.orderByChild("jobStatus").equalTo(status)
-            .addValueEventListener(object : ValueEventListener {
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         for (jobSnapshot in snapshot.children) {

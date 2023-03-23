@@ -23,12 +23,10 @@ class EmployerJobView : Fragment() {
     private var _binding: FragmentEmployerJobViewBinding? = null
     private val binding get() = _binding!!
     private lateinit var dbRef: DatabaseReference
-    private lateinit var database: FirebaseDatabase
-    private lateinit var uid: String
     private lateinit var auth: FirebaseAuth
     private lateinit var jobRecyclerView: RecyclerView
     private lateinit var jobArrayList: ArrayList<JobData>
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         (activity as EmployerHome).showBottomNavigationView()
@@ -42,7 +40,6 @@ class EmployerJobView : Fragment() {
     }
 
     private fun getJobData() {
-
         val currentUserID = FirebaseAuth.getInstance().currentUser?.uid
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
 
