@@ -25,7 +25,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/custom_user_password_icon.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/education.xml" value="0.213" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/email.xml" value="0.213" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/gradient_background.xml" value="0.162" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/home.xml" value="0.213" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_access_time_filled_24.xml" value="0.1795" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.16" />
@@ -51,7 +50,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/spinner_background.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/font/nunito_bold.xml" value="0.27589743589743587" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/font/nunito_semibold.xml" value="0.27589743589743587" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout-v26/fragment_job_analysis_details.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout-v28/activity_post_job.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/activity_employer_home.xml" value="0.22826086956521738" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/activity_employer_register.xml" value="0.22826086956521738" />
@@ -72,7 +70,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_job_view.xml" value="0.22780797101449277" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_profile.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_favourite_job.xml" value="0.25" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_analysis_details.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_detail.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_edit.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_job_form.xml" value="0.21557971014492755" />
@@ -87,7 +84,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_profile.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_search_result.xml" value="0.24139492753623187" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_analysis.xml" value="0.264" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_analysis_item.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_analysis_item.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_item.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_item_user.xml" value="0.2368659420289855" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_item_user_applied.xml" value="0.4" />
@@ -145,7 +142,7 @@
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_search_result.xml" value="0.2" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_view_user_profile.xml" value="0.33" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/job_analysis_item.xml" value="0.19021739130434784" />
-        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/job_item.xml" value="0.33" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/job_item.xml" value="0.176" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/job_item_user.xml" value="0.19021739130434784" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/spinner_jobtype.xml" value="0.19021739130434784" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/test.xml" value="0.19882246376811594" />

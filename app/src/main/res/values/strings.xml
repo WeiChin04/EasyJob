@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">EasyJob</string>
-
+    <string name="select_language">Select Language</string>
+    <string name="english">English</string>
+    <string name="chinese">中文</string>
     <!-- start page -->
     <string name="start_page_title">Welcome \nEasy Job</string>
     <string name="btn_login">Login</string>
