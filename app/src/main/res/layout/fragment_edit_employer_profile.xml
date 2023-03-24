@@ -136,10 +136,12 @@
             android:layout_width="370dp"
             android:layout_height="140dp"
             android:layout_marginTop="10dp"
-            android:minEms="10"
+            android:layout_marginEnd="24dp"
             android:hint="@string/enter_your_company_address"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
+            android:minEms="10"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_employer_address_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_employer_address_title" />
 
@@ -182,10 +184,12 @@
             android:layout_width="370dp"
             android:layout_height="140dp"
             android:layout_marginTop="10dp"
-            android:minEms="10"
+            android:layout_marginEnd="24dp"
             android:hint="@string/introduce_your_company"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
+            android:minEms="10"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_employer_overview_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_employer_overview_title" />
 
@@ -207,6 +211,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
+            android:layout_marginEnd="24dp"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
             app:layout_constraintEnd_toEndOf="parent"

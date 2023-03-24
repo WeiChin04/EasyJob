@@ -47,16 +47,17 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
         }
 
         holder.jobAnalysisTitle.text = currentJob.jobTitle
-        val currentTimeMills = currentAnalysis.lastClickTime!!.toLong()
-        val date = Date(currentTimeMills)
-        val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
-        val currentTime = dateFormat.format(date)
 
-        if(currentAnalysis.lastClickTime == ""){
+        val currentTimeMills = currentAnalysis.lastClickTime
+        var calCurrentTime = ""
+
+        if (currentTimeMills.isNullOrEmpty()) {
             holder.lastViewAt.text = "-"
-        }else{
-
-
+        } else {
+            val date = Date(currentTimeMills.toLong())
+            val dateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
+            val currentTime = dateFormat.format(date)
+            calCurrentTime = currentTime
             holder.lastViewAt.text = currentTime
         }
 
@@ -68,7 +69,7 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
                 "total_cancelled" to currentAnalysis.totalCancel.toString(),
                 "total_rejected" to currentAnalysis.totalRejected.toString(),
                 "total_favourite" to currentAnalysis.favouriteCount.toString(),
-                "last_click" to currentTime
+                "last_click" to calCurrentTime
             )
             it.findNavController().navigate(R.id.action_employerHomeFragment_to_jobAnalysisDetailsFragment, bundle)
         }
