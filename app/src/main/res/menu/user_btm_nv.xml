@@ -12,6 +12,11 @@
         android:icon="@drawable/ic_work"
         />
     <item
+        android:id="@+id/userMyWallet"
+        android:title="@string/my_wallet"
+        android:icon="@drawable/ic_wallet"
+        />
+    <item
         android:id="@+id/userProfile"
         android:title="@string/me"
         android:icon="@drawable/ic_person"

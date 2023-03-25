@@ -1,5 +1,6 @@
 package com.example.easyjob.employer
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class ApplicantAdapter(private val childId: String,
         val applicantList = applicantList[applicantListPosition]
 
         val storageRef = FirebaseStorage.getInstance().reference
-        val filePathAndName = "ProfileImages/"+applicantList.userId
+        val filePathAndName = "UsersProfileImages/"+applicantList.userId
         val imageRef = storageRef.child(filePathAndName)
 
         imageRef.downloadUrl.addOnSuccessListener { uri ->
@@ -49,8 +50,10 @@ class ApplicantAdapter(private val childId: String,
                 .load(uri)
                 .placeholder(R.drawable.ic_person)
                 .error(R.drawable.ic_person)
-                .into(holder.applicantImage)
+                .into(holder.imgApplicant)
         }.addOnFailureListener {}
+
+        Log.d("filePath","path$filePathAndName")
 
         val currentTimeMillis = appliedDataList.appliedAt!!.toLong()
         val date = Date(currentTimeMillis)
@@ -111,7 +114,7 @@ class ApplicantAdapter(private val childId: String,
         val applicantContract : TextView = itemView.findViewById(R.id.tvShowApplicantContact)
         val applicantEmail : TextView = itemView.findViewById(R.id.tvShowApplicantEmail)
         val applyJobStatus : TextView = itemView.findViewById(R.id.tvShowStatus)
-        val applicantImage : ImageView = itemView.findViewById(R.id.imgApplicant)
+        val imgApplicant : ImageView = itemView.findViewById(R.id.imgApplicant)
         val cardView: CardView = itemView.findViewById(R.id.applicantCardView)
     }
 

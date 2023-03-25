@@ -323,6 +323,9 @@ class EmployerJobForm : Fragment() {
                         if (jobType.contains("Internship")) {
                             binding.chkJobTypeInternship.isChecked = true
                         }
+                        if (jobType.contains("Temporary Work")) {
+                            binding.chkJobTypeTemporaryWork.isChecked = true
+                        }
 
                         if(job.jobStatus == "Available")
                             binding.swJobStatus.isChecked

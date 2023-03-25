@@ -13,6 +13,7 @@
     <!--    menu    -->
     <string name="menu_home">主页</string>
     <string name="my_job">我的工作</string>
+    <string name="my_wallet">我的钱包</string>
     <string name="me">我</string>
 
     <string name="email">电子邮件</string>
@@ -60,7 +61,7 @@
         <item>Full Time</item>
     </string-array>
     <string name="internship">Internship</string>
-    <string name="temporary_work">Temporary work</string>
+    <string name="temporary_work">Temporary Work</string>
     <string name="part_time">Part Time</string>
     <string name="full_time">Full Time</string>
     <string name="job_type_avoid">临时工作不能与其他工作类型一起选择。</string>
@@ -249,7 +250,7 @@
     <string name="empty_resume">申请人未上传任何简历或CV</string>
     <string name="approve">批准</string>
     <string name="reject">拒绝</string>
-    <string name="cancel_application">取消</string>
+    <string name="cancel_application">取消申请</string>
     <string name="show_rejected_message">您已拒绝该申请人。</string>
     <string name="cancel_successful_application">成功取消申请</string>
     <string name="cancel_fail_application">无法取消申请</string>

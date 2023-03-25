@@ -11,7 +11,9 @@
     <!--    menu    -->
     <string name="menu_home">Home</string>
     <string name="my_job">My Job</string>
+    <string name="my_wallet">My Wallet</string>
     <string name="me">Me</string>
+
 
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -58,7 +60,7 @@
         <item>Full Time</item>
     </string-array>
     <string name="internship">Internship</string>
-    <string name="temporary_work">Temporary work</string>
+    <string name="temporary_work">Temporary Work</string>
     <string name="part_time">Part Time</string>
     <string name="full_time">Full Time</string>
     <string name="job_type_hint">Please select a job type</string>
@@ -259,7 +261,7 @@
     <string name="empty_resume">Applicant did not upload any resume or CV</string>
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
-    <string name="cancel_application">Cancel</string>
+    <string name="cancel_application">Cancel Application</string>
     <string name="show_rejected_message">You have rejected the applicant.</string>
     <string name="cancel_successful_application">Application cancelled</string>
     <string name="cancel_fail_application">Failed to cancel application</string>
@@ -322,6 +324,16 @@
     <string name="current_password_incorrect">Current password is incorrect</string>
     <string name="messageDialog_cancel_change_password">Your password will not be change</string>
     <string name="crPass_and_newPass_same">Current password and new password cannot be same</string>
+
+    <!--    My Wallet Page  -->
+    <string name="currency">RM</string>
+    <string name="example_balance">0.00</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="cash_out">Cash Out</string>
+    <string name="TransactionHistory">Transaction History</string>
+    <string name="example_history">example</string>
+    <string name="transaction_history">History</string>
+
 
 
 </resources>

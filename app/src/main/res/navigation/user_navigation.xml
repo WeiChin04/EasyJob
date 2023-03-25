@@ -92,4 +92,9 @@
         android:name="com.example.easyjob.user.UserChangePassword"
         android:label="fragment_user_change_password"
         tools:layout="@layout/fragment_user_change_password" />
+    <fragment
+        android:id="@+id/userMyWallet"
+        android:name="com.example.easyjob.user.UserMyWallet"
+        android:label="fragment_user_my_wallet"
+        tools:layout="@layout/fragment_user_my_wallet" />
 </navigation>
