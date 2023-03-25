@@ -48,9 +48,35 @@ class EmployerJobForm : Fragment() {
         //hide nav bar
         (activity as EmployerHome).hideBottomNavigationView()
 
+        binding.chkJobTypeFullTime.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked && binding.chkJobTypeTemporaryWork.isChecked) {
+                Toast.makeText(requireContext(), getString(R.string.job_type_avoid), Toast.LENGTH_SHORT).show()
+                binding.chkJobTypeTemporaryWork.isChecked = false
+            }
+        }
 
+        binding.chkJobTypePartTime.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked && binding.chkJobTypeTemporaryWork.isChecked) {
+                Toast.makeText(requireContext(), getString(R.string.job_type_avoid), Toast.LENGTH_SHORT).show()
+                binding.chkJobTypeTemporaryWork.isChecked = false
+            }
+        }
 
+        binding.chkJobTypeInternship.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked && binding.chkJobTypeTemporaryWork.isChecked) {
+                Toast.makeText(requireContext(), getString(R.string.job_type_avoid), Toast.LENGTH_SHORT).show()
+                binding.chkJobTypeTemporaryWork.isChecked = false
+            }
+        }
 
+        binding.chkJobTypeTemporaryWork.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked && (binding.chkJobTypeFullTime.isChecked || binding.chkJobTypeInternship.isChecked || binding.chkJobTypePartTime.isChecked )) {
+                Toast.makeText(requireContext(), getString(R.string.job_type_avoid), Toast.LENGTH_SHORT).show()
+                binding.chkJobTypeFullTime.isChecked = false
+                binding.chkJobTypeInternship.isChecked = false
+                binding.chkJobTypePartTime.isChecked = false
+            }
+        }
 
         /*        TIME PICKER FOR JOB HOUR*/
         val calendarStart = Calendar.getInstance()
@@ -155,6 +181,9 @@ class EmployerJobForm : Fragment() {
         }
         if (binding.chkJobTypeFullTime.isChecked) {
             selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
+        }
+        if (binding.chkJobTypeTemporaryWork.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypeTemporaryWork.text.toString())
         }
 
         val jobSalary = binding.etJobSalary.text.toString()

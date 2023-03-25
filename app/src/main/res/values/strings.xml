@@ -58,9 +58,11 @@
         <item>Full Time</item>
     </string-array>
     <string name="internship">Internship</string>
+    <string name="temporary_work">Temporary work</string>
     <string name="part_time">Part Time</string>
     <string name="full_time">Full Time</string>
     <string name="job_type_hint">Please select a job type</string>
+    <string name="job_type_avoid">Temporary jobs cannot be selected together with other job types</string>
     <string name="job_salary">Job Salary</string>
     <string name="job_salary_hint">RM</string>
     <string name="working_hour">Working Hour</string>

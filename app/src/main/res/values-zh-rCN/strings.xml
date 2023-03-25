@@ -60,8 +60,10 @@
         <item>Full Time</item>
     </string-array>
     <string name="internship">Internship</string>
+    <string name="temporary_work">Temporary work</string>
     <string name="part_time">Part Time</string>
     <string name="full_time">Full Time</string>
+    <string name="job_type_avoid">临时工作不能与其他工作类型一起选择。</string>
     <string name="job_type_hint">请选择职位类型</string>
     <string name="job_salary">职位薪资</string>
     <string name="job_salary_hint">马币</string>

@@ -99,7 +99,7 @@
             android:layout_marginTop="28dp"
             android:text="@string/job_salary"
             app:layout_constraintStart_toStartOf="@+id/tvJobType"
-            app:layout_constraintTop_toBottomOf="@+id/chkJobTypeInternship" />
+            app:layout_constraintTop_toBottomOf="@+id/chkJobTypeTemporaryWork" />
 
         <EditText
             android:id="@+id/etJobSalary"
@@ -288,6 +288,18 @@
             android:textColorLink="@color/light_green"
             app:layout_constraintStart_toStartOf="@+id/tvJobType"
             app:layout_constraintTop_toBottomOf="@+id/tvJobType" />
+
+        <CheckBox
+            android:id="@+id/chkJobTypeTemporaryWork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/temporary_work"
+            android:textColor="@color/green"
+            android:textColorHighlight="@color/green"
+            android:textColorLink="@color/light_green"
+            app:layout_constraintStart_toStartOf="@+id/chkJobTypeInternship"
+            app:layout_constraintTop_toBottomOf="@+id/chkJobTypeInternship" />
 
         <CheckBox
             android:id="@+id/chkJobTypePartTime"
