@@ -196,6 +196,8 @@
     <string name="AppliedJob">我的申请</string>
     <string name="FavouriteJob">我收藏的职位</string>
     <string name="applied_date_title">申请日期：</string>
+    <string name="rejected_date_title">拒绝日期:</string>
+    <string name="Approved_date_title">批准日期:</string>
     <string name="example_job_applied_status">这里显示已申请的职位</string>
     <string name="no_apply_job_show">您还没有申请任何职位</string>
     <string name="show_cancel_application_confirm_message">您确定要取消申请该职位吗？</string>

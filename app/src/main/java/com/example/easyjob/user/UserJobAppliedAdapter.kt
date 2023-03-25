@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -65,6 +66,29 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
         holder.jobTitle.text = currentJobItem.jobTitle
         holder.jobType.text = currentJobItem.jobType.toString()
         holder.jobAppliedStatus.text = currentItem.status
+
+        val approvedTimeMillis = currentItem.approvedAt
+        if (approvedTimeMillis.isNullOrEmpty()) {
+            holder.lyApproved.visibility =View.GONE
+        } else {
+            holder.lyApproved.visibility =View.VISIBLE
+            val approvedDate = Date(approvedTimeMillis.toLong())
+            val approvedDateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
+            val approvedCurrentTime = approvedDateFormat.format(approvedDate)
+            holder.dateApproved.text = approvedCurrentTime
+        }
+
+        val rejectedTimeMillis = currentItem.rejectAt
+        if (rejectedTimeMillis.isNullOrEmpty()) {
+            holder.lyRejected.visibility =View.GONE
+        } else {
+            holder.lyRejected.visibility =View.VISIBLE
+            val rejectedDate = Date(rejectedTimeMillis.toLong())
+            val rejectedDateFormat = SimpleDateFormat("HH:mm, dd MMM yyyy", Locale.getDefault())
+            val rejectedCurrentTime = rejectedDateFormat.format(rejectedDate)
+            holder.dateRejected.text = rejectedCurrentTime
+        }
+
 
         database = FirebaseDatabase.getInstance()
         dbRef = database.getReference("Analysis").child(currentItem.jobId.toString())
@@ -143,6 +167,10 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
         val jobAppliedStatus : TextView = itemView.findViewById(R.id.tvShowJobAppliedStatus)
         val employerImage : ImageView = itemView.findViewById(R.id.employer_imageView)
         val userCardView: CardView = itemView.findViewById(R.id.userJobAppliedCardView)
+        val dateApproved : TextView = itemView.findViewById(R.id.tvApprovedDate)
+        val dateRejected : TextView = itemView.findViewById(R.id.tvRejectedDate)
+        val lyApproved: LinearLayout = itemView.findViewById(R.id.lyApprovedDate)
+        val lyRejected: LinearLayout = itemView.findViewById(R.id.lyRejectedDate)
     }
 
 }

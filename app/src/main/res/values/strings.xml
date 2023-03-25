@@ -206,6 +206,8 @@
     <string name="AppliedJob">My Applied Job</string>
     <string name="FavouriteJob">My Favourite Job</string>
     <string name="applied_date_title">Applied Date:</string>
+    <string name="rejected_date_title">Rejected Date:</string>
+    <string name="Approved_date_title">Approved Date:</string>
     <string name="example_job_applied_status">Show job applied here</string>
     <string name="no_apply_job_show">You Haven\'t Apply Any Job</string>
     <string name="show_cancel_application_confirm_message">Do you want to cancel your application for this job?</string>
