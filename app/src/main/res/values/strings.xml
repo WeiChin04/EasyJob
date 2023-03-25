@@ -8,6 +8,11 @@
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
 
+    <!--    menu    -->
+    <string name="menu_home">Home</string>
+    <string name="my_job">My Job</string>
+    <string name="me">Me</string>
+
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -129,7 +134,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_profile">My Profile</string>
     <string name="my_favorite">My Favorite</string>
-    <string name="setting">Setting</string>
+    <string name="language">Language Settings</string>
     <string name="log_out">Log Out</string>
     <string name="name">Name</string>
     <string name="contact_number">Contact Number</string>
@@ -211,8 +216,16 @@
     <!--    messageDialog       -->
     <string name="messageDialog_yes">Yes</string>
     <string name="messageDialog_confirm">Confirm</string>
+    <string name="messageDialog_without_saving">Do you want to exit without saving changes?</string>
     <string name="messageDialog_no">no</string>
 
+
+    <!--    Language        -->
+    <string name="choose_language">Choose Language</string>
+    <string name="change_language">Change Language</string>
+    <string name="restart_app_message">After Changing the language, the application will restart. Are you sure you want to change languages?</string>
+    <string name="language_english">English</string>
+    <string name="language_simplified_chinese">简体中文</string>
 
     <!--    applicant item      -->
     <string name="apply_date_title">Apply Date : </string>
@@ -229,6 +242,7 @@
     <string name="show_welcome">Welcome to EasyJob</string>
     <string name="sort">Sort</string>
     <string name="no_job_found">No Job Found</string>
+    <string name="hint_search">Search…</string>
 
     <string-array name="sort">
         <item>Relevance</item>
@@ -275,8 +289,15 @@
     <string name="total_cancel_description">Approved</string>
     <string name="total_rejected_description">Rejected</string>
     <string name="job_analysis_page_title">Job Analysis</string>
+    <string name="close">close</string>
+    <string name="jod_modification_reminder">This job and no applications for more than seven days, you are advised to adjust the job description</string>
 
     <!--     Job Analysis Detail Page   -->
+
+    <string-array name="language">
+        <item>English</item>
+        <item>Simplified Chinese </item>
+    </string-array>
 
 
 </resources>

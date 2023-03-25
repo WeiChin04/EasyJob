@@ -1,5 +1,6 @@
 package com.example.easyjob
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private lateinit var dburef: DatabaseReference
     private lateinit var dberef: DatabaseReference
+    lateinit var myPreference: MyPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,4 +73,13 @@ class MainActivity : AppCompatActivity() {
             })
         }
     }
+
+    override fun attachBaseContext(newBase: Context?) {
+
+        myPreference = MyPreference(newBase!!)
+        val lang:String = myPreference.getLoginCount()
+
+        super.attachBaseContext(MyContextWrapper.wrap(newBase,lang))
+    }
+
 }

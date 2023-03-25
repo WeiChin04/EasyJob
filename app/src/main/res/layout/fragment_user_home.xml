@@ -30,7 +30,7 @@
         android:closeIcon="@drawable/ic_x"
         android:focusable="false"
         android:iconifiedByDefault="false"
-        android:queryHint="Search..."
+        android:queryHint="@string/hint_search"
         android:queryBackground="@android:color/transparent"
         android:searchHintIcon="@null"
         android:searchIcon="@drawable/ic_search"

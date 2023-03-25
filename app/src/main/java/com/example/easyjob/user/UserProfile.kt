@@ -65,8 +65,20 @@ class UserProfile : Fragment() {
         //to view user personal information
         information()
         favorite()
+        language()
         logOut()
         return binding.root
+    }
+
+    private fun language() {
+        binding.tvLanguage.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvLanguage)
+            navController.navigate(R.id.action_userProfile_to_userChangeLanguage)
+        }
+        binding.tvLanguageArrow.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvLanguageArrow)
+            navController.navigate(R.id.action_userProfile_to_userChangeLanguage)
+        }
     }
 
     private fun favorite() {

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyJob</string>
+    <string name="select_language">选择语言</string>
+    <string name="english">英语</string>
+    <string name="chinese">中文</string>
+
+    <!-- start page -->
+    <string name="start_page_title">欢迎\nEasy Job</string>
+    <string name="btn_login">登录</string>
+    <string name="btn_register">注册</string>
+
+    <!--    menu    -->
+    <string name="menu_home">主页</string>
+    <string name="my_job">我的工作</string>
+    <string name="me">我</string>
+
+    <string name="email">电子邮件</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="cb_tnc"><![CDATA[同意条款和\n隐私政策]]></string>
+    <string name="btnregister">注册</string>
+    <string name="switch_login_page">已有帐户？\n现在 <font color="#B3004932">登录 </font></string>
+    <string name="btnlogin">登录</string>
+    <string name="sign_up_account">还没有帐户？<font color="#B3004932">现在注册</font>！</string>
+    <string name="reset_password">忘记密码？点击<font color="#B3004932">重置</font></string>
+    <string name="register_as_an_employer">注册为<font color="#B3004932">雇主</font></string>
+    <string name="register_as_an_user">注册为<font color="#B3004932">用户</font></string>
+
+    <!--User-->
+    <string name="login_as_an_employer">以<font color="#B3004932">雇主</font>身份登录</string>
+    <string name="user_sign_up">用户\n注册</string>
+    <string name="password_rest">密码重置</string>
+    <string name="send">发送</string>
+
+    <!--Employer-->
+    <string name="login_as_an_user">以<font color="#B3004932">用户</font>身份登录</string>
+    <string name="employer_sign_up">雇主\n注册</string>
+    <string name="login">登录</string>
+
+    <!--    职位视图-->
+    <string name="posting_date_title">发布日期：</string>
+    <string name="posting_date">2023年12月6日，16:19</string>
+    <string name="example_job_title">示例职位</string>
+    <string name="example_job_type">全职</string>
+    <string name="viewed">已有78人查看</string>
+    <string name="job_details">职位详情</string>
+    <string name="example_job_status">职位状态显示在这里</string>
+    <string name="alert_complete_profile">请在发布职位前完善您的个人资料</string>
+
+
+    <!--雇主发布职位-->
+    <string name="post_job_page_title">发布职位</string>
+    <string name="job_title">职位名称</string>
+    <string name="job_title_hint">输入职位名称</string>
+    <string name="job_type">职位类型</string>
+    <string-array name="job_type_select">
+        <item>Internship</item>
+        <item>Part Time</item>
+        <item>Full Time</item>
+    </string-array>
+    <string name="internship">Internship</string>
+    <string name="part_time">Part Time</string>
+    <string name="full_time">Full Time</string>
+    <string name="job_type_hint">请选择职位类型</string>
+    <string name="job_salary">职位薪资</string>
+    <string name="job_salary_hint">马币</string>
+    <string name="working_hour">工作小时数</string>
+    <string-array name="working_hour_start">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+    </string-array>
+    <string-array name="working_hour_end">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+    </string-array>
+    <string name="start">开始</string>
+    <string name="end">结束</string>
+    <string name="to">至</string>
+    <string name="workplace">工作地点</string>
+    <string name="workplace_hint">请输入工作地点</string>
+    <string name="job_requirement">职位要求</string>
+    <string name="job_requirement_hint">请描述职位要求</string>
+    <string name="responsibilities">工作职责</string>
+    <string name="responsibilities_hint">请描述工作职责</string>
+    <string name="job_status">职位状态</string>
+    <string name="job_status_available">可用</string>
+    <string name="job_status_unavailable">不可用</string>
+    <string name="btn_save_job">保存职位</string>
+    <string name="btn_post_now">立即发布</string>
+    <string name="hello_blank_fragment">你好空白碎片</string>
+    <string name="my_profile">我的档案</string>
+    <string name="my_favorite">我的收藏</string>
+    <string name="language">语言设置</string>
+    <string name="log_out">退出登录</string>
+    <string name="name">姓名</string>
+    <string name="contact_number">联系电话</string>
+    <string name="education_level">教育程度</string>
+    <string name="address">地址</string>
+    <string name="edit">编辑</string>
+    <string name="about_me">关于我</string>
+    <string name="resume">简历</string>
+    <string name="personal_information">个人资料</string>
+
+    <!--    职位详情视图-->
+    <string name="job_detail_page_title">职位详情</string>
+    <string name="manage_applicant_button">管理申请人</string>
+    <string name="edit_button">编辑</string>
+    <string name="title_activity_job_edit_form">编辑职位表单</string>
+    <string name="show_favorite_added">职位已加入收藏夹</string>
+    <string name="show_favorite_added_failed">无法将职位添加到收藏夹</string>
+    <string name="show_favorite_removed">职位已从收藏夹中移除</string>
+
+    <!-- 用于导航的片段的字符串-->
+    <string name="first_fragment_label">第一个片段</string>
+    <string name="second_fragment_label">第二个片段</string>
+    <string name="next">下一个</string>
+    <string name="previous">上一个</string>
+
+    <string name="hello_first_fragment">你好，第一个片段</string>
+    <string name="hello_second_fragment">你好，第二个片段。参数：%1$s</string>
+
+    <string name="job_edit_form_title">编辑职位</string>
+    <string name="enter_full_name">输入全名</string>
+    <string name="enter_your_contact_number">输入联系方式</string>
+    <string name="enter_your_desired_salary">输入期望薪水</string>
+    <string name="enter_your_home_address">输入家庭住址</string>
+    <string name="introduce_yourself">介绍一下自己</string>
+    <string name="cancel">取消</string>
+    <string name="update">更新</string>
+    <string name="expectation_salary_rm">期望薪水（马来西亚令吉）</string>
+    <string name="no_work_display">你还没有发布任何工作</string>
+    <string name="save">保存</string>
+    <string name="upload">上传</string>
+    <string name="company_overview">公司概况</string>
+    <string name="employer_contact">雇主联系方式</string>
+    <string name="employer_email">雇主邮箱</string>
+    <string name="employer_name">雇主姓名</string>
+    <string name="company_industry">公司行业（可选）</string>
+    <string name="company_industry_view">公司行业</string>
+    <string name="employer_address">雇主地址</string>
+    <string name="enter_your_company_address">输入公司地址</string>
+    <string name="enter_your_company_industry">输入公司行业</string>
+    <string name="gender">性别</string>
+    <string name="enter_your_gender">输入性别</string>
+    <string name="introduce_your_company">介绍一下公司</string>
+    <string name="my_job_page_title">我的职位</string>
+    <string name="home">首页</string>
+    <string name="welcome_to_Easy_Job">欢迎使用 Easy Job</string>
+    <string name="view_company_info">查看公司信息</string>
+    <string name="apply_job_button">申请职位</string>
+    <string name="AppliedJob">我的申请</string>
+    <string name="FavouriteJob">我收藏的职位</string>
+    <string name="applied_date_title">申请日期：</string>
+    <string name="example_job_applied_status">这里显示已申请的职位</string>
+    <string name="no_apply_job_show">您还没有申请任何职位</string>
+    <string name="show_cancel_application_confirm_message">您确定要取消申请该职位吗？</string>
+    <string name="show_applied_success_message">申请成功！</string>
+    <string name="show_repeat_applied_job_message">您之前已经申请了该职位</string>
+
+
+    <!-- messageDialog -->
+    <string name="messageDialog_yes">是</string>
+    <string name="messageDialog_confirm">确认</string>
+    <string name="messageDialog_no">否</string>
+    <string name="messageDialog_without_saving">退出后工作内容将不会被保存</string>
+
+    <!--    Language        -->
+    <string name="choose_language">选择语言</string>
+    <string name="change_language">切换语言</string>
+    <string name="restart_app_message">切换语言后，APP将会重新自动。是否确定切换语言？</string>
+    <string name="language_english">English</string>
+    <string name="language_simplified_chinese">简体中文</string>
+
+
+
+    <!-- applicant item -->
+    <string name="apply_date_title">申请日期：</string>
+    <string name="example_applicant_name">米歇尔</string>
+    <string name="example_contact">012-7123453</string>
+    <string name="example_email">michelle@gmail.com</string>
+    <string name="example_apply_status">待定</string>
+    <string name="applicant_image">申请人头像</string>
+    <string name="no_applicant_now">当前没有申请人</string>
+    <string name="edit_personal_information">编辑个人信息</string>
+
+    <!-- home page -->
+    <string name="easy_job">EasyJob</string>
+    <string name="show_welcome">欢迎使用EasyJob</string>
+    <string name="sort">排序</string>
+    <string name="no_job_found">没有找到工作</string>
+    <string name="hint_search">搜索…</string>
+    <string-array name="sort">
+        <item>Relevance</item>
+        <item>Most View</item>
+        <item>Highest Salary</item>
+        <item>Latest Post Job</item>
+    </string-array>
+    <string name="applicant_details_title">申请人详情</string>
+    <string name="pdf_name">简历.pdf</string>
+    <string name="empty_resume">申请人未上传任何简历或CV</string>
+    <string name="approve">批准</string>
+    <string name="reject">拒绝</string>
+    <string name="cancel_application">取消</string>
+    <string name="show_rejected_message">您已拒绝该申请人。</string>
+    <string name="cancel_successful_application">成功取消申请</string>
+    <string name="cancel_fail_application">无法取消申请</string>
+    <string name="company_detail_title">公司详情</string>
+    <string name="all">全部</string>
+    <string name="show_no_favourite_job_added">您尚未将任何职位添加到收藏夹中</string>
+
+    <string-array name="jobType">
+        <item>Internship</item>
+        <item>Part Time</item>
+        <item>Full Time</item>
+    </string-array>
+
+    <string-array name="Salary">
+        <item>RM</item>
+        <item>1000 &amp; above</item>
+        <item>3000 &amp; above</item>
+        <item>5000 &amp; above</item>
+        <item>7000 &amp; above</item>
+        <item>10000 &amp; above</item>
+    </string-array>
+
+    <!--    job analysis card view      -->
+    <string name="total_view_description">总浏览次数：</string>
+    <string name="example_total_view">999</string>
+    <string name="last_view_at_description">上次更新时间：</string>
+    <string name="example_last_view">2023/01/01 20:22</string>
+    <string name="total_bookmarks_description">已收藏</string>
+    <string name="total_apply_description">已申请</string>
+    <string name="total_approved_description">已取消</string>
+    <string name="total_cancel_description">已批准</string>
+    <string name="total_rejected_description">已拒绝</string>
+    <string name="job_analysis_page_title">职位分析</string>
+    <string name="close">关闭</string>
+    <string name="jod_modification_reminder">该职位及申请已经超过七天没有更新，建议您调整职位描述</string>
+
+
+
+
+
+
+
+
+</resources>

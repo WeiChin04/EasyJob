@@ -205,10 +205,9 @@ class ApplicantDetailsFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun approveApplicant() {
         dbRef = FirebaseDatabase.getInstance().reference
-        val currentTimeInSeconds = Instant.now().epochSecond
+        val currentTimeInMS = System.currentTimeMillis().toString()
         val applicationId = arguments?.getString("application_id")
         val applicationRef = dbRef.child("Applications").child(applicationId.toString())
 
@@ -218,13 +217,13 @@ class ApplicantDetailsFragment : Fragment() {
 
                 application?.apply {
                     status = "Approved"
-                    approvedAt = currentTimeInSeconds.toString()
+                    approvedAt = currentTimeInMS
                 }
 
                 applicationRef.setValue(application).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val deviceToken = arguments?.getString("deviceToken")
-
+                        Log.d("UserId", "UserId-JobId: $applicationId")
                         Toast.makeText(requireContext(), "You have approved the applicant", Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
                         analysisApproved()
@@ -274,7 +273,7 @@ class ApplicantDetailsFragment : Fragment() {
     private fun rejectApplicant() {
 
         dbRef = FirebaseDatabase.getInstance().reference
-        val currentTimeInSeconds = System.currentTimeMillis()
+        val currentTimeInMS = System.currentTimeMillis().toString()
         val applicationId = arguments?.getString("application_id")
         val applicationRef = dbRef.child("Applications").child(applicationId.toString())
 
@@ -284,7 +283,7 @@ class ApplicantDetailsFragment : Fragment() {
 
                 application?.apply {
                     status = "Rejected"
-                    rejectAt = currentTimeInSeconds.toString()
+                    rejectAt = currentTimeInMS
                 }
 
                 applicationRef.setValue(application).addOnCompleteListener {

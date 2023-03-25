@@ -63,6 +63,7 @@ class EmployerProfile : Fragment() {
 
         //to view user personal information
         information()
+        language()
         logOut()
         return binding.root
     }
@@ -77,6 +78,18 @@ class EmployerProfile : Fragment() {
             navController.navigate(R.id.action_employerProfile_to_employerInformation)
         }
     }
+
+    private fun language() {
+        binding.tvLanguage.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvLanguage)
+            navController.navigate(R.id.action_employerProfile_to_employerChangeLanguage)
+        }
+        binding.tvLanguageArrow.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvLanguageArrow)
+            navController.navigate(R.id.action_employerProfile_to_employerChangeLanguage)
+        }
+    }
+
 
     private fun logOut()
     {

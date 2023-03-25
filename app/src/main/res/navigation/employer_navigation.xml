@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_employerProfile_to_employerInformation"
             app:destination="@id/employerInformation" />
+        <action
+            android:id="@+id/action_employerProfile_to_employerChangeLanguage"
+            app:destination="@id/employerChangeLanguage" />
     </fragment>
     <fragment
         android:id="@+id/employerInformation"
@@ -83,4 +86,9 @@
         android:name="com.example.easyjob.employer.JobAnalysisDetailsFragment"
         android:label="fragment_job_analysis_details"
         tools:layout="@layout/fragment_job_analysis_details" />
+    <fragment
+        android:id="@+id/employerChangeLanguage"
+        android:name="com.example.easyjob.employer.EmployerChangeLanguage"
+        android:label="fragment_employer_change_language"
+        tools:layout="@layout/fragment_employer_change_language" />
 </navigation>

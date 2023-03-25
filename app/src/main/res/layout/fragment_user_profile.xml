@@ -179,17 +179,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
-            app:drawableStartCompat="@drawable/ic_setting" />
+            app:drawableStartCompat="@drawable/ic_language" />
 
         <TextView
-            android:id="@+id/tv_setting"
+            android:id="@+id/tv_language"
             style="@style/textview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10sp"
-            android:text="@string/setting"
+            android:text="@string/language"
             android:textAlignment="textStart"
             android:textIsSelectable="false"
             android:textSize="20sp"
@@ -197,7 +197,7 @@
             tools:ignore="DuplicateIds,RtlCompat" />
 
         <TextView
-            android:id="@+id/tv_setting_arrow"
+            android:id="@+id/tv_language_arrow"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginEnd="50dp"

@@ -77,7 +77,7 @@ class ApplicantAdapter(private val childId: String,
 
         holder.cardView.setOnClickListener{
             val bundle = bundleOf(
-                "application_id" to childId,
+                "application_id" to appliedDataList.applicationId,
                 "deviceToken" to applicantList.deviceToken,
                 "applicant_id" to applicantList.userId,
                 "name" to applicantList.name,

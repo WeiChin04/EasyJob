@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_userProfile_to_favouriteJobFragment"
             app:destination="@id/favouriteJobFragment" />
+        <action
+            android:id="@+id/action_userProfile_to_userChangeLanguage"
+            app:destination="@id/userChangeLanguage" />
     </fragment>
     <fragment
         android:id="@+id/userInformationFragment"
@@ -76,4 +79,9 @@
             android:id="@+id/action_favouriteJobFragment_to_userJobDetailFragment"
             app:destination="@id/userJobDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userChangeLanguage"
+        android:name="com.example.easyjob.user.UserChangeLanguage"
+        android:label="fragment_user_change_language"
+        tools:layout="@layout/fragment_user_change_language" />
 </navigation>

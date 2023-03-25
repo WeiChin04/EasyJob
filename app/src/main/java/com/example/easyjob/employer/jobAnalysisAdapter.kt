@@ -69,7 +69,8 @@ class jobAnalysisAdapter (private val jobDataList: ArrayList<JobData>,
                 "total_cancelled" to currentAnalysis.totalCancel.toString(),
                 "total_rejected" to currentAnalysis.totalRejected.toString(),
                 "total_favourite" to currentAnalysis.favouriteCount.toString(),
-                "last_click" to calCurrentTime
+                "last_click" to calCurrentTime,
+                "last_applied" to currentAnalysis.lastApplyAt
             )
             it.findNavController().navigate(R.id.action_employerHomeFragment_to_jobAnalysisDetailsFragment, bundle)
         }

@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.easyjob.R
 
 
 class EmployerJobForm : Fragment() {
@@ -87,6 +88,7 @@ class EmployerJobForm : Fragment() {
         }
 
         if(arguments?.getString("actionPostJob") == "actionPostJob"){
+            binding.tvJobFormTitle.text = getString(R.string.post_job_page_title)
             binding.btnUpdateJob.visibility = View.GONE
             binding.btnCancel.visibility = View.GONE
         }else{
@@ -128,12 +130,12 @@ class EmployerJobForm : Fragment() {
 
     private fun showConfirmationDialog() {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Confirm")
-        alertDialog.setMessage("Do you want to exit without saving changes?")
-        alertDialog.setPositiveButton("Yes") { _, _ ->
+        alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+        alertDialog.setMessage(R.string.messageDialog_without_saving)
+        alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
             requireActivity().onBackPressed()
         }
-        alertDialog.setNegativeButton("No") { dialog, _ ->
+        alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
             dialog.cancel()
         }
         alertDialog.show()
