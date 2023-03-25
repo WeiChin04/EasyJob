@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_employerProfile_to_employerChangeLanguage"
             app:destination="@id/employerChangeLanguage" />
+        <action
+            android:id="@+id/action_employerProfile_to_employerChangePassword"
+            app:destination="@id/employerChangePassword" />
     </fragment>
     <fragment
         android:id="@+id/employerInformation"
@@ -91,4 +94,9 @@
         android:name="com.example.easyjob.employer.EmployerChangeLanguage"
         android:label="fragment_employer_change_language"
         tools:layout="@layout/fragment_employer_change_language" />
+    <fragment
+        android:id="@+id/employerChangePassword"
+        android:name="com.example.easyjob.employer.EmployerChangePassword"
+        android:label="fragment_employer_change_password"
+        tools:layout="@layout/fragment_employer_change_password" />
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.easyjob.employer
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.graphics.Color
 import android.util.Log
@@ -66,12 +67,15 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         dbRef = database.getReference("Analysis").child(currentItem.jobId.toString())
 
         dbRef.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val ctr = snapshot.getValue(AnalysisData::class.java)
                     if (ctr != null) {
                         val showCTR = ctr.clickCount ?: 0
-                        holder.jobCTR.text = showCTR.toString()
+                        val stringRes = R.string.viewed
+                        val str = holder.itemView.context.getString(stringRes)
+                        holder.jobCTR.text = "$showCTR $str"
                         Log.d("showCTR", "showCTR: $showCTR")
                     }
                 }

@@ -43,7 +43,7 @@
     <string name="posting_date">2023年12月6日，16:19</string>
     <string name="example_job_title">示例职位</string>
     <string name="example_job_type">全职</string>
-    <string name="viewed">已有78人查看</string>
+    <string name="viewed">次查看</string>
     <string name="job_details">职位详情</string>
     <string name="example_job_status">职位状态显示在这里</string>
     <string name="alert_complete_profile">请在发布职位前完善您的个人资料</string>
@@ -281,6 +281,27 @@
     <string name="job_analysis_page_title">职位分析</string>
     <string name="close">关闭</string>
     <string name="jod_modification_reminder">该职位及申请已经超过七天没有更新，建议您调整职位描述</string>
+
+    <!-- 修改密码页面 -->
+    <string name="change_password_page_title">修改密码</string>
+    <string name="current_password">当前密码</string>
+    <string name="new_password">新密码</string>
+    <string name="check_confirm_password">确认密码</string>
+    <string name="current_password_hint">请输入当前密码</string>
+    <string name="new_password_hint">请输入新密码</string>
+    <string name="confirm_password_hint">请再次输入新密码</string>
+    <string name="current_password_empty_error">当前密码不能留空</string>
+    <string name="new_password_empty_error">请输入新密码</string>
+    <string name="confirm_password_empty_error">请再次输入新密码</string>
+    <string name="newPass_crPass_different">新密码和确认密码不一致</string>
+    <string name="password_must_longer_than_7_char">新密码长度不能少于 7 个字符</string>
+    <string name="password_updated">密码已更新</string>
+    <string name="password_update_failed">密码更新失败</string>
+    <string name="current_password_incorrect">当前密码不正确</string>
+    <string name="messageDialog_cancel_change_password">您的密码将不会被更改</string>
+    <string name="crPass_and_newPass_same">新密码与旧密码不能一样</string>
+
+
 
 
 

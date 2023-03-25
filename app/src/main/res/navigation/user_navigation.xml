@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_userProfile_to_userChangeLanguage"
             app:destination="@id/userChangeLanguage" />
+        <action
+            android:id="@+id/action_userProfile_to_userChangePassword"
+            app:destination="@id/userChangePassword" />
     </fragment>
     <fragment
         android:id="@+id/userInformationFragment"
@@ -84,4 +87,9 @@
         android:name="com.example.easyjob.user.UserChangeLanguage"
         android:label="fragment_user_change_language"
         tools:layout="@layout/fragment_user_change_language" />
+    <fragment
+        android:id="@+id/userChangePassword"
+        android:name="com.example.easyjob.user.UserChangePassword"
+        android:label="fragment_user_change_password"
+        tools:layout="@layout/fragment_user_change_password" />
 </navigation>

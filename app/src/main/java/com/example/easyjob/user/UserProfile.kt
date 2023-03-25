@@ -64,6 +64,7 @@ class UserProfile : Fragment() {
 
         //to view user personal information
         information()
+        password()
         favorite()
         language()
         logOut()
@@ -71,23 +72,15 @@ class UserProfile : Fragment() {
     }
 
     private fun language() {
-        binding.tvLanguage.setOnClickListener {
+        binding.viewLanguage.setOnClickListener {
             navController = Navigation.findNavController(binding.tvLanguage)
-            navController.navigate(R.id.action_userProfile_to_userChangeLanguage)
-        }
-        binding.tvLanguageArrow.setOnClickListener {
-            navController = Navigation.findNavController(binding.tvLanguageArrow)
             navController.navigate(R.id.action_userProfile_to_userChangeLanguage)
         }
     }
 
     private fun favorite() {
 
-        binding.tvFavorite.setOnClickListener {
-            navController = Navigation.findNavController(binding.tvFavorite)
-            navController.navigate(R.id.action_userProfile_to_favouriteJobFragment)
-        }
-        binding.tvFavoriteArrow.setOnClickListener {
+        binding.viewFavorite.setOnClickListener {
             navController = Navigation.findNavController(binding.tvFavorite)
             navController.navigate(R.id.action_userProfile_to_favouriteJobFragment)
         }
@@ -95,28 +88,22 @@ class UserProfile : Fragment() {
     }
 
     private fun information(){
-        binding.tvProfile.setOnClickListener {
+        binding.viewProfile.setOnClickListener {
             navController = Navigation.findNavController(binding.tvProfile)
             navController.navigate(R.id.action_userProfile_to_userInformationFragment)
         }
-        binding.tvProfileArrow.setOnClickListener {
-            navController = Navigation.findNavController(binding.tvProfile)
-            navController.navigate(R.id.action_userProfile_to_userInformationFragment)
+    }
+
+    private fun password(){
+        binding.viewPassword.setOnClickListener {
+            navController = Navigation.findNavController(binding.tvPassword)
+            navController.navigate(R.id.action_userProfile_to_userChangePassword)
         }
     }
 
     private fun logOut()
     {
         binding.viewLogout.setOnClickListener {
-            auth.signOut()
-            activity?.let {
-                val intent = Intent (it, MainActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                it.startActivity(intent)
-            }
-        }
-        binding.tvLogOutArrow.setOnClickListener {
             auth.signOut()
             activity?.let {
                 val intent = Intent (it, MainActivity::class.java).also {

@@ -63,46 +63,36 @@ class EmployerProfile : Fragment() {
 
         //to view user personal information
         information()
+        password()
         language()
         logOut()
         return binding.root
     }
 
     private fun information(){
-        binding.tvProfile.setOnClickListener {
+        binding.viewProfile.setOnClickListener {
             navController = Navigation.findNavController(binding.tvProfile)
             navController.navigate(R.id.action_employerProfile_to_employerInformation)
         }
-        binding.tvProfileArrow.setOnClickListener {
+    }
+
+    private fun password(){
+        binding.viewPassword.setOnClickListener {
             navController = Navigation.findNavController(binding.tvProfile)
-            navController.navigate(R.id.action_employerProfile_to_employerInformation)
+            navController.navigate(R.id.action_employerProfile_to_employerChangePassword)
         }
     }
 
     private fun language() {
-        binding.tvLanguage.setOnClickListener {
+        binding.viewLanguage.setOnClickListener {
             navController = Navigation.findNavController(binding.tvLanguage)
-            navController.navigate(R.id.action_employerProfile_to_employerChangeLanguage)
-        }
-        binding.tvLanguageArrow.setOnClickListener {
-            navController = Navigation.findNavController(binding.tvLanguageArrow)
             navController.navigate(R.id.action_employerProfile_to_employerChangeLanguage)
         }
     }
 
-
     private fun logOut()
     {
         binding.viewLogout.setOnClickListener {
-            auth.signOut()
-            activity?.let {
-                val intent = Intent (it, MainActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                it.startActivity(intent)
-            }
-        }
-        binding.tvLogOutArrow.setOnClickListener {
             auth.signOut()
             activity?.let {
                 val intent = Intent (it, MainActivity::class.java).also {

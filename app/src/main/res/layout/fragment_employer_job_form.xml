@@ -45,6 +45,17 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+            android:visibility="gone"/>
+
         <TextView
             android:id="@+id/tvJobTitle"
             style="@style/textview_heading"
@@ -98,7 +109,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="@string/job_salary_hint"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:minHeight="48dp"
             app:layout_constraintStart_toStartOf="@+id/tvJobSalary"
             app:layout_constraintTop_toBottomOf="@+id/tvJobSalary" />

@@ -102,9 +102,60 @@
                 app:drawableStartCompat="@drawable/ic_arrow_right" />
         </LinearLayout>
 
-        <!-- setting-->
+    <!-- password-->
+    <View
+        android:id="@+id/view_password"
+        android:layout_width="wrap_content"
+        android:layout_height="71sp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_profile" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/view_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_password">
+
+        <TextView
+            android:id="@+id/tv_password_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            app:drawableStartCompat="@drawable/ic_password" />
+
+        <TextView
+            android:id="@+id/tv_password"
+            style="@style/textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="@string/password"
+            android:textAlignment="textStart"
+            android:textIsSelectable="false"
+            android:textSize="20sp"
+            android:visibility="visible"
+            tools:ignore="DuplicateIds,RtlCompat" />
+
+        <TextView
+            android:id="@+id/tv_password_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
+            app:drawableStartCompat="@drawable/ic_arrow_right" />
+    </LinearLayout>
+
+        <!-- language-->
         <View
-            android:id="@+id/view_setting"
+            android:id="@+id/view_language"
             android:layout_width="wrap_content"
             android:layout_height="71sp"
             android:layout_marginTop="8dp"
@@ -112,19 +163,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/view_password" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/view_setting"
+            app:layout_constraintBottom_toBottomOf="@+id/view_language"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view_setting">
+            app:layout_constraintTop_toTopOf="@+id/view_language">
 
             <TextView
-                android:id="@+id/tv_setting_icon"
+                android:id="@+id/tv_language_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
@@ -163,7 +214,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_setting" />
+            app:layout_constraintTop_toBottomOf="@+id/view_language" />
 
         <LinearLayout
             android:layout_width="match_parent"

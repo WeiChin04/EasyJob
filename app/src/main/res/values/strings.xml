@@ -41,7 +41,7 @@
     <string name="posting_date">06 Dec 2023, 16:19</string>
     <string name="example_job_title">Example Job</string>
     <string name="example_job_type">Full Time</string>
-    <string name="viewed">78 viewed</string>
+    <string name="viewed"> viewed</string>
     <string name="job_details">Job Details</string>
     <string name="example_job_status">Job Status Show here</string>
     <string name="alert_complete_profile">Please complete your profile before posting job</string>
@@ -298,6 +298,26 @@
         <item>English</item>
         <item>Simplified Chinese </item>
     </string-array>
+
+
+    <!--    Change Password Page -->
+    <string name="change_password_page_title">Change Password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="check_confirm_password">Confirm Password</string>
+    <string name="current_password_hint">Please Enter Current Password</string>
+    <string name="new_password_hint">Please Enter New Password</string>
+    <string name="confirm_password_hint">Please Confirm Password</string>
+    <string name="current_password_empty_error">current password cannot be empty</string>
+    <string name="new_password_empty_error">Please enter a new password</string>
+    <string name="confirm_password_empty_error">Please enter confirm password</string>
+    <string name="newPass_crPass_different">New password and confirm password do not match</string>
+    <string name="password_must_longer_than_7_char">Password must be at least 7 characters long</string>
+    <string name="password_updated">Password updated successfully</string>
+    <string name="password_update_failed">Failed to update password</string>
+    <string name="current_password_incorrect">Current password is incorrect</string>
+    <string name="messageDialog_cancel_change_password">Your password will not be change</string>
+    <string name="crPass_and_newPass_same">Current password and new password cannot be same</string>
 
 
 </resources>
