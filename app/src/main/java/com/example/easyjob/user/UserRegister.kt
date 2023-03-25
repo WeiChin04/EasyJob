@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.easyjob.LoginActivity
+import com.example.easyjob.R
 import com.example.easyjob.databinding.ActivityUserRegisterBinding
 import com.example.easyjob.employer.EmployerRegister
 import com.google.firebase.auth.FirebaseAuth
@@ -54,7 +55,7 @@ class UserRegister : AppCompatActivity() {
                     storeData()
                     auth.currentUser?.sendEmailVerification()
                         ?.addOnSuccessListener {
-                            Toast.makeText(this, "Please verify your email",Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, getString(R.string.please_verify_email),Toast.LENGTH_LONG).show()
                             startActivity(Intent(this, LoginActivity::class.java))
                         }
                         ?.addOnFailureListener {
@@ -62,7 +63,7 @@ class UserRegister : AppCompatActivity() {
                         }
                 }
                 else{
-                    Toast.makeText(this,"Email Has Been Registered", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,getString(R.string.email_has_been_registered), Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -72,27 +73,27 @@ class UserRegister : AppCompatActivity() {
         val password = binding.etUserPassword.text.toString().trim()
         val cpassword = binding.etUserConfirmPassword.text.toString().trim()
         if(email.isEmpty()){
-            binding.etUserEmail.error = "Email cannot be empty"
+            binding.etUserEmail.error = getString(R.string.email_empty)
         }
 
         if (password.length < 8){
-            binding.etUserPassword.error = "Password must be at least 8"
+            binding.etUserPassword.error = getString(R.string.password_at_least)
         }
 
         if(cpassword.isEmpty()){
-            binding.etUserConfirmPassword.error = "Confirm Password cannot be empty"
+            binding.etUserConfirmPassword.error = getString(R.string.confirm_password_empty)
         }
 
         if(email.isEmpty()||password.length<8){
-            Toast.makeText(this@UserRegister,"Please ensure that the information entered is correct!! ",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@UserRegister,getString(R.string.ensure_fill_correct),Toast.LENGTH_SHORT).show()
         }else {
             if(binding.checkboxTnc.isChecked && cpassword == password) {
                 registerUser(email, password)
             }else{
                 if(cpassword != password) {
-                    binding.etUserConfirmPassword.error = "Password and Confirm Password No Match"
+                    binding.etUserConfirmPassword.error = getString(R.string.password_cpassword_not_match)
                 }else {
-                    Toast.makeText(this@UserRegister,"Please Agree T&C to Continue", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UserRegister,getString(R.string.t_C), Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -1,14 +1,10 @@
 package com.example.easyjob.employer
 
-import android.Manifest
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -17,36 +13,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
 import com.example.easyjob.databinding.FragmentEditEmployerProfileBinding
-import com.example.easyjob.databinding.FragmentEditUserProfileBinding
-import com.example.easyjob.databinding.FragmentEmployerInformationBinding
-import com.example.easyjob.user.EditUserProfileFragment
-import com.example.easyjob.user.UserData
-import com.example.easyjob.user.UserDataViewModel
-import com.example.easyjob.user.UserHome
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import java.io.File
 
 class EditEmployerProfile : Fragment() {
     private var _binding: FragmentEditEmployerProfileBinding? = null
     private val binding get()  = _binding!!
     private lateinit var auth: FirebaseAuth
     private lateinit var dbref: DatabaseReference
-    private lateinit var uid: String
-    private lateinit var employer: EmployerData
-    private lateinit var navController: NavController
     private lateinit var employerDataViewModel: EmployerDataViewModel
     private var imageUri: Uri? = null
 
@@ -57,18 +40,16 @@ class EditEmployerProfile : Fragment() {
         _binding = FragmentEditEmployerProfileBinding.inflate(inflater, container, false)
 
         //action bar
+        //action bar
         val toolbar = binding.toolbar
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         val actionBar = (activity as? AppCompatActivity)?.supportActionBar
+        actionBar?.setDisplayShowTitleEnabled(false)
         actionBar?.setDisplayHomeAsUpEnabled(true)
         val navController = findNavController()
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        NavigationUI.setupActionBarWithNavController(
-            activity as AppCompatActivity,
-            navController,
-            appBarConfiguration
-        )
+        NavigationUI.setupActionBarWithNavController(activity as AppCompatActivity, navController, appBarConfiguration)
 
         //hide bottom navigation bar
         (activity as EmployerHome).hideBottomNavigationView()
@@ -143,7 +124,7 @@ class EditEmployerProfile : Fragment() {
         dbref = FirebaseDatabase.getInstance().getReference("Employers")
 
         val progressDialog = ProgressDialog(requireActivity())
-        progressDialog.setMessage("Uploading...")
+        progressDialog.setMessage(getString(R.string.uploading))
         progressDialog.setCancelable(true)
         progressDialog.show()
 
@@ -189,9 +170,9 @@ class EditEmployerProfile : Fragment() {
         }
         update.addOnSuccessListener {
             navController.popBackStack()
-            Toast.makeText(requireContext(), "Your profile has been saved!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.profile_save), Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
-            Toast.makeText(requireContext(), "Fail to update your profile!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.profile_update_fail), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -204,10 +185,10 @@ class EditEmployerProfile : Fragment() {
         var profileStatus = ""
 
         if(name.isEmpty()) {
-            binding.etEmployerFullname.error = "Please Enter Name"
+            binding.etEmployerFullname.error = getString(R.string.enter_name)
         }
         if(contact.isEmpty()) {
-            binding.etEmployerContact.error = "Please Enter Contact Number"
+            binding.etEmployerContact.error = getString(R.string.enter_contact)
         }
 
         profileStatus = if(address.isEmpty()||overview.isEmpty()){
@@ -217,7 +198,7 @@ class EditEmployerProfile : Fragment() {
         }
 
         if(name.isEmpty()||contact.isEmpty()){
-            Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,getString(R.string.ensure_fill_correct),Toast.LENGTH_SHORT).show()
         }else {
             updateData(name,contact,address,companyIndustry,overview,profileStatus)
         }
@@ -238,12 +219,12 @@ class EditEmployerProfile : Fragment() {
 
     private fun showConfirmationDialog() {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Confirm")
-        alertDialog.setMessage("Do you want to exit without saving changes?")
-        alertDialog.setPositiveButton("Yes") { _, _ ->
+        alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+        alertDialog.setMessage(getString(R.string.exit_sure))
+        alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
             requireActivity().onBackPressed()
         }
-        alertDialog.setNegativeButton("No") { dialog, _ ->
+        alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
             dialog.cancel()
         }
         alertDialog.show()

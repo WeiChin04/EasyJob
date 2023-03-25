@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.easyjob.AnalysisData
 import com.example.easyjob.databinding.FragmentUserSearchResultBinding
 import com.example.easyjob.employer.JobData
 import com.google.firebase.database.*
@@ -99,6 +100,7 @@ class UserSearchResult : Fragment() {
         dbRef = FirebaseDatabase.getInstance().getReference("Jobs")
         val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
         val savedSearchResult = sharedPref.getString("search_result", "")
+        val jobIds = mutableListOf<String>()
 
         val status = "Available"
         dbRef.orderByChild("jobStatus").equalTo(status)
@@ -112,6 +114,8 @@ class UserSearchResult : Fragment() {
                                 if (savedSearchResult != null) {
                                     filteredList.add(job)
                                 }
+                                val jobId = job.jobId
+                                jobId?.let { jobIds.add(it) }
                             }
                         }
                         val editor = sharedPref.edit()
@@ -151,7 +155,7 @@ class UserSearchResult : Fragment() {
 
     private fun jobType(){
         val langList: ArrayList<Int> = ArrayList()
-        val jobTypeArray = arrayOf("Internship","Part Time","Full Time")
+        val jobTypeArray = arrayOf("Temporary Work","Internship","Part Time","Full Time")
         val jobType= binding.jobType
         selectedType = BooleanArray(jobTypeArray.size)
 
@@ -199,6 +203,7 @@ class UserSearchResult : Fragment() {
 
     private fun updateRecyclerViewAdapter() {
         val filteredList = ArrayList<JobData>(jobArrayList)
+//        val filteredList2 = ArrayList<AnalysisData>(analysisArrayList)
         val jobTypeText = binding.jobType.text
         val selectedJobTypes = binding.jobType.text.split(", ")
 
@@ -219,12 +224,9 @@ class UserSearchResult : Fragment() {
                 filteredList.sortBy{it.currentDate}
             }
             1 -> {
-//                filteredList.sortBy { it.ctr }
-            }
-            2 -> {
                 filteredList.sortByDescending { it.jobSalary?.toDoubleOrNull() ?: Double.POSITIVE_INFINITY }
             }
-            3 -> {
+            2 -> {
                 filteredList.sortByDescending { it.currentDate }
             }
         }

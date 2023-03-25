@@ -110,4 +110,17 @@
         app:layout_constraintStart_toStartOf="@+id/tv_user_sign_up"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_sign_up" />
 
+    <TextView
+        android:id="@+id/tv_email_password_wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/email_or_password_wrong"
+        android:textColor="#F11515"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/et_user_password"
+        app:layout_constraintStart_toStartOf="@+id/et_user_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_user_password" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

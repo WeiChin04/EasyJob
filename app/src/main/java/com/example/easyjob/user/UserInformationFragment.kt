@@ -127,7 +127,7 @@ class UserInformationFragment : Fragment() {
                 // 权限已授权，执行需要权限的操作
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
-                    Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getString(R.string.download_completed),Toast.LENGTH_SHORT).show()
 
                     // 下载完成后，创建通知
                     createNotificationChannel()
@@ -144,7 +144,7 @@ class UserInformationFragment : Fragment() {
                     val notification = NotificationCompat.Builder(requireContext(), channelId)
                         .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle("$fileName Downloaded")
-                        .setContentText("Click to view the downloaded PDF file.")
+                        .setContentText(getString(R.string.click_to_view_download_file))
                         .setContentIntent(pendingIntent)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setAutoCancel(true)
@@ -154,7 +154,7 @@ class UserInformationFragment : Fragment() {
 
                 }.addOnFailureListener { exception ->
                     Log.e("DOWNLOAD", "Download failed: $exception")
-                    Toast.makeText(requireContext(),"Download Failed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getString(R.string.download_fail),Toast.LENGTH_SHORT).show()
                 }
             }
         }

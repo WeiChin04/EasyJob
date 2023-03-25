@@ -101,34 +101,49 @@ class UserJobDetailFragment : Fragment() {
 
         val employerId = arguments?.getString("employer_id")
 
-//        employerDataViewModel = ViewModelProvider(requireActivity())[EmployerDataViewModel::class.java]
-//
-//        employerDataViewModel.getData(employerId.toString())
-//        employerDataViewModel.employerData.observe(viewLifecycleOwner) { employerData ->
-//            deviceToken = employerData.deviceToken
-//        }
-
         val jobTitle = arguments?.getString("job_title")
-        val message = "There are new applicants waiting for your processing"
+        val message = getString(R.string.new_applicants)
 
         getDeviceToken()
         binding.btnApplyJob.setOnClickListener{
             checkApplication()
-            TOPIC = deviceToken.toString()
-            NOTIFICATION_TITLE = jobTitle.toString()
-            NOTIFICATION_MESSAGE = message
+            //send notification
+            val appliedJobId = "$currentUser-$jobId"
 
-            val notification = JSONObject()
-            val notifcationBody = JSONObject()
-            try {
-                notifcationBody.put("title", NOTIFICATION_TITLE)
-                notifcationBody.put("message", NOTIFICATION_MESSAGE)
-                notification.put("to", TOPIC)
-                notification.put("data", notifcationBody)
-            } catch (e: JSONException) {
-                Log.e(TAG, "onCreate: " + e.message)
-            }
-            sendNotification(notification)
+            val ref = FirebaseDatabase.getInstance().getReference("Applications").child(appliedJobId)
+
+            ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.show_repeat_applied_job_message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        TOPIC = deviceToken.toString()
+                        NOTIFICATION_TITLE = jobTitle.toString()
+                        NOTIFICATION_MESSAGE = message
+
+                        val notification = JSONObject()
+                        val notificationBody = JSONObject()
+                        try {
+                            notificationBody.put("title", NOTIFICATION_TITLE)
+                            notificationBody.put("message", NOTIFICATION_MESSAGE)
+                            notification.put("to", TOPIC)
+                            notification.put("data", notificationBody)
+                        } catch (e: JSONException) {
+                            Log.e(TAG, "onCreate: " + e.message)
+                        }
+                        sendNotification(notification)
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
 
         binding.btnCancelJob.setOnClickListener {
@@ -349,6 +364,7 @@ class UserJobDetailFragment : Fragment() {
                     )
                     dbRef.child(appliedJobId).setValue(newApplication)
                     Toast.makeText(requireContext(), getString(R.string.show_applied_success_message), Toast.LENGTH_SHORT).show()
+
                     analysisApplyJob()
                 }
             }

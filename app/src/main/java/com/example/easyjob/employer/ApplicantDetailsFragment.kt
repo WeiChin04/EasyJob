@@ -148,7 +148,7 @@ class ApplicantDetailsFragment : Fragment() {
                 alertDialog.setMessage("Do you want to reject "+arguments?.getString("name")+" ?")
                 alertDialog.setPositiveButton("Yes") { _, _ ->
                     rejectApplicant()
-                    val message = "Employer has rejected your application"
+                    val message = getString(R.string.employer_reject)
                     TOPIC = deviceToken.toString()
                     NOTIFICATION_TITLE = jobTitle.toString()
                     NOTIFICATION_MESSAGE = message
@@ -178,7 +178,7 @@ class ApplicantDetailsFragment : Fragment() {
                 alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
                 alertDialog.setPositiveButton("Yes") { _, _ ->
                     approveApplicant()
-                    val message = "Employer has approved your application"
+                    val message = getString(R.string.employer_approve)
                     TOPIC = deviceToken.toString()
                     NOTIFICATION_TITLE = jobTitle.toString()
                     NOTIFICATION_MESSAGE = message

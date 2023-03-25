@@ -125,12 +125,6 @@ class UserHomeFragment : Fragment() {
 
     private fun filterList(query: String?) {
         if (query != null) {
-//            val filteredList = ArrayList<UserJobData>()
-//            for (i in jobArrayList) {
-//                if (i.jobTitle!!.lowercase(Locale.ROOT).contains(query)) {
-//                    filteredList.add(i)
-//                }
-//            }
             val sharedPref = requireContext().getSharedPreferences("my_prefs", Context.MODE_PRIVATE)
             val editor = sharedPref.edit()
             editor.putString("search_result", query)

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.easyjob.databinding.ActivityLoginBinding
 import com.example.easyjob.employer.EmployerHome
@@ -35,31 +36,42 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnUserLogin.setOnClickListener {
-            val email = binding.etUserEmail.text.toString()
-            val password = binding.etUserPassword.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val verification = auth.currentUser?.isEmailVerified
-                        if(verification == true)
-                        {
-                            checkUser()
-                        }
-                        else
-                        {
-                            Toast.makeText(this,"Please verify your email", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                    else{
-                        Toast.makeText(this,"Sign in fail", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            validation()
         }
 
         binding.tvUserResetPassword.setOnClickListener{
             startActivity(Intent(this, ResetPasswordActivity::class.java))
+        }
+    }
+
+    private fun validation(){
+        val email = binding.etUserEmail.text.toString()
+        val password = binding.etUserPassword.text.toString()
+
+        if(email.isEmpty()){
+            binding.etUserEmail.error = getString(R.string.email_empty)
+        }
+        if(password.isEmpty()){
+            binding.etUserPassword.error = getString(R.string.password_empty)
+        }
+
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val verification = auth.currentUser?.isEmailVerified
+                    if(verification == true)
+                    {
+                        checkUser()
+                    }
+                    else
+                    {
+                        Toast.makeText(this,getString(R.string.verify_email), Toast.LENGTH_SHORT).show()
+                    }
+                } else{
+                    binding.tvEmailPasswordWrong.visibility = View.VISIBLE
+                    Toast.makeText(this,getString(R.string.sign_in_fail), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

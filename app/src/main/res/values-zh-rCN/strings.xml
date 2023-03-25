@@ -305,14 +305,31 @@
     <string name="current_password_incorrect">当前密码不正确</string>
     <string name="messageDialog_cancel_change_password">您的密码将不会被更改</string>
     <string name="crPass_and_newPass_same">新密码与旧密码不能一样</string>
-
-
-
-
-
-
-
-
-
-
+    <string name="email_empty">邮箱不能为空</string>
+    <string name="password_empty">密码不能为空</string>
+    <string name="verify_email">邮箱还未验证</string>
+    <string name="sign_in_fail">登录失败</string>
+    <string name="email_or_password_wrong">邮箱或密码不正确</string>
+    <string name="please_verify_email">请验证您的电子邮件</string>
+    <string name="email_has_been_registered">该电子邮件已被注册</string>
+    <string name="password_at_least">密码必须至少为8个字符</string>
+    <string name="confirm_password_empty">确认密码不能为空</string>
+    <string name="ensure_fill_correct">确保所有信息都已填写</string>
+    <string name="password_cpassword_not_match">密码和确认密码不匹配</string>
+    <string name="t_C">请同意条款和条件以继续</string>
+    <string name="exit_sure">你确定要不保存更改就退出吗？</string>
+    <string name="enter_name">请输入姓名</string>
+    <string name="enter_contact">请输入联系电话</string>
+    <string name="profile_save">您的个人资料已保存！</string>
+    <string name="profile_update_fail">更新您的个人资料失败！</string>
+    <string name="uploading">上传中...</string>
+    <string name="download_completed">下载完成</string>
+    <string name="click_to_view_download_file">点击查看已下载的PDF文件。</string>
+    <string name="download_fail">下载失败</string>
+    <string name="select_education_level">请选择您的教育水平</string>
+    <string name="enter_about_me">请简单介绍一下您自己</string>
+    <string name="employer_information">雇主信息</string>
+    <string name="new_applicants">有新的申请等待您处理</string>
+    <string name="employer_reject">雇主已拒绝您的申请</string>
+    <string name="employer_approve">雇主已批准您的申请</string>
 </resources>

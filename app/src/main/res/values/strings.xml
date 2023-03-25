@@ -252,7 +252,6 @@
 
     <string-array name="sort">
         <item>Relevance</item>
-        <item>Most View</item>
         <item>Highest Salary</item>
         <item>Latest Post Job</item>
     </string-array>
@@ -334,6 +333,31 @@
     <string name="example_history">example</string>
     <string name="transaction_history">History</string>
 
-
-
+    <string name="email_empty">Email Cannot be empty</string>
+    <string name="password_empty">Password Cannot be empty</string>
+    <string name="verify_email">Email not yet verified</string>
+    <string name="sign_in_fail">Sign in fail</string>
+    <string name="email_or_password_wrong">Incorrect email or password</string>
+    <string name="please_verify_email">Please verify your email</string>
+    <string name="email_has_been_registered">Email has been registered</string>
+    <string name="password_at_least">Password must be at least 8</string>
+    <string name="confirm_password_empty">Confirm Password cannot be empty</string>
+    <string name="ensure_fill_correct">Ensure that all information is entered</string>
+    <string name="password_cpassword_not_match">Password and Confirm Password No Match</string>
+    <string name="t_C">Please Agree Terms and Conditions to Continues</string>
+    <string name="exit_sure">Do you want to exit without saving changes?</string>
+    <string name="enter_name">Please Enter Name</string>
+    <string name="enter_contact">"Please Enter Contact Number"</string>
+    <string name="profile_save">"Your profile has been saved!</string>
+    <string name="profile_update_fail">Fail to update your profile!</string>
+    <string name="uploading">Uploading...</string>
+    <string name="download_completed">Download Completed</string>
+    <string name="click_to_view_download_file">Click to view the downloaded PDF file.</string>
+    <string name="download_fail">Download Failed</string>
+    <string name="select_education_level">Please Select Your Education Level</string>
+    <string name="enter_about_me">Please Introduce about Yourself</string>
+    <string name="employer_information">Employer Information</string>
+    <string name="new_applicants">There are new applicants waiting for your processing</string>
+    <string name="employer_reject">Employer has rejected your application</string>
+    <string name="employer_approve">Employer has approved your application</string>
 </resources>

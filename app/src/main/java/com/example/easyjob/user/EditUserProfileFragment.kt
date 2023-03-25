@@ -137,7 +137,7 @@ class EditUserProfileFragment : Fragment() {
                 // 权限已授权，执行需要权限的操作
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
-                    Toast.makeText(requireContext(),"Download Completed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getString(R.string.download_completed),Toast.LENGTH_SHORT).show()
 
                     // 下载完成后，创建通知
                     createNotificationChannel()
@@ -154,7 +154,7 @@ class EditUserProfileFragment : Fragment() {
                     val notification = NotificationCompat.Builder(requireContext(), channelId)
                         .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle("$fileName Downloaded")
-                        .setContentText("Click to view the downloaded PDF file.")
+                        .setContentText(getString(R.string.click_to_view_download_file))
                         .setContentIntent(pendingIntent)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
                         .setAutoCancel(true)
@@ -164,7 +164,7 @@ class EditUserProfileFragment : Fragment() {
 
                 }.addOnFailureListener { exception ->
                     Log.e("DOWNLOAD", "Download failed: $exception")
-                    Toast.makeText(requireContext(),"Download Failed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),getString(R.string.download_fail),Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -256,7 +256,7 @@ class EditUserProfileFragment : Fragment() {
         dbref = FirebaseDatabase.getInstance().getReference("Users")
 
         val progressDialog = ProgressDialog(requireActivity())
-        progressDialog.setMessage("Uploading...")
+        progressDialog.setMessage(getString(R.string.uploading))
         progressDialog.setCancelable(true)
         progressDialog.show()
 
@@ -286,7 +286,7 @@ class EditUserProfileFragment : Fragment() {
         dbref = FirebaseDatabase.getInstance().getReference("Users")
 
         val progressDialog = ProgressDialog(requireActivity())
-        progressDialog.setMessage("Uploading...")
+        progressDialog.setMessage(getString(R.string.uploading))
         progressDialog.setCancelable(true)
         progressDialog.show()
         val filePathAndName = "PDFFiles/${auth.currentUser!!.uid}.pdf"
@@ -336,9 +336,9 @@ class EditUserProfileFragment : Fragment() {
         }
         update.addOnSuccessListener {
             navController.popBackStack()
-            Toast.makeText(requireContext(), "Your profile has been saved!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.profile_save), Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
-            Toast.makeText(requireContext(), "Fail to update your profile!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.profile_update_fail), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -354,29 +354,29 @@ class EditUserProfileFragment : Fragment() {
         val profile_status = "Completed"
 
         if(name.isEmpty()) {
-            binding.etUserFullname.error = "Please Enter Name"
+            binding.etUserFullname.error = getString(R.string.enter_name)
         }
         if(gender.isEmpty()){
-            binding.etUserGender.error = "Please Enter Your Gender"
+            binding.etUserGender.error = getString(R.string.enter_your_gender)
         }
         if(contact.isEmpty()) {
-            binding.etUserContact.error = "Please Enter Contact Number"
+            binding.etUserContact.error = getString(R.string.enter_contact)
         }
         if(jobsalary.isEmpty()) {
-            binding.etUserExpectationSalary.error = "Please Enter Expectation Salary"
+            binding.etUserExpectationSalary.error = getString(R.string.enter_your_desired_salary)
         }
         if(address.isEmpty()) {
-            binding.etUserAddress.error = "Please Enter Your Address"
+            binding.etUserAddress.error = getString(R.string.enter_your_home_address)
         }
         if(binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level") {
-            Toast.makeText(context, "Please Select Your Education Level", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.select_education_level), Toast.LENGTH_SHORT).show()
         }
         if(about_me.isEmpty()){
-            binding.etUserAboutMe.error = "Please Introduce about Yourself"
+            binding.etUserAboutMe.error = getString(R.string.enter_about_me)
         }
         if(name.isEmpty()||contact.isEmpty()||jobsalary.isEmpty()||address.isEmpty()||
            binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level"||about_me.isEmpty()){
-            Toast.makeText(context,"Please Complete Your Information",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,getString(R.string.ensure_fill_correct),Toast.LENGTH_SHORT).show()
         }else {
            updateData(name,gender,contact,jobsalary,address,education_level,about_me,profile_status, "")
        }
@@ -396,12 +396,12 @@ class EditUserProfileFragment : Fragment() {
 
     private fun showConfirmationDialog() {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Confirm")
-        alertDialog.setMessage("Do you want to exit without saving changes?")
-        alertDialog.setPositiveButton("Yes") { _, _ ->
+        alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+        alertDialog.setMessage(getString(R.string.exit_sure))
+        alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
             requireActivity().onBackPressed()
         }
-        alertDialog.setNegativeButton("No") { dialog, _ ->
+        alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
             dialog.cancel()
         }
         alertDialog.show()

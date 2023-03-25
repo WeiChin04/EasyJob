@@ -23,7 +23,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class UserSearchJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Adapter<UserSearchJobAdapter.UserJobViewHolder>(){
+class UserSearchJobAdapter(
+    private var jobList: ArrayList<JobData>,
+) : RecyclerView.Adapter<UserSearchJobAdapter.UserJobViewHolder>(){
 
     private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
