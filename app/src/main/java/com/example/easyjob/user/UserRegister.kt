@@ -5,18 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.easyjob.LoginActivity
+import com.example.easyjob.WalletData
 import com.example.easyjob.R
 import com.example.easyjob.databinding.ActivityUserRegisterBinding
 import com.example.easyjob.employer.EmployerRegister
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class UserRegister : AppCompatActivity() {
 
     private lateinit var binding: ActivityUserRegisterBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var dbref : DatabaseReference
+    private lateinit var dbWalletRef : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,11 +108,20 @@ class UserRegister : AppCompatActivity() {
         val profileStatus = "Incomplete"
 
         dbref = FirebaseDatabase.getInstance().getReference("Users")
+        dbWalletRef = FirebaseDatabase.getInstance().getReference("Wallets")
         val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
+        val walletId = UUID.randomUUID().toString()
         //User Data
         val userdata = UserData(
-            "","",email,"","","","","","","",profileStatus,currentUser,""
+            "","",email,"","","","","","","",profileStatus,currentUser,"",walletId
         )
+
+        val walletData = WalletData(
+                0,currentUser
+        )
+
         dbref.child(currentUser).setValue(userdata)
+
+        dbWalletRef.child(walletId).setValue(walletData)
     }
 }

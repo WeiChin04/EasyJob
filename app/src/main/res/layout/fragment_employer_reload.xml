@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".employer.EmployerReload">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Theme.EasyJob">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorOnPrimary"
+            android:textAlignment="center"
+            app:popupTheme="@style/Theme.EasyJob"
+            app:titleTextColor="@color/green">
+
+            <TextView
+                android:id="@+id/tvJobFormTitle"
+                style="@style/toolbar_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/reload_page_title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <View
+        android:id="@+id/view_reload"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/background_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <EditText
+        android:id="@+id/etEnterReloadAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="10dp"
+        android:ems="10"
+        android:hint="@string/hint_enter_amount"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/view_reload"
+        app:layout_constraintStart_toStartOf="@+id/view_reload"
+        app:layout_constraintTop_toTopOf="@+id/view_reload" />
+
+    <TextView
+        android:id="@+id/tvShowMin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="10dp"
+        android:text="@string/min_reload"
+        app:layout_constraintEnd_toEndOf="@+id/etEnterReloadAmount"
+        app:layout_constraintStart_toStartOf="@+id/etEnterReloadAmount"
+        app:layout_constraintTop_toBottomOf="@+id/etEnterReloadAmount" />
+
+    <Button
+        android:id="@+id/btnReload50"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/rm50"
+        app:layout_constraintStart_toStartOf="@+id/etEnterReloadAmount"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowMin" />
+
+    <Button
+        android:id="@+id/btnReload100"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rm100"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReload50"
+        app:layout_constraintEnd_toStartOf="@+id/btnReload200"
+        app:layout_constraintStart_toEndOf="@+id/btnReload50"
+        app:layout_constraintTop_toTopOf="@+id/btnReload50" />
+
+    <Button
+        android:id="@+id/btnReload200"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rm200"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReload50"
+        app:layout_constraintEnd_toEndOf="@+id/etEnterReloadAmount"
+        app:layout_constraintTop_toTopOf="@+id/btnReload50"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnReload300"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/rm300"
+        app:layout_constraintEnd_toEndOf="@+id/btnReload50"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnReload50"
+        app:layout_constraintTop_toBottomOf="@+id/btnReload50" />
+
+    <Button
+        android:id="@+id/btnReload500"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rm500"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReload300"
+        app:layout_constraintEnd_toStartOf="@+id/btnReloadOther"
+        app:layout_constraintStart_toEndOf="@+id/btnReload300"
+        app:layout_constraintTop_toTopOf="@+id/btnReload300" />
+
+    <Button
+        android:id="@+id/btnReloadOther"
+        style="@style/ButtonReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/other"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReload300"
+        app:layout_constraintEnd_toEndOf="@+id/btnReload200"
+        app:layout_constraintTop_toTopOf="@+id/btnReload300" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

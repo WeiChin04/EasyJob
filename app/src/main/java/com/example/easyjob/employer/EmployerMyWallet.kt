@@ -1,20 +1,21 @@
-package com.example.easyjob.user
+package com.example.easyjob.employer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.easyjob.R
 import com.example.easyjob.WalletData
-import com.example.easyjob.databinding.FragmentUserMyWalletBinding
+import com.example.easyjob.databinding.FragmentEmployerMyWalletBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
 
-class UserMyWallet : Fragment() {
+class EmployerMyWallet : Fragment() {
 
-    private var _binding: FragmentUserMyWalletBinding? =null
+    private var _binding: FragmentEmployerMyWalletBinding? =null
     private val binding get() = _binding!!
     private lateinit var dbRef: DatabaseReference
     private lateinit var dbWalletRef : DatabaseReference
@@ -30,14 +31,18 @@ class UserMyWallet : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentUserMyWalletBinding.inflate(inflater,container,false)
-
+        _binding = FragmentEmployerMyWalletBinding.inflate(inflater,container,false)
 
         getBalance()
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Refresh data here
             refreshData()
+        }
+
+
+        binding.btnCashReload.setOnClickListener {
+            it.findNavController().navigate(R.id.action_employerMyWallet_to_employerReload)
         }
 
         return binding.root

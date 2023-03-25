@@ -99,4 +99,18 @@
         android:name="com.example.easyjob.employer.EmployerChangePassword"
         android:label="fragment_employer_change_password"
         tools:layout="@layout/fragment_employer_change_password" />
+    <fragment
+        android:id="@+id/employerMyWallet"
+        android:name="com.example.easyjob.employer.EmployerMyWallet"
+        android:label="fragment_employer_my_wallet"
+        tools:layout="@layout/fragment_employer_my_wallet" >
+        <action
+            android:id="@+id/action_employerMyWallet_to_employerReload"
+            app:destination="@id/employerReload" />
+    </fragment>
+    <fragment
+        android:id="@+id/employerReload"
+        android:name="com.example.easyjob.employer.EmployerReload"
+        android:label="fragment_employer_reload"
+        tools:layout="@layout/fragment_employer_reload" />
 </navigation>

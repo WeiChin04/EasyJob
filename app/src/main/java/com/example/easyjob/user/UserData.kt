@@ -14,4 +14,5 @@ data class UserData(
     val profile_status: String? = null,
     val userId: String? = null,
     val deviceToken: String? =null,
+    val walletId: String? =null,
 )

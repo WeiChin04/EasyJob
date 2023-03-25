@@ -173,6 +173,8 @@ class ApplicantDetailsFragment : Fragment() {
 
             binding.btnApprove.setOnClickListener {
 
+
+
                 val alertDialog = AlertDialog.Builder(requireContext())
                 alertDialog.setTitle("Confirm")
                 alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")

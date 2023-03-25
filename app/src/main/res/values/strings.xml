@@ -324,14 +324,6 @@
     <string name="messageDialog_cancel_change_password">Your password will not be change</string>
     <string name="crPass_and_newPass_same">Current password and new password cannot be same</string>
 
-    <!--    My Wallet Page  -->
-    <string name="currency">RM</string>
-    <string name="example_balance">0.00</string>
-    <string name="total_balance">Total Balance</string>
-    <string name="cash_out">Cash Out</string>
-    <string name="TransactionHistory">Transaction History</string>
-    <string name="example_history">example</string>
-    <string name="transaction_history">History</string>
 
     <string name="email_empty">Email Cannot be empty</string>
     <string name="password_empty">Password Cannot be empty</string>
@@ -360,4 +352,28 @@
     <string name="new_applicants">There are new applicants waiting for your processing</string>
     <string name="employer_reject">Employer has rejected your application</string>
     <string name="employer_approve">Employer has approved your application</string>
+
+    <!--    My Wallet Page  -->
+    <string name="currency">RM</string>
+    <string name="example_balance">0.00</string>
+    <string name="total_balance">Total Balance</string>
+    <string name="reload_cash">+ Reload</string>
+    <string name="cash_out">Cash Out</string>
+    <string name="TransactionHistory">Transaction History</string>
+    <string name="example_history">example</string>
+    <string name="transaction_history">History</string>
+
+    <!--    Reload Page -->
+    <string name="reload_page_title">Reload</string>
+    <string name="hint_enter_amount">Enter your amount</string>
+    <string name="min_reload">Min reload amount is RM10</string>
+    <string name="rm50">RM 50</string>
+    <string name="rm100">RM 100</string>
+    <string name="rm200">RM 200</string>
+    <string name="rm300">RM 300</string>
+    <string name="rm500">RM 500</string>
+    <string name="other">Other</string>
+
+
+
 </resources>

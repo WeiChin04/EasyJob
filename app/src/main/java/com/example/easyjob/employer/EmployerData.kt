@@ -10,5 +10,6 @@ data class EmployerData(
     var overview : String? = null,
     var profileStatus : String? = null,
     val deviceToken: String? =null,
+    val walletId: String? =null,
 )
 

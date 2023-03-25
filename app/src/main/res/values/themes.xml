@@ -145,6 +145,16 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ButtonReload">
+        <item name="android:background">@drawable/custom_bg_button_stroke</item>
+        <item name="backgroundTint">@android:color/white</item>
+        <item name="strokeWidth">10dp</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="ButtonGreenStoke2">
         <item name="android:background">@drawable/custom_bg_button_stroke</item>
         <item name="backgroundTint">@color/red</item>
