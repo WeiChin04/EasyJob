@@ -374,7 +374,7 @@ class EditUserProfileFragment : Fragment() {
         if(about_me.isEmpty()){
             binding.etUserAboutMe.error = getString(R.string.enter_about_me)
         }
-        if(name.isEmpty()||contact.isEmpty()||jobsalary.isEmpty()||address.isEmpty()||
+        if(name.isEmpty()||contact.isEmpty()||jobsalary.isEmpty()||address.isEmpty()||gender.isEmpty()||
            binding.spEducationLevel.selectedItem.toString() == "Click To Select Education Level"||about_me.isEmpty()){
             Toast.makeText(context,getString(R.string.ensure_fill_correct),Toast.LENGTH_SHORT).show()
         }else {

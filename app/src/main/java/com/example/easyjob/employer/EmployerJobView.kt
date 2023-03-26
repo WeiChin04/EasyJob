@@ -1,5 +1,6 @@
 package com.example.easyjob.employer
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
@@ -36,7 +37,20 @@ class EmployerJobView : Fragment() {
         jobArrayList = arrayListOf<JobData>()
         getJobData()
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data here
+            refreshData()
+        }
+
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshData() {
+        jobArrayList.clear()
+        getJobData()
+        jobRecyclerView.adapter?.notifyDataSetChanged()
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun getJobData() {
@@ -119,7 +133,5 @@ class EmployerJobView : Fragment() {
 
         }
         return binding.root
-
-
     }
 }
