@@ -71,6 +71,20 @@ class UserJobDetailFragment : Fragment() {
         if(arguments?.getString("fromAppliedJob") == "yes"){
             binding.btnApplyJob.visibility = View.GONE
             binding.btnCancelJob.visibility = View.VISIBLE
+        }else{
+            binding.btnApplyJob.visibility = View.VISIBLE
+        }
+
+        if(arguments?.getString("apply_status") == "Approved"){
+            binding.btnCancelJob.visibility = View.GONE
+            binding.tvShowMessage.visibility = View.VISIBLE
+            binding.tvShowMessage.text = getString(R.string.employer_paid_deposit)
+        }
+
+        if(arguments?.getString("apply_status") == "Completed"){
+            binding.btnCancelJob.visibility = View.GONE
+            binding.tvShowMessage.visibility = View.VISIBLE
+            binding.tvShowMessage.text = getString(R.string.deposit_received)
         }
 
         val jobId = arguments?.getString("job_id")

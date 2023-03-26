@@ -59,6 +59,30 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="15dp" />
 
+        <TextView
+            android:id="@+id/tvCashInIcon"
+            style="@style/myWalletHistoryMoneyTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_add"
+            android:text="@string/currency"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAmount"
+            app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+            app:layout_constraintTop_toTopOf="@+id/tvAmount" />
+
+        <TextView
+            android:id="@+id/tvCashOutIcon"
+            style="@style/myWalletHistoryMoneyTextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_decrease"
+            android:text="@string/currency"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAmount"
+            app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+            app:layout_constraintTop_toTopOf="@+id/tvAmount" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="20dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="@color/ic_click_to_upload_profile_image_background">
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M19,13H5v-2h14v2z"/>
+</vector>

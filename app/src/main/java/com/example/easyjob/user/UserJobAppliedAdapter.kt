@@ -139,6 +139,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
                 "job_type" to jobData[position].jobType.toString().replace("[", "").replace("]", ""),
                 "job_status" to jobData[position].jobStatus,
                 "employer_id" to jobData[position].employerId,
+                "apply_status" to jobList[position].status,
                 "fromAppliedJob" to "yes"
             )
 

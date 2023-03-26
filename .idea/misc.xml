@@ -29,6 +29,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/gradient_background.xml" value="0.162" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/home.xml" value="0.213" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_access_time_filled_24.xml" value="0.1795" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_add.xml" value="0.2025" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.16" />
@@ -36,6 +37,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.213" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1555" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1795" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_decrease.xml" value="0.2025" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_email.xml" value="0.16" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_email_focused.xml" value="0.134" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_home.xml" value="0.134" />
@@ -108,7 +110,7 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_tab_bar.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/my_simple_list_item.xml" value="0.1203125" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/notification.xml" value="0.23143115942028986" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/transaction_history_item.xml" value="0.1743659420289855" />
+        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/transaction_history_item.xml" value="0.2361111111111111" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/emlpoyer_btm_nv.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/header_menu.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/user_btm_nv.xml" value="0.25" />

@@ -206,6 +206,8 @@
     <string name="show_cancel_application_confirm_message">您确定要取消申请该职位吗？</string>
     <string name="show_applied_success_message">申请成功！</string>
     <string name="show_repeat_applied_job_message">您之前已经申请了该职位</string>
+    <string name="employer_paid_deposit">雇主已经支付了定金</string>
+    <string name="deposit_received">定金已转到到你的钱包</string>
 
 
     <!-- messageDialog -->

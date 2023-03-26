@@ -38,6 +38,11 @@ class WalletAdapter(private var transactionHistoryList: ArrayList<TransactionHis
         val detail = currentItem.paymentDetail
         val amount = currentItem.amount
 
+        if(currentItem.historyType=="co"){
+            holder.decrease.visibility = View.VISIBLE
+        }else if(currentItem.historyType=="ci"){
+            holder.add.visibility = View.VISIBLE
+        }
 
         holder.transactionTitle.text = title
         holder.detail.text = detail
@@ -66,5 +71,7 @@ class WalletAdapter(private var transactionHistoryList: ArrayList<TransactionHis
         val detail: TextView = itemView.findViewById(R.id.tvDetail)
         val amount: TextView = itemView.findViewById(R.id.tvAmount)
         val date: TextView = itemView.findViewById(R.id.tvTransactionDate)
+        val add: TextView = itemView.findViewById(R.id.tvCashInIcon)
+        val decrease: TextView = itemView.findViewById(R.id.tvCashOutIcon)
     }
 }
