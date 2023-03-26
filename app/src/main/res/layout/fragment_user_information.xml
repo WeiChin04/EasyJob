@@ -208,6 +208,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:maxEms="15"
                 android:minEms="10"
                 app:layout_constraintStart_toStartOf="@+id/tv_user_about_me_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_user_about_me_title" />
