@@ -47,4 +47,13 @@ class EmployerHome : AppCompatActivity() {
         bottomNavigationView.visibility = View.GONE
     }
 
+    override fun onDestroy() {
+        val navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment?
+        if (navHostFragment != null) {
+            supportFragmentManager.beginTransaction().remove(navHostFragment).commitAllowingStateLoss()
+        }
+        super.onDestroy()
+    }
+
+
 }

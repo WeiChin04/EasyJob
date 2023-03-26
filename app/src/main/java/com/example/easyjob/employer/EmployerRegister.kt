@@ -106,7 +106,7 @@ class EmployerRegister : AppCompatActivity() {
         val walletId = UUID.randomUUID().toString()
         //User Data
         val employerData = EmployerData(
-            currentUser,"", email, "", "", "", "", profileStatus,walletId)
+            currentUser,"", email, "", "", "", "", profileStatus,"",walletId)
 
         val walletData = WalletData(
             0f,currentUser

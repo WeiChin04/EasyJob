@@ -31,6 +31,8 @@ class EmployerPayment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private var walletId: String? = null
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
