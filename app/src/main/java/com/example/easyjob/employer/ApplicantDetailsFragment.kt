@@ -137,11 +137,40 @@ class ApplicantDetailsFragment : Fragment() {
 
         deviceToken = arguments?.getString("deviceToken")
 
+        //check job type
+        val jobId = arguments?.getString("job_id")
+        var jobType = ""
+        dbRef = FirebaseDatabase.getInstance().reference
+        dbRef = FirebaseDatabase.getInstance().getReference("Jobs/$jobId")
+        dbRef.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val job = snapshot.getValue(JobData::class.java)
+                jobType = job?.jobType?.toString()?.replace("[", "")?.replace("]", "").toString()
+                Log.d("jobtype","Show JobType: $jobType")
+                if(jobType != "Temporary Work"){
+                    binding.btnApplicantAttend.visibility = View.GONE
+                    binding.btnApplicantAbsent.visibility = View.GONE
+                    binding.tvShowApproved.visibility = View.VISIBLE
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
+//        if(jobType != "Temporary Work"){
+//            binding.btnApplicantAttend.visibility = View.GONE
+//            binding.btnApplicantAbsent.visibility = View.GONE
+//            //binding.tvShowApproved.visibility = View.VISIBLE
+//        }
+
         if(arguments?.getString("apply_status") == "Rejected"){
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
             binding.tvShowRejected.visibility = View.VISIBLE
-        }else if (arguments?.getString("apply_status") == "Approved"){
+        }else if (arguments?.getString("apply_status") == "Approved" ){
 
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
@@ -156,6 +185,12 @@ class ApplicantDetailsFragment : Fragment() {
                 depositRefundToEmployer()
             }
 
+        }else if (arguments?.getString("apply_status") == "Approved"){
+
+            binding.btnApprove.visibility = View.GONE
+            binding.btnReject.visibility = View.GONE
+            binding.tvShowApproved.visibility = View.VISIBLE
+
         }else if (arguments?.getString("apply_status") == "Completed"){
 
             binding.btnApprove.visibility = View.GONE
@@ -164,7 +199,8 @@ class ApplicantDetailsFragment : Fragment() {
             binding.btnApplicantAttend.visibility = View.GONE
 
             binding.tvShowCompleted.visibility = View.VISIBLE
-        }else{
+        }
+        else{
 
             binding.btnApprove.visibility = View.VISIBLE
             binding.btnReject.visibility = View.VISIBLE
