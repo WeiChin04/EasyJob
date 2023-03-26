@@ -65,7 +65,7 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
         val currentTime = dateFormat.format(date)
         holder.datePosted.text = currentTime
         holder.jobTitle.text = currentItem.jobTitle
-        holder.jobType.text = currentItem.jobType.toString()
+        holder.jobType.text = currentItem.jobType.toString().replace("[", "").replace("]", "")
         holder.jobStatus.text = currentItem.jobStatus
 
         database = FirebaseDatabase.getInstance()
@@ -106,7 +106,7 @@ class UserJobAdapter(private var jobList: ArrayList<JobData>) : RecyclerView.Ada
                 "job_working_hour_end" to jobList[position].workingHourEnd,
                 "job_requirement" to jobList[position].jobRequirement,
                 "job_responsibilities" to jobList[position].jobResponsibilities,
-                "job_type" to jobList[position].jobType.toString(),
+                "job_type" to jobList[position].jobType.toString().replace("[", "").replace("]", ""),
                 "job_status" to jobList[position].jobStatus
             )
             clickThroughRate(this.jobList[position].jobId.toString())

@@ -60,7 +60,7 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         val currentTime = dateFormat.format(date)
         holder.datePosted.text = currentTime
         holder.jobTitle.text = currentItem.jobTitle
-        holder.jobType.text = currentItem.jobType.toString()
+        holder.jobType.text = currentItem.jobType.toString().replace("[", "").replace("]", "")
         holder.jobStatus.text = currentItem.jobStatus
 
         database = FirebaseDatabase.getInstance()
@@ -133,7 +133,7 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
                 "job_working_hour_end" to jobList[position].workingHourEnd,
                 "job_requirement" to jobList[position].jobRequirement,
                 "job_responsibilities" to jobList[position].jobResponsibilities,
-                "job_type" to jobList[position].jobType.toString(),
+                "job_type" to jobList[position].jobType.toString().replace("[", "").replace("]", ""),
                 "job_status" to jobList[position].jobStatus
             )
             it.findNavController().navigate(R.id.action_jobView_to_jobDetailFragment, bundle)

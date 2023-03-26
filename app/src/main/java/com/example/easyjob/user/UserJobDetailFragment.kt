@@ -360,7 +360,8 @@ class UserJobDetailFragment : Fragment() {
                         currentTime,
                         "",
                         "",
-                        appliedJobId
+                        appliedJobId,
+                        ""
                     )
                     dbRef.child(appliedJobId).setValue(newApplication)
                     Toast.makeText(requireContext(), getString(R.string.show_applied_success_message), Toast.LENGTH_SHORT).show()

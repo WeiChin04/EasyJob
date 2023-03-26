@@ -73,6 +73,9 @@ class ApplicantAdapter(private val childId: String,
             "Approved" -> {
                 holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
             }
+            "Completed" -> {
+                holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.light_green))
+            }
             else -> {
                 holder.applyJobStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
             }
@@ -92,7 +95,7 @@ class ApplicantAdapter(private val childId: String,
                 "about_me" to applicantList.about_me,
                 "apply_status" to appliedDataList.status,
                 "job_id" to appliedDataList.jobId,
-                "applicant_wallet_id" to applicantList.walletId
+                "applicant_wallet_id" to applicantList.walletId,
             )
             it.findNavController().navigate(R.id.action_applicantManagementFragment_to_applicantDetailsFragment, bundle)
         }

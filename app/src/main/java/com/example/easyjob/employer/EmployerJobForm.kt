@@ -78,7 +78,7 @@ class EmployerJobForm : Fragment() {
             }
         }
 
-        /*        TIME PICKER FOR JOB HOUR*/
+        /*        TIME PICKER FOR JOB HOUR      */
         val calendarStart = Calendar.getInstance()
         val timePickerDialogStart = TimePickerDialog(
             requireActivity(),
@@ -353,6 +353,12 @@ class EmployerJobForm : Fragment() {
             selectedJobTypes.add(binding.chkJobTypePartTime.text.toString())
         }
         if (binding.chkJobTypeFullTime.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
+        }
+        if (binding.chkJobTypeFullTime.isChecked) {
+            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
+        }
+        if (binding.chkJobTypeTemporaryWork.isChecked) {
             selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
         }
 
