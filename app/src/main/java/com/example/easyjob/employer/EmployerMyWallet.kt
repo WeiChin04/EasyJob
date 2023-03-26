@@ -59,12 +59,12 @@ class EmployerMyWallet : Fragment() {
         val currentId = auth.currentUser!!.uid
 
         dbRef = FirebaseDatabase.getInstance().reference
-        dbRef.child("Wallets").orderByChild("user_id").equalTo(currentId).addListenerForSingleValueEvent(object :ValueEventListener{
+        dbRef.child("Wallets").orderByChild("holder_id").equalTo(currentId).addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 var wallet: WalletData? = null
                 for (data in snapshot.children) {
                     val temp = data.getValue(WalletData::class.java)
-                    if (temp?.user_id == currentId) {
+                    if (temp?.holder_id == currentId) {
                         wallet = temp
                         break
                     }
@@ -75,7 +75,7 @@ class EmployerMyWallet : Fragment() {
                 } else {
                     dbWalletRef = FirebaseDatabase.getInstance().getReference("Wallets")
                     val walletId = UUID.randomUUID().toString()
-                    val walletData = WalletData(0, currentId)
+                    val walletData = WalletData( 0f, currentId)
                     dbWalletRef.child(walletId).setValue(walletData)
                 }
             }

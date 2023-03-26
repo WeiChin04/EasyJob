@@ -64,7 +64,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
         val currentTime = dateFormat.format(date)
         holder.dateApplied.text = currentTime
         holder.jobTitle.text = currentJobItem.jobTitle
-        holder.jobType.text = currentJobItem.jobType.toString()
+        holder.jobType.text = currentJobItem.jobType.toString().replace("[", "").replace("]", "")
         holder.jobAppliedStatus.text = currentItem.status
 
         val approvedTimeMillis = currentItem.approvedAt
@@ -136,7 +136,7 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
                 "job_working_hour_end" to jobData[position].workingHourEnd,
                 "job_requirement" to jobData[position].jobRequirement,
                 "job_responsibilities" to jobData[position].jobResponsibilities,
-                "job_type" to jobData[position].jobType.toString(),
+                "job_type" to jobData[position].jobType.toString().replace("[", "").replace("]", ""),
                 "job_status" to jobData[position].jobStatus,
                 "employer_id" to jobData[position].employerId,
                 "fromAppliedJob" to "yes"

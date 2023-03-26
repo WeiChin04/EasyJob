@@ -109,7 +109,7 @@ class EmployerRegister : AppCompatActivity() {
             currentUser,"", email, "", "", "", "", profileStatus,walletId)
 
         val walletData = WalletData(
-            0,currentUser
+            0f,currentUser
         )
 
         dbref.child(currentUser).setValue(employerData)

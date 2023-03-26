@@ -117,7 +117,7 @@ class UserRegister : AppCompatActivity() {
         )
 
         val walletData = WalletData(
-                0,currentUser
+                0f,currentUser
         )
 
         dbref.child(currentUser).setValue(userdata)

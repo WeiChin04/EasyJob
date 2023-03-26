@@ -224,6 +224,12 @@
     <string name="messageDialog_confirm">Confirm</string>
     <string name="messageDialog_without_saving">Do you want to exit without saving changes?</string>
     <string name="messageDialog_no">no</string>
+    <string name="approvedConfirmation">Do you want to approve </string>
+    <string name="messageDialog_need_to_pay_deposit1">You will need to pay RM</string>
+    <string name="messageDialog_need_to_pay_deposit2"> as deposit</string>
+    <string name="messageDialog_deposit_will_transfer">Deposit will transfer to applicant</string>
+    <string name="messageDialog_deposit_will_refund">The deposit you have paid will be refunded to your wallet</string>
+
 
 
     <!--    Language        -->
@@ -260,13 +266,21 @@
     <string name="empty_resume">Applicant did not upload any resume or CV</string>
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
-    <string name="cancel_application">Cancel Application</string>
+    <string name="applicant_attend">Applicant Attend</string>
+    <string name="applicant_absent">Applicant Absent</string>
+    <string name="cancel_application">Cancel</string>
     <string name="show_rejected_message">You have rejected the applicant.</string>
+    <string name="show_completed_message">This application is complete</string>
     <string name="cancel_successful_application">Application cancelled</string>
     <string name="cancel_fail_application">Failed to cancel application</string>
+    <string name="show_approved">You have approved the applicant</string>
+    <string name="ask_confirm_reject">Do you want to reject</string>
+    <string name="show_rejected">You have rejected the applicant</string>
+    <string name="show_job_completed">Work completed</string>
     <string name="company_detail_title">Company Details</string>
     <string name="all">All</string>
     <string name="show_no_favourite_job_added">You have not added any jobs to your favourite</string>
+
 
     <string-array name="jobType">
         <item>Internship</item>
@@ -373,6 +387,7 @@
     <string name="rm300">RM 300</string>
     <string name="rm500">RM 500</string>
     <string name="other">Other</string>
+    <string name="no_record">No record</string>
 
 
 

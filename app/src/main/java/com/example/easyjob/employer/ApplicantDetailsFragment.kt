@@ -25,22 +25,20 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.bumptech.glide.Glide
 import com.example.easyjob.R
+import com.example.easyjob.TransactionHistoryData
+import com.example.easyjob.WalletData
 import com.example.easyjob.databinding.FragmentApplicantDetailsBinding
 import com.example.easyjob.user.MySingleton
 import com.example.easyjob.user.UserApplicationData
 import com.example.easyjob.user.UserData
 import com.example.easyjob.user.UserInformationFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.installations.InstallationTokenResult.builder
-import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
-import java.time.Instant
 import java.util.*
-import java.util.stream.DoubleStream.builder
-import java.util.stream.IntStream.builder
 
 class ApplicantDetailsFragment : Fragment() {
 
@@ -57,6 +55,7 @@ class ApplicantDetailsFragment : Fragment() {
     private var TOPIC = ""
     private var deviceToken: String? =null
     private var jobTitle: String? = null
+    private var Deposit: Float? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
@@ -103,7 +102,6 @@ class ApplicantDetailsFragment : Fragment() {
         }.addOnFailureListener {}
 
         binding.tvUserResume.text = getString(R.string.empty_resume)
-
         //get resume file
         val applicantId = arguments?.getString("applicant_id")
         val pdfChillName = "PDFFiles/$applicantId.pdf"
@@ -135,18 +133,46 @@ class ApplicantDetailsFragment : Fragment() {
         }
 
         getJobTitle()
+        getDeposit()
+
         deviceToken = arguments?.getString("deviceToken")
 
         if(arguments?.getString("apply_status") == "Rejected"){
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
             binding.tvShowRejected.visibility = View.VISIBLE
+        }else if (arguments?.getString("apply_status") == "Approved"){
+
+            binding.btnApprove.visibility = View.GONE
+            binding.btnReject.visibility = View.GONE
+            binding.btnApplicantAbsent.visibility = View.VISIBLE
+            binding.btnApplicantAttend.visibility = View.VISIBLE
+
+            binding.btnApplicantAttend.setOnClickListener {
+                depositTransferToApplicant()
+            }
+
+            binding.btnApplicantAbsent.setOnClickListener {
+                depositRefundToEmployer()
+            }
+
+        }else if (arguments?.getString("apply_status") == "Completed"){
+
+            binding.btnApprove.visibility = View.GONE
+            binding.btnReject.visibility = View.GONE
+            binding.btnApplicantAbsent.visibility = View.GONE
+            binding.btnApplicantAttend.visibility = View.GONE
+
+            binding.tvShowCompleted.visibility = View.VISIBLE
         }else{
+
+            binding.btnApprove.visibility = View.VISIBLE
+            binding.btnReject.visibility = View.VISIBLE
             binding.btnReject.setOnClickListener {
                 val alertDialog = AlertDialog.Builder(requireContext())
-                alertDialog.setTitle("Confirm")
-                alertDialog.setMessage("Do you want to reject "+arguments?.getString("name")+" ?")
-                alertDialog.setPositiveButton("Yes") { _, _ ->
+                alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+                alertDialog.setMessage(getString(R.string.ask_confirm_reject)+arguments?.getString("name")+" ?")
+                alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
                     rejectApplicant()
                     val message = getString(R.string.employer_reject)
                     TOPIC = deviceToken.toString()
@@ -165,7 +191,7 @@ class ApplicantDetailsFragment : Fragment() {
                     }
                     sendNotification(notification)
                 }
-                alertDialog.setNegativeButton("No") { dialog, _ ->
+                alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
                     dialog.cancel()
                 }
                 alertDialog.show()
@@ -173,38 +199,377 @@ class ApplicantDetailsFragment : Fragment() {
 
             binding.btnApprove.setOnClickListener {
 
+                //check job type
+                val jobId = arguments?.getString("job_id")
+                //var jobType = ""
+                 dbRef = FirebaseDatabase.getInstance().reference
+                dbRef = FirebaseDatabase.getInstance().getReference("Jobs/$jobId")
+                dbRef.addListenerForSingleValueEvent(object :ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val job = snapshot.getValue(JobData::class.java)
+                        val jobType = job?.jobType?.toString()?.replace("[", "")?.replace("]", "")
+                        val jobSalary = job?.jobSalary?.toInt()
+                        val employerId = job?.employerId.toString()
+                        jobTitle = job?.jobTitle.toString()
+                        Log.d("jobId","job Id: $jobId")
+                        Log.d("jobType","type: $jobType")
+
+                        if(jobType == "Temporary Work"){
+
+                            Deposit = jobSalary?.times(0.3)?.toFloat()
+                            val totalDeposit = String.format("%.2f", Deposit)
 
 
-                val alertDialog = AlertDialog.Builder(requireContext())
-                alertDialog.setTitle("Confirm")
-                alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
-                alertDialog.setPositiveButton("Yes") { _, _ ->
-                    approveApplicant()
-                    val message = getString(R.string.employer_approve)
-                    TOPIC = deviceToken.toString()
-                    NOTIFICATION_TITLE = jobTitle.toString()
-                    NOTIFICATION_MESSAGE = message
+                            Log.d("deposit","total:RM $totalDeposit")
+                            val alertDialog = AlertDialog.Builder(requireContext())
+                            alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+                            alertDialog.setMessage(getString(R.string.approvedConfirmation)+arguments?.getString("name")+" ?\n"+
+                                    getString(R.string.messageDialog_need_to_pay_deposit1)+totalDeposit)
+                            alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
 
-                    val notification = JSONObject()
-                    val notifcationBody = JSONObject()
-                    try {
-                        notifcationBody.put("title", NOTIFICATION_TITLE)
-                        notifcationBody.put("message", NOTIFICATION_MESSAGE)
-                        notification.put("to", TOPIC)
-                        notification.put("data", notifcationBody)
-                    } catch (e: JSONException) {
-                        Log.e(TAG, "onCreate: " + e.message)
+                                payment(employerId)
+
+                            }
+                            alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
+                                dialog.cancel()
+                            }
+                            alertDialog.show()
+                        }
+                        else{
+                            val alertDialog = AlertDialog.Builder(requireContext())
+                            alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+                            alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
+                            alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
+                                approveApplicant()
+                                sendNotificationToApplicant()
+
+                            }
+                            alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
+                                dialog.cancel()
+                            }
+                            alertDialog.show()
+                        }
+
                     }
-                    sendNotification(notification)
-                }
-                alertDialog.setNegativeButton("No") { dialog, _ ->
-                    dialog.cancel()
-                }
-                alertDialog.show()
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                        Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
             }
         }
 
         return binding.root
+    }
+
+    private fun depositRefundToEmployer() {
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+        alertDialog.setMessage(getString(R.string.messageDialog_deposit_will_refund))
+        alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
+
+            val currentId = FirebaseAuth.getInstance().currentUser!!.uid
+            Log.d("employerId","employerId details； $currentId")
+            val applicantRef = FirebaseDatabase.getInstance().getReference("Employers").child(currentId)
+            var walletId = ""
+
+            applicantRef.addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val applicant = snapshot.getValue(EmployerData::class.java)
+                    if(applicant != null){
+                        walletId = applicant.walletId.toString()
+                        Log.d("WalletId","wallet details； $walletId")
+                        transferFund()
+
+                    }
+
+                }
+                private fun transferFund() {
+                    val totalDeposit = String.format("%.2f", Deposit)
+                    val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
+
+                    walletRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val wallet = snapshot.getValue(WalletData::class.java)
+                            if (wallet != null) {
+                                val currentBalance = wallet.total_balance ?: 0f
+                                val newBalance = currentBalance + Deposit!!
+
+                                wallet.total_balance = newBalance
+                                Log.d("CurrentBalance", "CurrentBalance $currentBalance")
+                                Log.d("deposit", "deposit RM: $Deposit")
+
+                                walletRef.setValue(wallet).addOnSuccessListener {
+                                    // Deposit successfully saved to wallet balance
+                                    Log.d("Wallet", "Deposit saved to wallet balance")
+                                    updateStatus()
+                                    generateTransactionHistoryForRefund(walletId)
+
+                                }.addOnFailureListener { exception ->
+                                    // Failed to save deposit to wallet balance
+                                    Log.w("Wallet", "Error saving deposit to wallet balance", exception)
+                                    Toast.makeText(requireContext(), "Failed to save deposit to wallet balance. Please try again later.", Toast.LENGTH_LONG).show()
+                                }
+                            } else {
+                                // Wallet not found
+                                Log.w("Wallet", "Wallet with ID $walletId not found")
+                                Toast.makeText(requireContext(), "Wallet not found. Please try again later.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.w(TAG, "Failed to read value.", error.toException())
+                            Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
+
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+                }
+
+            })
+
+
+        }
+        alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
+            dialog.cancel()
+        }
+        alertDialog.show()
+    }
+
+    private fun depositTransferToApplicant() {
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle(getString(R.string.messageDialog_confirm))
+        alertDialog.setMessage(getString(R.string.messageDialog_deposit_will_transfer))
+        alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
+
+            val applicantId = arguments?.getString("applicant_id").toString()
+            Log.d("applicationId","applicationId details； $applicantId")
+            val applicantRef = FirebaseDatabase.getInstance().getReference("Users").child(applicantId)
+            var walletId = ""
+
+            applicantRef.addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val applicant = snapshot.getValue(UserData::class.java)
+                    if(applicant != null){
+                        walletId = applicant.walletId.toString()
+                        Log.d("WalletId","wallet details； $walletId")
+                        transferFund()
+
+                    }
+
+                }
+                private fun transferFund() {
+                    val totalDeposit = String.format("%.2f", Deposit)
+                    val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
+
+                    walletRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val wallet = snapshot.getValue(WalletData::class.java)
+                            if (wallet != null) {
+                                val currentBalance = wallet.total_balance ?: 0f
+                                val newBalance = currentBalance + Deposit!!
+
+                                wallet.total_balance = newBalance
+                                Log.d("CurrentBalance", "CurrentBalance $currentBalance")
+                                Log.d("deposit", "deposit RM: $Deposit")
+
+                                walletRef.setValue(wallet).addOnSuccessListener {
+                                    // Deposit successfully saved to wallet balance
+                                    Log.d("Wallet", "Deposit saved to wallet balance")
+                                    updateStatus()
+                                    generateTransactionHistory(walletId)
+
+                                }.addOnFailureListener { exception ->
+                                    // Failed to save deposit to wallet balance
+                                    Log.w("Wallet", "Error saving deposit to wallet balance", exception)
+                                    Toast.makeText(requireContext(), "Failed to save deposit to wallet balance. Please try again later.", Toast.LENGTH_LONG).show()
+                                }
+                            } else {
+                                // Wallet not found
+                                Log.w("Wallet", "Wallet with ID $walletId not found")
+                                Toast.makeText(requireContext(), "Wallet not found. Please try again later.", Toast.LENGTH_LONG).show()
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.w(TAG, "Failed to read value.", error.toException())
+                            Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+                        }
+                    })
+                }
+
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                    Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+                }
+
+            })
+
+
+        }
+        alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
+            dialog.cancel()
+        }
+        alertDialog.show()
+
+
+    }
+
+    private fun sendNotificationToApplicant() {
+        val message = getString(R.string.employer_approve)
+        TOPIC = deviceToken.toString()
+        NOTIFICATION_TITLE = jobTitle.toString()
+        NOTIFICATION_MESSAGE = message
+
+        val notification = JSONObject()
+        val notifcationBody = JSONObject()
+        try {
+            notifcationBody.put("title", NOTIFICATION_TITLE)
+            notifcationBody.put("message", NOTIFICATION_MESSAGE)
+            notification.put("to", TOPIC)
+            notification.put("data", notifcationBody)
+        } catch (e: JSONException) {
+            Log.e(TAG, "onCreate: " + e.message)
+        }
+        sendNotification(notification)
+    }
+
+    private fun payment(employerId: String) {
+
+        val employerRef = FirebaseDatabase.getInstance().getReference("Employers").child(employerId)
+        var walletId = ""
+
+        employerRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val employer = snapshot.getValue(EmployerData::class.java)
+                if (employer != null) {
+                    walletId = employer.walletId.toString()
+                    val employerName = employer.name.toString()
+                    Log.d("WalletId","wallet details； $walletId" )
+                    deductWallet()
+                }
+            }
+
+            private fun deductWallet() {
+
+                val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
+
+                walletRef.addListenerForSingleValueEvent(object :ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val wallet = snapshot.getValue(WalletData::class.java)
+                        Log.d("Wallet","Wallet $wallet" )
+                        if (wallet != null) {
+                            val balance = wallet.total_balance
+
+                            if ((balance ?: 0f) >= (Deposit ?: 0f)) {
+                                val newBalance = balance!! - Deposit!!
+                                wallet.total_balance = newBalance
+                                walletRef.setValue(wallet)
+                                Log.d("Deposit","Deposit :RM $Deposit" )
+                                Log.d("TotalBalance","Wallet Balance :RM $balance" )
+                                Log.d("NewBalance","Wallet New Balance :RM $newBalance" )
+                                approveApplicant()
+                                sendNotificationToApplicant()
+                                generateTransactionHistory(walletId)
+                            }else{
+                                Log.d("Wallet","Wallet $wallet" )
+                                Log.d("TotalBalance","Wallet Balance :RM $balance" )
+                                val message = "Your balance is insufficient to pay the deposit. Please top up your balance."
+                                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+                            }
+
+                        }else{
+                            // show a message to indicate that the user does not have a wallet
+                            Log.d("Wallet","wallet details； $wallet" )
+                            val message = "Unable to complete the payment. Please try again later."
+                            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                        Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+            }
+        })
+
+
+    }
+
+    private fun generateTransactionHistory(walletId: String) {
+
+        val currentId = FirebaseAuth.getInstance().currentUser!!.uid
+        val employerRef = FirebaseDatabase.getInstance().getReference("Employers/$currentId")
+        var employerName =""
+
+        employerRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val employer = snapshot.getValue(EmployerData::class.java)
+                if (employer != null) {
+                    employerName = employer.name.toString()
+
+                    Log.d("currentId","current Id: $currentId")
+                    Log.d("employerName","Name: $employerName")
+
+                    val transactionRef = FirebaseDatabase.getInstance().getReference("Wallets").child(walletId).child("History").push()
+                    val currentTimeInMS = System.currentTimeMillis().toString()
+                    val status = "Successful"
+                    val transactionNo = UUID.randomUUID().toString()
+
+                    val transactionData = TransactionHistoryData(
+                        employerName,
+                        jobTitle,
+                        Deposit,
+                        currentTimeInMS,
+                        status,
+                        transactionNo
+                    )
+                    transactionRef.setValue(transactionData)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
+            }
+        })
+    }
+
+    private fun generateTransactionHistoryForRefund(walletId: String) {
+
+
+        val transactionRef = FirebaseDatabase.getInstance().getReference("Wallets").child(walletId).child("History").push()
+        val currentTimeInMS = System.currentTimeMillis().toString()
+        val status = "Successful"
+        val transactionNo = UUID.randomUUID().toString()
+
+        val transactionData = TransactionHistoryData(
+            "Refund",
+            jobTitle,
+            Deposit,
+            currentTimeInMS,
+            status,
+            transactionNo
+        )
+        transactionRef.setValue(transactionData)
+
+
     }
 
     private fun approveApplicant() {
@@ -226,7 +591,7 @@ class ApplicantDetailsFragment : Fragment() {
                     if (it.isSuccessful) {
                         val deviceToken = arguments?.getString("deviceToken")
                         Log.d("UserId", "UserId-JobId: $applicationId")
-                        Toast.makeText(requireContext(), "You have approved the applicant", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), getString(R.string.show_approved), Toast.LENGTH_SHORT).show()
                         requireActivity().onBackPressed()
                         analysisApproved()
                     } else {
@@ -375,6 +740,70 @@ class ApplicantDetailsFragment : Fragment() {
                 Toast.makeText(requireContext(),"Failed to get device token",Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun getDeposit() {
+        //check job type
+        val jobId = arguments?.getString("job_id")
+        //var jobType = ""
+        dbRef = FirebaseDatabase.getInstance().reference
+        dbRef = FirebaseDatabase.getInstance().getReference("Jobs/$jobId")
+        dbRef.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val job = snapshot.getValue(JobData::class.java)
+                val jobSalary = job?.jobSalary?.toInt()
+                val employerId = job?.employerId.toString()
+                val employerName = job
+                jobTitle = job?.jobTitle.toString()
+                Log.d("jobId","job Id: $jobId")
+
+                Deposit = jobSalary?.times(0.3)?.toFloat()
+                val totalDeposit = String.format("%.2f", Deposit)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun updateStatus(){
+
+        dbRef = FirebaseDatabase.getInstance().reference
+        val currentTimeInMS = System.currentTimeMillis().toString()
+        val applicationId = arguments?.getString("application_id")
+        val applicationRef = dbRef.child("Applications").child(applicationId.toString())
+
+        applicationRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val application = snapshot.getValue(UserApplicationData::class.java)
+
+                application?.apply {
+                    status = "Completed"
+                    completedAt = currentTimeInMS
+                }
+
+                applicationRef.setValue(application).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Log.d("UserId", "UserId-JobId: $applicationId")
+                        Toast.makeText(requireContext(), getString(R.string.show_job_completed), Toast.LENGTH_SHORT).show()
+                        requireActivity().onBackPressed()
+                        analysisApproved()
+                    } else {
+                        Toast.makeText(requireContext(), "Something error, this application cannot be updated", Toast.LENGTH_SHORT).show()
+                        requireActivity().onBackPressed()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+            }
+        })
+
     }
 
 }
