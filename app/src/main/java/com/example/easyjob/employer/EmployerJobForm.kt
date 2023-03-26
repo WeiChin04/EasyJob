@@ -360,6 +360,7 @@ class EmployerJobForm : Fragment() {
         }
         if (binding.chkJobTypeTemporaryWork.isChecked) {
             selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
+
         }
 
         val jobstatus = if(binding.swJobStatus.isChecked)"Available" else "Unavailable"
