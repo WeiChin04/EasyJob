@@ -266,17 +266,17 @@
     <string name="empty_resume">Applicant did not upload any resume or CV</string>
     <string name="approve">Approve</string>
     <string name="reject">Reject</string>
-    <string name="applicant_attend">Applicant Attend</string>
-    <string name="applicant_absent">Applicant Absent</string>
     <string name="cancel_application">Cancel</string>
     <string name="show_rejected_message">You have rejected the applicant.</string>
     <string name="show_completed_message">This application is complete</string>
-    <string name="cancel_successful_application">Application cancelled</string>
-    <string name="cancel_fail_application">Failed to cancel application</string>
+    <string name="applicant_attend">Applicant Attend</string>
+    <string name="applicant_absent">Applicant Absent</string>
     <string name="show_approved">You have approved the applicant</string>
     <string name="ask_confirm_reject">Do you want to reject</string>
     <string name="show_rejected">You have rejected the applicant</string>
     <string name="show_job_completed">Work completed</string>
+    <string name="cancel_successful_application">Application cancelled</string>
+    <string name="cancel_fail_application">Failed to cancel application</string>
     <string name="company_detail_title">Company Details</string>
     <string name="all">All</string>
     <string name="show_no_favourite_job_added">You have not added any jobs to your favourite</string>
@@ -391,7 +391,6 @@
     <string name="other">Other</string>
     <string name="no_record">No record</string>
 
-
     <string name="card_number">Card Number</string>
     <string name="expiry_date">Expiry Date</string>
     <string name="card_payment">Card Payment</string>
@@ -403,4 +402,12 @@
     <string name="expiry_empty">Expiry data cannot be empty </string>
     <string name="cvv_empty">CVV cannot be empty</string>
     <string name="success_reload">Successful Reload</string>
+    <string name="cash_out_title">Cash Out</string>
+    <string name="bank">Bank</string>
+    <string name="bank_account">Bank Account</string>
+    <string name="amount">Amount</string>
+    <string name="withdrawal">Withdrawal</string>
+    <string name="enter_bank_acc">Enter your bank account</string>
+    <string name="success_withdrawal">Successful withdrawal money</string>
+
 </resources>

@@ -33,7 +33,7 @@ class EmployerProfile : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentEmployerProfileBinding.inflate(inflater,container,false)
 
         auth = FirebaseAuth.getInstance()

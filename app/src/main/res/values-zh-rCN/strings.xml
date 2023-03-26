@@ -213,6 +213,11 @@
     <string name="messageDialog_confirm">确认</string>
     <string name="messageDialog_no">否</string>
     <string name="messageDialog_without_saving">退出后工作内容将不会被保存</string>
+    <string name="approvedConfirmation">Do you want to approve </string>
+    <string name="messageDialog_need_to_pay_deposit1">You will need to pay RM</string>
+    <string name="messageDialog_need_to_pay_deposit2"> as deposit</string>
+    <string name="messageDialog_deposit_will_transfer">Deposit will transfer to applicant</string>
+    <string name="messageDialog_deposit_will_refund">The deposit you have paid will be refunded to your wallet</string>
 
     <!--    Language        -->
     <string name="choose_language">选择语言</string>
@@ -257,6 +262,13 @@
     <string name="company_detail_title">公司详情</string>
     <string name="all">全部</string>
     <string name="show_no_favourite_job_added">您尚未将任何职位添加到收藏夹中</string>
+    <string name="show_completed_message">此申请已完成</string>
+    <string name="applicant_attend">申请人已到场</string>
+    <string name="applicant_absent">申请人未到场</string>
+    <string name="show_approved">您已批准申请人</string>
+    <string name="ask_confirm_reject">您是否要拒绝</string>
+    <string name="show_rejected">您已拒绝申请人</string>
+    <string name="show_job_completed">工作已完成</string>
 
     <string-array name="jobType">
         <item>Internship</item>
@@ -332,4 +344,48 @@
     <string name="new_applicants">有新的申请等待您处理</string>
     <string name="employer_reject">雇主已拒绝您的申请</string>
     <string name="employer_approve">雇主已批准您的申请</string>
+
+    <!--    My Wallet Page  -->
+    <string name="currency">RM</string>
+    <string name="example_balance">0.00</string>
+    <string name="total_balance">总余额</string>
+    <string name="reload_cash">+ 充值</string>
+    <string name="cash_out">提款</string>
+    <string name="TransactionHistory">交易记录</string>
+    <string name="example_history">例子</string>
+    <string name="transaction_history">历史记录</string>
+
+    <!--    充值页面 -->
+    <string name="reload_page_title">充值</string>
+    <string name="hint_enter_amount">输入金额</string>
+    <string name="min_reload">最低充值金额为RM10</string>
+    <string name="rm50">RM 50</string>
+    <string name="rm100">RM 100</string>
+    <string name="rm200">RM 200</string>
+    <string name="rm300">RM 300</string>
+    <string name="rm500">RM 500</string>
+    <string name="other">其他</string>
+    <string name="no_record">没有记录</string>
+
+    <string name="card_number">卡号</string>
+    <string name="expiry_date">有效期</string>
+    <string name="card_payment">信用卡付款</string>
+    <string name="card_holder_name">持卡人姓名</string>
+    <string name="confirm">确认</string>
+    <string name="Continue">继续</string>
+    <string name="check_amount">金额输入错误</string>
+    <string name="card_number_empty">卡号不能为空</string>
+    <string name="expiry_empty">有效期不能为空</string>
+    <string name="cvv_empty">CVV不能为空</string>
+    <string name="success_reload">充值成功</string>
+
+    <!--    Cash Out Page -->
+    <string name="cash_out_title">提款</string>
+    <string name="bank">银行</string>
+    <string name="bank_account">银行账户</string>
+    <string name="amount">金额</string>
+    <string name="withdrawal">提款</string>
+    <string name="enter_bank_acc">请输入您的银行账户</string>
+    <string name="success_withdrawal">提款成功</string>
+
 </resources>

@@ -85,9 +85,6 @@ class EmployerPayment : Fragment() {
 
     private fun generateReloadHistory(walletId: String) {
 
-        val transactionRef =
-            FirebaseDatabase.getInstance().getReference("Wallets").child(walletId).child("History")
-                .push()
         val reload = "Reload"
         val paymentDetail = "Card"
         val currentTimeInMS = System.currentTimeMillis().toString()
@@ -95,16 +92,24 @@ class EmployerPayment : Fragment() {
         val status = "Successful"
         val transactionNo = UUID.randomUUID().toString()
 
-        val transactionData = TransactionHistoryData(
+        val newTransaction = TransactionHistoryData(
             reload,
             paymentDetail,
             amount,
             currentTimeInMS,
             status,
-            transactionNo
+            transactionNo,
+            "ci"
         )
 
-        transactionRef.setValue(transactionData)
+        // 获取 "Wallets/$walletId/History" 节点的引用
+        val historyRef = FirebaseDatabase.getInstance().getReference("WalletHistory/$walletId")
+
+        // 在 "Wallets/$walletId/History" 节点下生成一个唯一的子节点
+        val newHistoryRef = historyRef.push()
+
+        // 设置子节点的值为新的 reload history 信息
+        newHistoryRef.setValue(newTransaction)
     }
 
     private fun totalBalance() {
@@ -142,7 +147,11 @@ class EmployerPayment : Fragment() {
                 } else {
                     // Wallet not found
                     Log.w("Wallet", "Wallet with ID $walletId not found")
-                    Toast.makeText(requireContext(), "Wallet not found. Please try again later.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Wallet not found. Please try again later.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -153,7 +162,7 @@ class EmployerPayment : Fragment() {
         })
     }
 
-    private fun checkvalidation(){
+    private fun checkvalidation() {
         getEmployerWalletId()
         binding.btnConfirm.setOnClickListener {
             if (binding.etCardNumber.text.isEmpty()) {
@@ -166,11 +175,19 @@ class EmployerPayment : Fragment() {
                 binding.etCvv.error = getString(R.string.cvv_empty)
             }
             if (binding.etCardNumber.text.isEmpty() || binding.etExpiryDate.text.isEmpty() || binding.etCvv.text.isEmpty()) {
-                Toast.makeText(requireContext(), getString(R.string.ensure_fill_correct), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.ensure_fill_correct),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 totalBalance()
                 it.findNavController().navigate(R.id.action_employerPayment_to_employerMyWallet)
-                Toast.makeText(requireContext(), getString(R.string.success_reload), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.success_reload),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

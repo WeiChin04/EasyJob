@@ -242,7 +242,7 @@ class UserJobDetailFragment : Fragment() {
             override fun onComplete(
                 error: DatabaseError?,
                 committed: Boolean,
-                currentData: DataSnapshot?
+                currentData: DataSnapshot?,
             ) {
                 if (error != null) {
                     Log.w(ContentValues.TAG, "Failed to read value.", error.toException())

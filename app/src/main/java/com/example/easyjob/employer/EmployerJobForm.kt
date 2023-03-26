@@ -355,11 +355,8 @@ class EmployerJobForm : Fragment() {
         if (binding.chkJobTypeFullTime.isChecked) {
             selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
         }
-        if (binding.chkJobTypeFullTime.isChecked) {
-            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
-        }
         if (binding.chkJobTypeTemporaryWork.isChecked) {
-            selectedJobTypes.add(binding.chkJobTypeFullTime.text.toString())
+            selectedJobTypes.add(binding.chkJobTypeTemporaryWork.text.toString())
 
         }
 

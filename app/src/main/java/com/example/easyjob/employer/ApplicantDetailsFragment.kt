@@ -227,7 +227,9 @@ class ApplicantDetailsFragment : Fragment() {
                                     getString(R.string.messageDialog_need_to_pay_deposit1)+totalDeposit)
                             alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
 
+                                //payment(employerId)
                                 payment(employerId)
+
 
                             }
                             alertDialog.setNegativeButton(getString(R.string.messageDialog_no)) { dialog, _ ->
@@ -236,6 +238,7 @@ class ApplicantDetailsFragment : Fragment() {
                             alertDialog.show()
                         }
                         else{
+                            Log.d("Run else","Run else")
                             val alertDialog = AlertDialog.Builder(requireContext())
                             alertDialog.setTitle(getString(R.string.messageDialog_confirm))
                             alertDialog.setMessage("Do you want to approve "+arguments?.getString("name")+" ?")
@@ -306,7 +309,7 @@ class ApplicantDetailsFragment : Fragment() {
                                     // Deposit successfully saved to wallet balance
                                     Log.d("Wallet", "Deposit saved to wallet balance")
                                     updateStatus()
-                                    generateTransactionHistoryForRefund(walletId)
+                                    generateTransactionHistoryForRefund(walletId,"ci")
 
                                 }.addOnFailureListener { exception ->
                                     // Failed to save deposit to wallet balance
@@ -367,7 +370,6 @@ class ApplicantDetailsFragment : Fragment() {
 
                 }
                 private fun transferFund() {
-                    val totalDeposit = String.format("%.2f", Deposit)
                     val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
 
                     walletRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -385,7 +387,7 @@ class ApplicantDetailsFragment : Fragment() {
                                     // Deposit successfully saved to wallet balance
                                     Log.d("Wallet", "Deposit saved to wallet balance")
                                     updateStatus()
-                                    generateTransactionHistory(walletId)
+                                    generateTransactionHistory(walletId,"ci")
 
                                 }.addOnFailureListener { exception ->
                                     // Failed to save deposit to wallet balance
@@ -466,7 +468,7 @@ class ApplicantDetailsFragment : Fragment() {
                 walletRef.addListenerForSingleValueEvent(object :ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val wallet = snapshot.getValue(WalletData::class.java)
-                        Log.d("Wallet","Wallet $wallet" )
+                        Log.d("WalletCheck","Wallet $wallet" )
                         if (wallet != null) {
                             val balance = wallet.total_balance
 
@@ -479,7 +481,7 @@ class ApplicantDetailsFragment : Fragment() {
                                 Log.d("NewBalance","Wallet New Balance :RM $newBalance" )
                                 approveApplicant()
                                 sendNotificationToApplicant()
-                                generateTransactionHistory(walletId)
+                                generateTransactionHistory(walletId,"co")
                             }else{
                                 Log.d("Wallet","Wallet $wallet" )
                                 Log.d("TotalBalance","Wallet Balance :RM $balance" )
@@ -513,35 +515,60 @@ class ApplicantDetailsFragment : Fragment() {
 
     }
 
-    private fun generateTransactionHistory(walletId: String) {
+    private fun generateTransactionHistory(walletId: String,historyType:String) {
+
+        val subTitleDeposit = "Deposit"
+
+        val currentTimeInMS = System.currentTimeMillis().toString()
+        val status = "Successful"
+        val transactionNo = UUID.randomUUID().toString()
+
+        val newTransaction = TransactionHistoryData(
+            jobTitle,
+            subTitleDeposit,
+            Deposit,
+            currentTimeInMS,
+            status,
+            transactionNo,
+            historyType
+        )
+
+        val historyRef = FirebaseDatabase.getInstance().getReference("WalletHistory/$walletId")
+        val newHistoryRef = historyRef.push()
+        newHistoryRef.setValue(newTransaction)
+
+
+
+    }
+
+    private fun generateTransactionHistoryForRefund(walletId: String,historyType:String) {
 
         val currentId = FirebaseAuth.getInstance().currentUser!!.uid
         val employerRef = FirebaseDatabase.getInstance().getReference("Employers/$currentId")
-        var employerName =""
 
         employerRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val employer = snapshot.getValue(EmployerData::class.java)
                 if (employer != null) {
-                    employerName = employer.name.toString()
-
                     Log.d("currentId","current Id: $currentId")
-                    Log.d("employerName","Name: $employerName")
 
-                    val transactionRef = FirebaseDatabase.getInstance().getReference("Wallets").child(walletId).child("History").push()
                     val currentTimeInMS = System.currentTimeMillis().toString()
                     val status = "Successful"
                     val transactionNo = UUID.randomUUID().toString()
 
-                    val transactionData = TransactionHistoryData(
-                        employerName,
+                    val newTransaction = TransactionHistoryData(
                         jobTitle,
+                        "Refund",
                         Deposit,
                         currentTimeInMS,
                         status,
-                        transactionNo
+                        transactionNo,
+                        historyType
                     )
-                    transactionRef.setValue(transactionData)
+
+                    val historyRef = FirebaseDatabase.getInstance().getReference("WalletHistory/$walletId")
+                    val newHistoryRef = historyRef.push()
+                    newHistoryRef.setValue(newTransaction)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -549,26 +576,6 @@ class ApplicantDetailsFragment : Fragment() {
                 Toast.makeText(requireContext(), "Failed to read value.", Toast.LENGTH_LONG).show()
             }
         })
-    }
-
-    private fun generateTransactionHistoryForRefund(walletId: String) {
-
-
-        val transactionRef = FirebaseDatabase.getInstance().getReference("Wallets").child(walletId).child("History").push()
-        val currentTimeInMS = System.currentTimeMillis().toString()
-        val status = "Successful"
-        val transactionNo = UUID.randomUUID().toString()
-
-        val transactionData = TransactionHistoryData(
-            "Refund",
-            jobTitle,
-            Deposit,
-            currentTimeInMS,
-            status,
-            transactionNo
-        )
-        transactionRef.setValue(transactionData)
-
 
     }
 

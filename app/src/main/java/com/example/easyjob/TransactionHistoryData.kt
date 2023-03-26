@@ -8,5 +8,6 @@ data class TransactionHistoryData(
     val date : String? = null,
     val status : String? = null,
     val transactionNo : String? = null,
+    val historyType : String? = null,
 
 )
