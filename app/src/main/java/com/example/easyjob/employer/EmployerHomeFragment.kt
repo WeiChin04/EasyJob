@@ -57,6 +57,8 @@ class EmployerHomeFragment : Fragment() {
         jobDataArrayList = arrayListOf<JobData>()
         getAnalysisData()
 
+
+        
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Refresh data here
             refreshData()

@@ -434,5 +434,5 @@
 
     <string name="card_number_min">Card number should be at 12 digits</string>
     <string name="expiry_number_min">Card number should be at 4 digits</string>
-    <string name="cvv_number_min">Card number should be at 4 digits</string>
+    <string name="cvv_number_min">Card number should be at 3 digits</string>
 </resources>
