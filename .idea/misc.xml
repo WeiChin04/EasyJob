@@ -47,7 +47,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_person.xml" value="0.134" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_search.xml" value="0.1475" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_wallet.xml" value="0.199" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_work.xml" value="0.134" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/ic_x.xml" value="0.1475" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/drawable/search_bar.xml" value="0.1475" />
@@ -97,7 +96,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_information.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_job_detail.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_my_job.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_my_wallet.xml" value="0.176" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_profile.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/fragment_user_search_result.xml" value="0.24139492753623187" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_analysis.xml" value="0.264" />
@@ -108,7 +106,6 @@
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/job_tab_bar.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/my_simple_list_item.xml" value="0.1203125" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/notification.xml" value="0.23143115942028986" />
-        <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/layout/transaction_history_item.xml" value="0.4" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/emlpoyer_btm_nv.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/header_menu.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EasyJob/app/src/main/res/menu/user_btm_nv.xml" value="0.25" />
@@ -156,6 +153,8 @@
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_job_view.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_my_job.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_home.xml" value="0.19882246376811594" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_change_language.xml" value="0.19021739130434784" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_home.xml" value="0.176" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_information.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_profile.xml" value="0.25" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_user_search_result.xml" value="0.2" />
