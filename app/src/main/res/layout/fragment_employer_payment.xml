@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".employer.EmployerPayment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/Theme.EasyJob">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorOnPrimary"
+            android:textAlignment="center"
+            app:popupTheme="@style/Theme.EasyJob"
+            app:titleTextColor="@color/green">
+
+            <TextView
+                style="@style/toolbar_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/card_payment" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_cardnumber"
+        style="@style/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:drawablePadding="5dp"
+        android:text="@string/card_number"
+        android:textSize="16sp"
+        app:drawableEndCompat="@drawable/protect"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <EditText
+        android:id="@+id/et_card_number"
+        style="@style/paymentInputField"
+        android:layout_width="253dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:drawableStart="@drawable/ic_baseline_credit_card_24"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="@string/card_number"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/tv_cardnumber"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cardnumber"
+        tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_expiry_date"
+        style="@style/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/expiry_date"
+        app:layout_constraintStart_toStartOf="@+id/tv_cardnumber"
+        app:layout_constraintTop_toBottomOf="@+id/et_card_number" />
+
+    <EditText
+        android:id="@+id/et_expiry_date"
+        style="@style/paymentInputField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/mm_yy"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minEms="6"
+        app:layout_constraintStart_toStartOf="@+id/tv_expiry_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_expiry_date"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_cvv"
+        style="@style/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="@string/CVV"
+        app:layout_constraintStart_toEndOf="@+id/tv_expiry_date"
+        app:layout_constraintTop_toTopOf="@+id/tv_expiry_date" />
+
+    <EditText
+        android:id="@+id/et_cvv"
+        style="@style/paymentInputField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="6"
+        android:hint="@string/CVV"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/tv_cvv"
+        app:layout_constraintTop_toBottomOf="@+id/tv_cvv"
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_card_holder_name"-->
+<!--        style="@style/textview"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:text="@string/card_holder_name"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/tv_expiry_date"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_expiry_date" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextPersonName4"-->
+<!--        style="@style/paymentInputField"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:ems="14"-->
+<!--        android:hint="@string/card_holder_name"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="textPersonName"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/tv_card_holder_name"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_card_holder_name"-->
+<!--        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />-->
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/green"
+        android:minEms="20"
+        android:shadowColor="#716F6F"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
