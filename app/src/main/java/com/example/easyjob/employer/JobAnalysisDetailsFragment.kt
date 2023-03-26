@@ -3,6 +3,7 @@ package com.example.easyjob.employer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,20 +28,20 @@ class JobAnalysisDetailsFragment : Fragment() {
 
         val lastAppliedTime = arguments?.getString("last_applied")?.toLongOrNull() ?: 0
 
-        timer = object : CountDownTimer(Long.MAX_VALUE, 60000) { // 每分钟检查一次
-            override fun onTick(millisUntilFinished: Long) {
-                val currentTime = System.currentTimeMillis()
-                val elapsedTime = currentTime - lastAppliedTime
-                if (elapsedTime > 604800000) { // if over 7 days
-                    showReminder()
-                    return
+            Log.d("lastApplied","$lastAppliedTime")
+            timer = object : CountDownTimer(Long.MAX_VALUE, 60000) { // 每分钟检查一次
+                override fun onTick(millisUntilFinished: Long) {
+                    val currentTime = System.currentTimeMillis()
+                    val elapsedTime = currentTime - lastAppliedTime
+                    if (elapsedTime > 604800000) { // if over 7 days
+                        showReminder()
+                        return
+                    }
+                    hideReminder()
                 }
-                hideReminder()
+                override fun onFinish() {}
             }
-
-            override fun onFinish() {}
-        }
-        timer?.start()
+            timer?.start()
 
     }
     override fun onCreateView(
@@ -74,8 +75,6 @@ class JobAnalysisDetailsFragment : Fragment() {
         binding.btnCloseWarning.setOnClickListener {
             hideReminder()
         }
-
-
         return binding.root
     }
 

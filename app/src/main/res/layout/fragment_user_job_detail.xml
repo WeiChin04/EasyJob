@@ -229,6 +229,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/job_requirement_hint"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvJobDetailRequirement"
                 app:layout_constraintTop_toBottomOf="@+id/tvJobDetailRequirement" />
@@ -264,6 +265,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/responsibilities_hint"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvJobDetailResp"
                 app:layout_constraintTop_toBottomOf="@+id/tvJobDetailResp" />
