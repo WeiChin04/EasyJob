@@ -3,13 +3,19 @@ package com.example.easyjob.employer
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.widget.addTextChangedListener
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -22,12 +28,6 @@ class EmployerReload : Fragment() {
 
     private var _binding: FragmentEmployerReloadBinding? =null
     private val binding get() = _binding!!
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -50,6 +50,7 @@ class EmployerReload : Fragment() {
         //hide nav bar
         (activity as EmployerHome).hideBottomNavigationView()
 
+
         binding.btnReload50.setOnClickListener {
             binding.etEnterReloadAmount.setText("50")
         }
@@ -65,14 +66,23 @@ class EmployerReload : Fragment() {
         binding.btnReload500.setOnClickListener {
             binding.etEnterReloadAmount.setText("500")
         }
+
         binding.btnReloadOther.setOnClickListener {
             val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             binding.etEnterReloadAmount.requestFocus()
             inputMethodManager.showSoftInput(binding.etEnterReloadAmount, InputMethodManager.SHOW_IMPLICIT)
-
+        }
+        binding.btnContinue.setOnClickListener {
+            if(binding.etEnterReloadAmount.text.isEmpty() || binding.etEnterReloadAmount.text.toString().toIntOrNull()!! < 10){
+                Toast.makeText(requireContext(),getString(R.string.check_amount),Toast.LENGTH_SHORT).show()
+            }else {
+                val bundle = Bundle().apply {
+                    putString("amount", binding.etEnterReloadAmount.text.toString())
+                }
+                it.findNavController().navigate(R.id.action_employerReload_to_employerPayment,bundle)
+            }
         }
 
         return binding.root
     }
-
 }

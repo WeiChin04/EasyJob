@@ -366,6 +366,8 @@
     <string name="new_applicants">There are new applicants waiting for your processing</string>
     <string name="employer_reject">Employer has rejected your application</string>
     <string name="employer_approve">Employer has approved your application</string>
+    <string name="mm_yy" translatable="false">MM/YY</string>
+    <string name="CVV" translatable="false">CVV</string>
 
     <!--    My Wallet Page  -->
     <string name="currency">RM</string>
@@ -390,5 +392,15 @@
     <string name="no_record">No record</string>
 
 
-
+    <string name="card_number">Card Number</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="card_payment">Card Payment</string>
+    <string name="card_holder_name">Card Holder Name</string>
+    <string name="confirm">Confirm</string>
+    <string name="Continue">Continue</string>
+    <string name="check_amount">Amount value input error</string>
+    <string name="card_number_empty">Card number cannot be empty</string>
+    <string name="expiry_empty">Expiry data cannot be empty </string>
+    <string name="cvv_empty">CVV cannot be empty</string>
+    <string name="success_reload">Successful Reload</string>
 </resources>

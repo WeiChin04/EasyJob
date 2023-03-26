@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cvTransactionHisroty"
+    android:id="@+id/tvDate"
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvTransactionSubTitle"
+            android:id="@+id/tvDetail"
             style="@style/myWalletHistorySubTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTransactionTitle" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tvAmount"
             style="@style/myWalletHistoryMoneyTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,8 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/example_history"
-            app:layout_constraintEnd_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintEnd_toEndOf="@+id/tvAmount"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
 
         <View
             android:layout_width="match_parent"

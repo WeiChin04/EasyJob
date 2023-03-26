@@ -35,6 +35,8 @@ class EmployerMyWallet : Fragment() {
 
         getBalance()
 
+        (activity as EmployerHome).showBottomNavigationView()
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Refresh data here
             refreshData()

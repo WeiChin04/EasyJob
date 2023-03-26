@@ -79,7 +79,11 @@
         android:id="@+id/applicantDetailsFragment"
         android:name="com.example.easyjob.employer.ApplicantDetailsFragment"
         android:label="fragment_applicant_details"
-        tools:layout="@layout/fragment_applicant_details" />
+        tools:layout="@layout/fragment_applicant_details" >
+        <action
+            android:id="@+id/action_applicantDetailsFragment_to_employerPayment"
+            app:destination="@id/employerPayment" />
+    </fragment>
     <fragment
         android:id="@+id/employerJobForm"
         android:name="com.example.easyjob.employer.EmployerJobForm"
@@ -112,5 +116,24 @@
         android:id="@+id/employerReload"
         android:name="com.example.easyjob.employer.EmployerReload"
         android:label="fragment_employer_reload"
-        tools:layout="@layout/fragment_employer_reload" />
+        tools:layout="@layout/fragment_employer_reload" >
+        <action
+            android:id="@+id/action_employerReload_to_employerPayment"
+            app:destination="@id/employerPayment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/employerPayment"
+        android:name="com.example.easyjob.employer.EmployerPayment"
+        android:label="fragment_employer_payment"
+        tools:layout="@layout/fragment_employer_payment" >
+        <action
+            android:id="@+id/action_employerPayment_to_employerReload"
+            app:destination="@id/employerReload" />
+        <action
+            android:id="@+id/action_employerPayment_to_employerMyWallet"
+            app:destination="@id/employerMyWallet"
+            app:popUpTo="@id/employerMyWallet"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
