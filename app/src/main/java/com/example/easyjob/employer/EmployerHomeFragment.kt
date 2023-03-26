@@ -114,6 +114,8 @@ class EmployerHomeFragment : Fragment() {
 
                             })
                         }
+                    }else{
+                        binding.etNoJobShow.visibility = View.GONE
                     }
                 }
 
