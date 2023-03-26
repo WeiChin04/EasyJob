@@ -111,6 +111,9 @@
         <action
             android:id="@+id/action_employerMyWallet_to_employerReload"
             app:destination="@id/employerReload" />
+        <action
+            android:id="@+id/action_employerMyWallet_to_employerCashOut"
+            app:destination="@id/employerCashOut" />
     </fragment>
     <fragment
         android:id="@+id/employerReload"
@@ -136,4 +139,9 @@
             app:popUpTo="@id/employerMyWallet"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/employerCashOut"
+        android:name="com.example.easyjob.employer.EmployerCashOut"
+        android:label="fragment_employer_cash_out"
+        tools:layout="@layout/fragment_employer_cash_out" />
 </navigation>

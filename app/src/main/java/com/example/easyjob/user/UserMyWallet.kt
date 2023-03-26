@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,11 +55,20 @@ class UserMyWallet : Fragment() {
     ): View {
 
         _binding = FragmentUserMyWalletBinding.inflate(inflater,container,false)
+
+        (activity as UserHome).showBottomNavigationView()
+
         getBalance()
+
         binding.swipeRefreshLayout.setOnRefreshListener {
             // Refresh data here
             refreshData()
         }
+
+        binding.btnCashOut.setOnClickListener {
+            it.findNavController().navigate(R.id.action_userMyWallet_to_userCashOut)
+        }
+
         return binding.root
     }
 
@@ -67,6 +77,7 @@ class UserMyWallet : Fragment() {
         getBalance()
         jobHistoryArrayList.clear()
         WalletHistoryRecyclerView.adapter?.notifyDataSetChanged()
+        getHistoryData()
         binding.swipeRefreshLayout.isRefreshing = false
     }
 

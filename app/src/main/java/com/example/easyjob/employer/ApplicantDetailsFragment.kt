@@ -227,6 +227,7 @@ class ApplicantDetailsFragment : Fragment() {
                                     getString(R.string.messageDialog_need_to_pay_deposit1)+totalDeposit)
                             alertDialog.setPositiveButton(getString(R.string.messageDialog_yes)) { _, _ ->
 
+//                                validation(employerId)
                                 //payment(employerId)
                                 payment(employerId)
 
@@ -365,9 +366,7 @@ class ApplicantDetailsFragment : Fragment() {
                         walletId = applicant.walletId.toString()
                         Log.d("WalletId","wallet details； $walletId")
                         transferFund()
-
                     }
-
                 }
                 private fun transferFund() {
                     val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
@@ -382,6 +381,8 @@ class ApplicantDetailsFragment : Fragment() {
                                 wallet.total_balance = newBalance
                                 Log.d("CurrentBalance", "CurrentBalance $currentBalance")
                                 Log.d("deposit", "deposit RM: $Deposit")
+
+
 
                                 walletRef.setValue(wallet).addOnSuccessListener {
                                     // Deposit successfully saved to wallet balance

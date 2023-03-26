@@ -388,4 +388,8 @@
     <string name="enter_bank_acc">请输入您的银行账户</string>
     <string name="success_withdrawal">提款成功</string>
 
+    <string name="card_number_min">卡号应为 12 位数字</string>
+    <string name="expiry_number_min">有效期应为 4 位数字</string>
+    <string name="cvv_number_min">CVV 应为 4 位数字</string>
+
 </resources>

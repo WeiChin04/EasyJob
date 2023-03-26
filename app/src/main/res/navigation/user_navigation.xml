@@ -96,5 +96,14 @@
         android:id="@+id/userMyWallet"
         android:name="com.example.easyjob.user.UserMyWallet"
         android:label="fragment_user_my_wallet"
-        tools:layout="@layout/fragment_user_my_wallet" />
+        tools:layout="@layout/fragment_user_my_wallet" >
+        <action
+            android:id="@+id/action_userMyWallet_to_userCashOut"
+            app:destination="@id/userCashOut" />
+    </fragment>
+    <fragment
+        android:id="@+id/userCashOut"
+        android:name="com.example.easyjob.user.UserCashOut"
+        android:label="fragment_user_cash_out"
+        tools:layout="@layout/fragment_user_cash_out" />
 </navigation>

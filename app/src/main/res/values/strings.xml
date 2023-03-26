@@ -231,7 +231,6 @@
     <string name="messageDialog_deposit_will_refund">The deposit you have paid will be refunded to your wallet</string>
 
 
-
     <!--    Language        -->
     <string name="choose_language">Choose Language</string>
     <string name="change_language">Change Language</string>
@@ -368,6 +367,27 @@
     <string name="employer_approve">Employer has approved your application</string>
     <string name="mm_yy" translatable="false">MM/YY</string>
     <string name="CVV" translatable="false">CVV</string>
+    <string-array name="bank_name">
+        <item>Affin Bank</item>
+        <item>AGRONet</item>
+        <item>Alliance Bank</item>
+        <item>Al-Rajhi Bank</item>
+        <item>Ambank</item>
+        <item>Bank Islam</item>
+        <item>Bank Rakyat</item>
+        <item>Bank of China</item>
+        <item>Bank Simpanan Nasional</item>
+        <item>CIMB Bank</item>
+        <item>Citibank</item>
+        <item>Hong Leong Bank</item>
+        <item>HSBC Bank</item>
+        <item>ICBC Bank</item>
+        <item>Maybank</item>
+        <item>OCBC Bank</item>
+        <item>Public Bank</item>
+        <item>RHB Bank</item>
+        <item>United Overseas Bank</item>
+    </string-array>
 
     <!--    My Wallet Page  -->
     <string name="currency">RM</string>
@@ -408,6 +428,9 @@
     <string name="amount">Amount</string>
     <string name="withdrawal">Withdrawal</string>
     <string name="enter_bank_acc">Enter your bank account</string>
-    <string name="success_withdrawal">Successful withdrawal money</string>
+    <string name="success_withdrawal">Successful withdrawal money</string>
 
+    <string name="card_number_min">Card number should be at 12 digits</string>
+    <string name="expiry_number_min">Card number should be at 4 digits</string>
+    <string name="cvv_number_min">Card number should be at 4 digits</string>
 </resources>

@@ -63,6 +63,10 @@ class EmployerMyWallet : Fragment() {
             it.findNavController().navigate(R.id.action_employerMyWallet_to_employerReload)
         }
 
+        binding.btnCashOut.setOnClickListener {
+            it.findNavController().navigate(R.id.action_employerMyWallet_to_employerCashOut)
+        }
+
         return binding.root
     }
 
@@ -71,6 +75,7 @@ class EmployerMyWallet : Fragment() {
         getBalance()
         jobHistoryArrayList.clear()
         WalletHistoryRecyclerView.adapter?.notifyDataSetChanged()
+        getHistoryData()
         binding.swipeRefreshLayout.isRefreshing = false
     }
 
