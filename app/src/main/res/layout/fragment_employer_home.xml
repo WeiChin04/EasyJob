@@ -20,20 +20,19 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/job_analysis_item" />
 
-        <TextView
-            android:id="@+id/etNoJobShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_work_display"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/myJobAnalysis"
-            app:layout_constraintEnd_toEndOf="@+id/myJobAnalysis"
-            app:layout_constraintStart_toStartOf="@+id/myJobAnalysis"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <TextView
+        android:id="@+id/etNoJobShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_work_display"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/swipeRefreshLayout"
+        app:layout_constraintEnd_toEndOf="@+id/swipeRefreshLayout"
+        app:layout_constraintStart_toStartOf="@+id/swipeRefreshLayout"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

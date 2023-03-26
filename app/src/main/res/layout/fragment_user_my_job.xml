@@ -51,20 +51,18 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/job_item_user_applied" />
 
-        <TextView
-            android:id="@+id/etNoAppliedJobShow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_apply_job_show"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/myJobAppliedList"
-            app:layout_constraintEnd_toEndOf="@+id/myJobAppliedList"
-            app:layout_constraintStart_toStartOf="@+id/myJobAppliedList"
-            app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
+    <TextView
+        android:id="@+id/etNoAppliedJobShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_apply_job_show"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

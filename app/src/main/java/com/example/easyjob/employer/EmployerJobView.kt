@@ -122,6 +122,8 @@ class EmployerJobView : Fragment() {
                             Log.d("status", "status: $employerStatus")
 
                         }
+                    }else{
+                        binding.etNoJobShow.visibility = View.VISIBLE
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
