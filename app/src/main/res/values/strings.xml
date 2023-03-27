@@ -217,6 +217,7 @@
     <string name="show_cancel_application_confirm_message">Do you want to cancel your application for this job?</string>
     <string name="show_applied_success_message">Applied Successfully!!</string>
     <string name="show_repeat_applied_job_message">You have applied this job before</string>
+    <string name="employer_approved_job">employer has approved your application</string>
     <string name="employer_paid_deposit">employer has paid the deposit</string>
     <string name="deposit_received">Deposits are debited to your wallet</string>
 

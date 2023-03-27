@@ -75,7 +75,14 @@ class UserJobDetailFragment : Fragment() {
             binding.btnApplyJob.visibility = View.VISIBLE
         }
 
-        if(arguments?.getString("apply_status") == "Approved"){
+        Log.d("JobTypeShow","show here: $arguments?.getString(\"apply_status\"")
+
+        if(arguments?.getString("apply_status") == "Approved" &&
+            arguments?.getString("job_type") != "Temporary Work"){
+            binding.btnCancelJob.visibility = View.GONE
+            binding.tvShowMessage.visibility = View.VISIBLE
+            binding.tvShowMessage.text = getString(R.string.employer_approved_job)
+        }else{
             binding.btnCancelJob.visibility = View.GONE
             binding.tvShowMessage.visibility = View.VISIBLE
             binding.tvShowMessage.text = getString(R.string.employer_paid_deposit)
