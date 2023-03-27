@@ -129,12 +129,10 @@ class EmployerJobForm : Fragment() {
         }
 
         binding.btnPostNow.setOnClickListener{
-            binding.progressBar.visibility = View.VISIBLE
             postJob()
         }
 
         binding.btnUpdateJob.setOnClickListener{
-            binding.progressBar.visibility = View.VISIBLE
             validateJobData()
         }
 
@@ -252,7 +250,6 @@ class EmployerJobForm : Fragment() {
                 jobId,
                 employerImgPath
             )
-            binding.progressBar.visibility = View.GONE
             if (jobId != null) {
                 dbRef.child(jobId).setValue(newJob)
                 analysisCreate(jobId)
@@ -415,7 +412,6 @@ class EmployerJobForm : Fragment() {
                         jobStatus = jobstatus
 
                     }
-                    binding.progressBar.visibility = View.GONE
                     // 将 job 对象写入到指定节点
                     jobRef.setValue(job).addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -429,7 +425,6 @@ class EmployerJobForm : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    binding.progressBar.visibility = View.GONE
                     Log.w(TAG, "Failed to read value.", error.toException())
                     Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
                 }

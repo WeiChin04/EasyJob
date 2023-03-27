@@ -117,6 +117,7 @@ class UserChangePassword : Fragment() {
 
                 if (newPassword != confirmPassword) {
                     Toast.makeText(requireContext(), getString(R.string.newPass_crPass_different), Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
                     return@addOnSuccessListener
                 }
 

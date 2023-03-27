@@ -150,7 +150,6 @@ class ApplicantDetailsFragment : Fragment() {
                 if(jobType != "Temporary Work"){
                     binding.btnApplicantAttend.visibility = View.GONE
                     binding.btnApplicantAbsent.visibility = View.GONE
-                    binding.tvShowApproved.visibility = View.GONE
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -174,9 +173,13 @@ class ApplicantDetailsFragment : Fragment() {
 
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
-            binding.tvShowApproved.visibility = View.GONE
+
             binding.btnApplicantAbsent.visibility = View.VISIBLE
             binding.btnApplicantAttend.visibility = View.VISIBLE
+
+            if(jobType !="Temporary Work"){
+                binding.tvShowApproved.visibility = View.VISIBLE
+            }
 
             binding.btnApplicantAttend.setOnClickListener {
                 depositTransferToApplicant()
@@ -186,11 +189,11 @@ class ApplicantDetailsFragment : Fragment() {
                 depositRefundToEmployer()
             }
 
-        }else if (arguments?.getString("apply_status") == "Approved"){
-
-            binding.btnApprove.visibility = View.GONE
-            binding.btnReject.visibility = View.GONE
-            binding.tvShowApproved.visibility = View.VISIBLE
+//        }else if (arguments?.getString("apply_status") == "Approved"){
+//
+//            binding.btnApprove.visibility = View.GONE
+//            binding.btnReject.visibility = View.GONE
+//            binding.tvShowApproved.visibility = View.VISIBLE
 
         }else if (arguments?.getString("apply_status") == "Completed"){
 
