@@ -341,7 +341,6 @@
                 app:layout_constraintStart_toEndOf="@+id/btnViewCompanyInfo"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
