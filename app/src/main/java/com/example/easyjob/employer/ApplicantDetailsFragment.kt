@@ -150,7 +150,7 @@ class ApplicantDetailsFragment : Fragment() {
                 if(jobType != "Temporary Work"){
                     binding.btnApplicantAttend.visibility = View.GONE
                     binding.btnApplicantAbsent.visibility = View.GONE
-                    binding.tvShowApproved.visibility = View.VISIBLE
+                    binding.tvShowApproved.visibility = View.GONE
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -174,6 +174,7 @@ class ApplicantDetailsFragment : Fragment() {
 
             binding.btnApprove.visibility = View.GONE
             binding.btnReject.visibility = View.GONE
+            binding.tvShowApproved.visibility = View.GONE
             binding.btnApplicantAbsent.visibility = View.VISIBLE
             binding.btnApplicantAttend.visibility = View.VISIBLE
 
