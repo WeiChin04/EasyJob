@@ -433,7 +433,7 @@
     <string name="enter_bank_acc">Enter your bank account</string>
     <string name="success_withdrawal">Successful withdrawal money</string>
 
-    <string name="card_number_min">Card number should be at 12 digits</string>
-    <string name="expiry_number_min">Card number should be at 4 digits</string>
-    <string name="cvv_number_min">Card number should be at 3 digits</string>
+    <string name="card_number_min">Card Number should be at 12 digits</string>
+    <string name="expiry_number_min">Expiry Date should be at 4 digits</string>
+    <string name="cvv_number_min">CVV should be at 3 digits</string>
 </resources>

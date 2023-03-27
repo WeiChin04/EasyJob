@@ -170,13 +170,27 @@ class EmployerPayment : Fragment() {
             if (binding.etCardNumber.text.isEmpty()) {
                 binding.etCardNumber.error = getString(R.string.card_number_empty)
             }
+            if (binding.etCardNumber.text.length < 12) {
+                binding.etCardNumber.error = getString(R.string.card_number_min)
+            }
+
             if (binding.etExpiryDate.text.isEmpty()) {
                 binding.etExpiryDate.error = getString(R.string.expiry_empty)
             }
+            if (binding.etExpiryDate.text.length < 4) {
+                binding.etExpiryDate.error = getString(R.string.expiry_number_min)
+            }
+
             if (binding.etCvv.text.isEmpty()) {
                 binding.etCvv.error = getString(R.string.cvv_empty)
             }
-            if (binding.etCardNumber.text.isEmpty() || binding.etExpiryDate.text.isEmpty() || binding.etCvv.text.isEmpty()) {
+            if (binding.etCvv.text.length <3) {
+                binding.etCvv.error = getString(R.string.cvv_number_min)
+            }
+
+            if (binding.etCardNumber.text.isEmpty() || binding.etCardNumber.text.length < 12
+                || binding.etExpiryDate.text.isEmpty() || binding.etExpiryDate.text.length < 4
+                || binding.etCvv.text.isEmpty() ||binding.etCvv.text.length < 3 ) {
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.ensure_fill_correct),
