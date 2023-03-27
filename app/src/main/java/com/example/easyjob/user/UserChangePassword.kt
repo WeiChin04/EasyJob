@@ -123,6 +123,7 @@ class UserChangePassword : Fragment() {
 
                 if (newPassword.length < 7) {
                     Toast.makeText(requireContext(), getString(R.string.password_must_longer_than_7_char), Toast.LENGTH_SHORT).show()
+                    binding.progressBar.visibility = View.GONE
                     return@addOnSuccessListener
                 }
                 binding.progressBar.visibility = View.GONE
