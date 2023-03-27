@@ -79,47 +79,39 @@ class UserCashOut : Fragment() {
 
         val walletRef = FirebaseDatabase.getInstance().getReference("Wallets/$walletId")
 
-        walletRef.runTransaction(object : Transaction.Handler {
-            override fun doTransaction(mutableData: MutableData): Transaction.Result {
-                val wallet = mutableData.getValue(WalletData::class.java)
+        walletRef.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val wallet = snapshot.getValue(WalletData::class.java)
+                Log.d("WalletCheck","Wallet $wallet" )
+                if (wallet != null) {
+                    val balance = wallet.total_balance
 
-                if(wallet == null) {
-                    // 如果钱包为空，返回事务成功，不做任何修改
-                    return Transaction.success(mutableData)
-                }
-                Log.d("Wallet", "Wallet $wallet")
-
-                val balance = wallet.total_balance
-
-                if ((balance ?: 0f) >= (amount ?: 0f)) {
-                    val newBalance = balance!! - amount!!
-                    wallet.total_balance = newBalance
-                    mutableData.value = wallet
-                    return Transaction.success(mutableData)
-                }
-                return Transaction.success(mutableData)
-            }
-            override fun onComplete(
-                error: DatabaseError?,
-                committed: Boolean,
-                currentData: DataSnapshot?
-            ) {
-                if (error != null) {
-                    // 事务失败
-                    Log.e(ContentValues.TAG, "Transaction failed: ${error.message}")
-                    if (error.code == DatabaseError.OVERRIDDEN_BY_SET) {
-                        // 数据被覆盖，需要重新运行事务
-                        Log.w(ContentValues.TAG, "Transaction was overridden by a subsequent set, retrying...")
-                        // 重新运行事务
+                    if ((balance ?: 0f) >= (amount ?: 0f)) {
+                        val newBalance = balance!! - amount!!
+                        wallet.total_balance = newBalance
+                        walletRef.setValue(wallet)
+                        generateTransactionHistory(walletId)
+                    }else{
+                        Log.d("Wallet","Wallet $wallet" )
+                        val message = "Your balance is insufficient to complete the withdrawal. Please top up your balance."
+//                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                     }
-                } else if (committed) {
-                    // 事务成功，更新UI或执行其他操作
-                    Log.d(ContentValues.TAG, "Transaction successful")
 
+                }else{
+                    // show a message to indicate that the user does not have a wallet
+                    Log.d("Wallet","wallet details； $wallet" )
+                    val message = "Unable to complete the withdrawal. Please try again later."
+//                    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
                 }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
             }
 
         })
+
     }
 
     private fun generateTransactionHistory(walletId: String) {
@@ -168,7 +160,7 @@ class UserCashOut : Fragment() {
             Toast.makeText(requireContext(),getString(R.string.ensure_fill_correct),Toast.LENGTH_SHORT).show()
         }else{
             cashOut(walletId)
-            generateTransactionHistory(walletId)
+//            generateTransactionHistory(walletId)
             requireActivity().onBackPressed()
             Toast.makeText(requireContext(),getString(R.string.success_withdrawal),Toast.LENGTH_SHORT).show()
         }
