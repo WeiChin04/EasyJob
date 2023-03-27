@@ -1,5 +1,6 @@
 package com.example.easyjob.employer
 
+import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.ContentValues
 import android.content.ContentValues.TAG
@@ -28,6 +29,7 @@ class EmployerJobForm : Fragment() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var database: FirebaseDatabase
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,6 +78,15 @@ class EmployerJobForm : Fragment() {
                 binding.chkJobTypeInternship.isChecked = false
                 binding.chkJobTypePartTime.isChecked = false
             }
+        }
+
+        binding.swJobStatus.setOnCheckedChangeListener{ _, isCheck ->
+            if (!isCheck){
+                binding.swJobStatus.text = "Unavailable"
+            }else{
+                binding.swJobStatus.text = "Available"
+            }
+
         }
 
         /*        TIME PICKER FOR JOB HOUR      */
