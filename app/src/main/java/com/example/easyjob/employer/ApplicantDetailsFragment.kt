@@ -151,6 +151,9 @@ class ApplicantDetailsFragment : Fragment() {
                     binding.btnApplicantAttend.visibility = View.GONE
                     binding.btnApplicantAbsent.visibility = View.GONE
                 }
+                if(jobType == "Temporary Work" && arguments?.getString("apply_status") == "Approved" ){
+                    binding.tvShowApproved.visibility = View.GONE
+                }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
