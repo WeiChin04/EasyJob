@@ -2,6 +2,7 @@ package com.example.easyjob.employer
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -28,6 +29,7 @@ class EmployerCashOut : Fragment() {
     private lateinit var database: FirebaseDatabase
     private lateinit var dbRef: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var activityContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +63,7 @@ class EmployerCashOut : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Failed to read Data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activityContext, "Failed to read Data", Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -92,23 +94,26 @@ class EmployerCashOut : Fragment() {
                         wallet.total_balance = newBalance
                         walletRef.setValue(wallet)
                         generateTransactionHistory(walletId)
+                        val message = "Successful withdrawal money"
+                        Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
                     }else{
                         Log.d("Wallet","Wallet $wallet" )
-                        val message = "Your balance is insufficient to complete the withdrawal. Please top up your balance."
-//                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                        val message = "Your balance is insufficient to complete the withdrawal. " +
+                                "Please top up your balance."
+                        Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
                     }
 
                 }else{
                     // show a message to indicate that the user does not have a wallet
                     Log.d("Wallet","wallet details； $wallet" )
                     val message = "Unable to complete the withdrawal. Please try again later."
-//                    Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(activityContext, message, Toast.LENGTH_LONG).show()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
-                Toast.makeText(requireContext(), "Failed to read value", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activityContext, "Failed to read value", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -164,8 +169,13 @@ class EmployerCashOut : Fragment() {
             cashOut(walletId)
 //            generateTransactionHistory(walletId)
             requireActivity().onBackPressed()
-            Toast.makeText(requireContext(),getString(R.string.success_withdrawal),Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),getString(R.string.success_withdrawal),Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        activityContext = context
     }
 
 }

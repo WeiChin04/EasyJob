@@ -156,8 +156,6 @@ class UserMyWallet : Fragment() {
             }
 
         })
-
-
     }
 
 }
