@@ -120,6 +120,9 @@ class UserJobAppliedAdapter(private val jobList: ArrayList<UserApplicationData>,
             "Approved" -> {
                 holder.jobAppliedStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.green))
             }
+            "Completed" -> {
+                holder.jobAppliedStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.brown))
+            }
             else -> {
                 holder.jobAppliedStatus.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.red))
             }
