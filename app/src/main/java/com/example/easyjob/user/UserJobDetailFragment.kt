@@ -82,9 +82,20 @@ class UserJobDetailFragment : Fragment() {
             binding.btnCancelJob.visibility = View.GONE
             binding.tvShowMessage.visibility = View.VISIBLE
             binding.tvShowMessage.text = getString(R.string.employer_approved_job)
-        }else{
+        }else if (arguments?.getString("apply_status") == "Pending" &&
+            arguments?.getString("job_type") == "Temporary Work"){
+            binding.btnCancelJob.visibility = View.VISIBLE
+            binding.tvShowMessage.visibility = View.GONE
+            binding.tvShowMessage.text = getString(R.string.employer_approved_job)
+        }else if (arguments?.getString("apply_status") == "Approved" &&
+            arguments?.getString("job_type") == "Temporary Work"){
             binding.btnCancelJob.visibility = View.GONE
             binding.tvShowMessage.visibility = View.VISIBLE
+            binding.tvShowMessage.text = getString(R.string.employer_paid_deposit)
+        }
+        else{
+            binding.btnCancelJob.visibility = View.VISIBLE
+            binding.tvShowMessage.visibility = View.GONE
             binding.tvShowMessage.text = getString(R.string.employer_paid_deposit)
         }
 
