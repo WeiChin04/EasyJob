@@ -98,8 +98,7 @@ class EmployerCashOut : Fragment() {
                         Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
                     }else{
                         Log.d("Wallet","Wallet $wallet" )
-                        val message = "Your balance is insufficient to complete the withdrawal. " +
-                                "Please top up your balance."
+                        val message = "Withdrawals exceeded wallet money."
                         Toast.makeText(activityContext, message, Toast.LENGTH_SHORT).show()
                     }
 
