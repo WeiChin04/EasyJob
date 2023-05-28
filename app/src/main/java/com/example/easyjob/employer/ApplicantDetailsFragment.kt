@@ -2,7 +2,12 @@ package com.example.easyjob.employer
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ContentValues
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -17,7 +22,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -56,6 +64,7 @@ class ApplicantDetailsFragment : Fragment() {
     private var deviceToken: String? =null
     private var jobTitle: String? = null
     private var Deposit: Float? = null
+    private val channelId = "Channel_id_01"
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
@@ -115,6 +124,13 @@ class ApplicantDetailsFragment : Fragment() {
         val file = File(downloadsFolder, arguments?.getString("name") +"_" + getString(R.string.pdf_name))
         val downloadTask = pdfRef.getFile(file)
         val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        var fileName = arguments?.getString("name") +"_" + getString(R.string.pdf_name)
+        var count = 1
+        while (File(downloadsFolder, fileName).exists()) {
+            fileName = "Resume($count).pdf"
+            count++
+        }
         binding.tvUserResume.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -125,6 +141,29 @@ class ApplicantDetailsFragment : Fragment() {
                 downloadTask.addOnSuccessListener {
                     Log.d("DOWNLOAD", "Download completed: ${file.absolutePath}")
                     Toast.makeText(requireContext(),"Download Completed", Toast.LENGTH_SHORT).show()
+
+                    createNotificationChannel()
+                    val notificationId = 1
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val fileUri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.example.easyjob.fileprovider",
+                        file
+                    )
+                    intent.setDataAndType(fileUri, "application/pdf")
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
+                    val notification = NotificationCompat.Builder(requireContext(), channelId)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle("$fileName Downloaded")
+                        .setContentText(getString(R.string.click_to_view_download_file))
+                        .setContentIntent(pendingIntent)
+                        .setPriority(NotificationCompat.PRIORITY_HIGH)
+                        .setAutoCancel(true)
+                        .build()
+                    val notificationManager = NotificationManagerCompat.from(requireContext())
+                    notificationManager.notify(notificationId, notification)
+
                 }.addOnFailureListener { exception ->
                     Log.e("DOWNLOAD", "Download failed: $applicantId")
                     Toast.makeText(requireContext(),"Download Failed", Toast.LENGTH_SHORT).show()
@@ -309,6 +348,19 @@ class ApplicantDetailsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val notificationTitle = "Notification Title"
+            val descriptionText = "Notification Description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId,notificationTitle,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 
     private fun depositRefundToEmployer() {

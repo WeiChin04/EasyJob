@@ -40,7 +40,9 @@ class WalletAdapter(private var transactionHistoryList: ArrayList<TransactionHis
 
         if(currentItem.historyType=="co"){
             holder.decrease.visibility = View.VISIBLE
+            holder.add.visibility = View.GONE
         }else if(currentItem.historyType=="ci"){
+            holder.decrease.visibility = View.GONE
             holder.add.visibility = View.VISIBLE
         }
 

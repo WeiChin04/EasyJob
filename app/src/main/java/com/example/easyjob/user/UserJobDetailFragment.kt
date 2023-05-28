@@ -245,7 +245,7 @@ class UserJobDetailFragment : Fragment() {
     }
 
     private fun updateFavoriteButtonIcon() {
-        if (isAdded) { // check if the fragment is still attached to an activity
+        if (isAdded) {
             if (isJobInFavorites) {
                 binding.btnFavorite.visibility = View.VISIBLE
                 binding.btnFavoriteGray.visibility = View.GONE

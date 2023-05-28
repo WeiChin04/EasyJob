@@ -410,7 +410,7 @@ class EmployerJobForm : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val job = snapshot.getValue(JobData::class.java)
 
-                    // 更新 job 对象的属性
+                    // Update the properties of the job object
                     job?.apply {
                         jobTitle = binding.etEnterJobTitle.text.toString()
                         jobType = selectedJobTypes
@@ -423,7 +423,7 @@ class EmployerJobForm : Fragment() {
                         jobStatus = jobstatus
 
                     }
-                    // 将 job 对象写入到指定节点
+                    // Writes the job object to the specified node
                     jobRef.setValue(job).addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(requireContext(), "Updated Successfully!!", Toast.LENGTH_SHORT).show()

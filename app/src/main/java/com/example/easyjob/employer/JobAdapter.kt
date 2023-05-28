@@ -155,6 +155,7 @@ class JobAdapter(private val jobList: ArrayList<JobData>) : RecyclerView.Adapter
         val cardView: CardView = itemView.findViewById(R.id.jobCardView)
         val employerImg: ImageView = itemView.findViewById(R.id.imgEmployerForUserHome)
         val redDot: View = itemView.findViewById(R.id.redDot)
+
     }
 
 }
