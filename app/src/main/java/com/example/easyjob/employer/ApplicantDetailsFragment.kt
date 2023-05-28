@@ -110,7 +110,8 @@ class ApplicantDetailsFragment : Fragment() {
                 .into(binding.imgApplicant)
         }.addOnFailureListener {}
 
-        binding.tvUserResume.text = getString(R.string.empty_resume)
+//        binding.tvUserResume.text = getString(R.string.empty_resume)
+
         //get resume file
         val applicantId = arguments?.getString("applicant_id")
         val pdfChillName = "PDFFiles/$applicantId.pdf"
@@ -121,16 +122,18 @@ class ApplicantDetailsFragment : Fragment() {
         }.addOnFailureListener {}
 
         val downloadsFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val file = File(downloadsFolder, arguments?.getString("name") +"_" + getString(R.string.pdf_name))
-        val downloadTask = pdfRef.getFile(file)
-        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
         var fileName = arguments?.getString("name") +"_" + getString(R.string.pdf_name)
         var count = 1
         while (File(downloadsFolder, fileName).exists()) {
-            fileName = "Resume($count).pdf"
+            fileName = arguments?.getString("name") +"_" +"Resume($count).pdf"
             count++
         }
+
+        val file = File(downloadsFolder, fileName)
+        val downloadTask = pdfRef.getFile(file)
+        val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
         binding.tvUserResume.setOnClickListener {
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
