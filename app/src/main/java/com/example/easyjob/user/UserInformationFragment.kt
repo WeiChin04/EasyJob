@@ -140,7 +140,7 @@ class UserInformationFragment : Fragment() {
                     )
                     intent.setDataAndType(fileUri, "application/pdf")
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, 0)
+                    val pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent,  PendingIntent.FLAG_IMMUTABLE)
                     val notification = NotificationCompat.Builder(requireContext(), channelId)
                         .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle("$fileName Downloaded")

@@ -153,6 +153,7 @@
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_informatin.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_information.xml" value="0.18" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_job_view.xml" value="0.19021739130434784" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_my_wallet.xml" value="0.36666666666666664" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_employer_profile.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_job_detail.xml" value="0.19882246376811594" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/fragment_job_view.xml" value="0.19882246376811594" />
@@ -171,6 +172,7 @@
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/job_item_user.xml" value="0.19021739130434784" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/spinner_jobtype.xml" value="0.19021739130434784" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/test.xml" value="0.19882246376811594" />
+        <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/layout/transaction_history_item.xml" value="0.36666666666666664" />
         <entry key="..\:/StudioProjects/EasyJob/app/src/main/res/menu/user_btm_nv.xml" value="0.20416666666666666" />
       </map>
     </option>
